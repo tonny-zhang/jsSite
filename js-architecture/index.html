@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<style>
+			body {
+				background:url(bg.jpg) repeat-x;
+			}
+			a {color:#036; text-decoration:none}
+			ul, li {
+				list-style:none;
+			}
+			#wrapper {
+				font-size:14px;
+				border:1px solid #999;
+				width:800px;
+				margin:100px auto;
+				overflow:hidden;
+				background:#fff;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+			}
+			#list {
+				width:260px;
+				float:left;
+			}
+			#list li {
+				padding:10px;
+				border-bottom:1px solid #999;
+			}
+			.hl {
+				background:#f4f4f4;
+			}
+			#list li:last-child {
+				border:0;
+			}
+			#list li:first-child {
+				-webkit-border-radius: 5px 0 0 0;
+				-moz-border-radius: 5px 0 0 0;
+				border-radius: 5px 0 0 0;
+			}
+
+			#content {
+				padding:10px;
+				margin-left: 260px;
+				color:#333;
+				border-left:1px solid #999;
+				min-height:100px;
+				line-height:190%;
+			}
+		</style>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="mustache.js"></script>
+		<script src="main.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="list"></div>
+			<div id="content"></div>
+		</div>
+		<script type="text/html" id="list-tpl">
+			{{#list}}
+			<li><a href="#">{{text}}</a></li>
+			{{/list}}
+		</script>
+		<script type="text/html" id="content-tpl">
+			{{{content}}}
+		</script>
+	</body>
+</html>
+
