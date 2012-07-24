@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+	<div id="test1" style="border:0px solid blue;background-color:#ccc;width:101px;height:100px;">1</div>
+	<div id="test2" style="border:1px solid blue;width:100px;height:100px;">2</div>
+	<div id="test3" style="border:1px solid blue;width:100px;height:100px;">3</div>
+  <script type="text/javascript">
+  <!--
+	(function(){
+		function $$(selector){
+			_this = this;
+			selector = selector || document;
+			if(typeof selector == 'string'){
+				if(selector.startWith('#')){//ID选择器
+					_this[0] = document.getElementById(selector.substr(1));
+					_this.length = 1;
+				}else if(selector.startWith('.')){
+					
+				}else{//标签选择器
+					var arr = document.getElementsByTagName(selector);
+					_this.length = arr.length;
+					$$.each(arr,function(i,v){
+						_this[i] = v;
+					});
+				}
+			}else{
+				_this[0] = selector;
+				_this.length = 1;
+			}
+		}
+		var isDebug = true;
+		$$.log = (function(){//惰性函数
+			if(typeof console != 'undefined'){
+				return function(){
+					console.log(Array.prototype.slice.call(arguments,0).join('  '));
+				}
+			}else{
+				return function(){}
+			}		
+		})()
+		//用于储存数据
+		$$.cache = {};
+		$$.expando = '$$' + new Date().getTime();
+		$$.cacheId = 1;
+
+		//遍历
+		$$.each = function(arr,fn){
+			for(var i=0,j=arr.length;i<j;i++)fn.call(arr[i],i,arr[i]);
+		}
+		
+		//查看元素有没有在数据里
+		$$.isInArray = function(ele,arr){
+			if(Array.prototype.indeOf){
+				return Array.indexOf( elem );  
+			}
+			for(var i=0,j=arr.length;i<j;i++){
+				if(arr[i] == ele)
+					return true;
+			}
+			return false;
+		}
+		
+		$$.animate = function(ele,opt,delay){
+			this.handle = [];//每个动画对象有一个队列
+			this.timeIndex = 0;
+			for(var i in opt){
+				if(i in $$.animate.config){
+					this.handle.push(new $$.animate.Task(this,ele,i,opt[i],opt,delay));
+				}
+			}
+			if(this.handle.length > 0){
+				this.start();
+			}
+		}
+		$$.animate.minExecTime = 13;
+		$$.animate.config = {
+			'width' : 'offsetWidth',
+			'height' : 'offsetHeight',
+			'left'	: 'offsetLeft',
+			'top'	: 'offsetTop'
+		}
+		$$.animate.Task = function(animate,ele,k,v,opt,delay){
+			this.animate = animate;
+			this.ele = ele;
+			this.key = k;
+			this.value = v;
+			this.opt = opt;
+			this.perVal = (v-Number(ele[$$.animate.config[k]]))/Math.ceil(delay/$$.animate.minExecTime);
+			this.num = 1;
+			$$.log(this.num,'---',this.key,v,Number(ele[$$.animate.config[k]]),this.perVal,Math.ceil(delay/$$.animate.minExecTime));
+		}
+		$$.animate.Task.prototype.exec = function(){
+			var _this = this;
+			var tKey = _this.value;
+			var cKey = _this.ele[$$.animate.config[_this.key]];
+			var tV = tKey - cKey > _this.perVal ? _this.perVal : (tKey - cKey);
+			$$.log(this.num,this.key,cKey,tV,cKey + tV,this.perVal);
+			if(tV>0){
+				_this.ele.style[_this.key] = cKey + tV + 'px';
+			}else{
+				_this.animate.handle.remove(this);
+			}
+			_this.num++;
+		}
+		
+		$$.animate.prototype.start = function(){
+			var _this = this;
+			if(!_this.timeIndex){
+				_this.timeIndex = setInterval(function(){
+					for(var h = _this.handle,i=h.length-1;i>=0;i--){
+						h[i].exec();
+					}
+					if(!_this.handle.length){
+						_this.stop();
+					}
+				},$$.animate.minExecTime);
+			}
+		}
+		$$.animate.prototype.stop = function(){
+			clearInterval(this.timeIndex);
+		}
+		/*扩充字符串操作方法*/
+
+		//是否以指定字符串开头
+		String.prototype.startWith = function(str){
+			return this.indexOf(str) == 0;
+		}
+		//是否以指定字符串结尾
+		String.prototype.endWith = function(str){
+			return this.lastIndexOf(str) == this.length - str.length;
+		}
+		if(!Array.prototype.indeOf){
+			Array.prototype.indeOf = function(e){
+				for(var i = this.length-1;i>=0;i--){
+					if(this[i] == e){
+						return i;
+					}
+				}
+				return -1;
+			}
+		}
+		if(!Array.prototype.remove){
+			Array.prototype.remove = function(e){
+				var i ;
+				while((i = this.indexOf(e)) > -1){
+					this.splice(i,1);
+				}
+			}
+		}
+		//处理事件
+		$$.Event = {
+			//指定原生事件名称
+			type : ['click','dbclick','mousedown','mouseover','mouseout'],
+			//绑定$$.Event.type指定事件
+			bindEvent : (function(){//懒性绑定函数
+				if(window.attachEvent){
+					return function(ele,type,fn){//逆序执行
+						ele.attachEvent('on'+type,function(){
+							fn.call(ele);
+						});
+					}
+				}else{
+					return function(ele,type,fn){//顺序执行
+						ele.addEventListener(type,fn,false);
+					}
+				}
+			})(),
+			//绑定事件可以是自定义事件
+			add : function(ele,type,fn){
+				if($$.isInArray(type,$$.Event.type)){
+					ele.each(function(){
+						$$.Event.bindEvent(this,type,fn);
+					});
+				}else{
+					ele.each(function(){
+						$(this).data(name,fn);
+					})
+				}
+			},
+			//触发$$.Event.type里定义的事件
+			fire : (function(){
+				if(document.createEventObject){ // dispatch for IE
+					return function(ele,type,data){
+						ele.each(function(){
+							this.fireEvent('on'+type,document.createEventObject());
+						});
+					}
+				}else{// dispatch for firefox + others
+					return function(ele,type,data){
+						ele.each(function(){
+							_this = this;
+							var evt = document.createEvent("Events");
+							evt.initEvent(type, true, true ); // event type,bubbling,cancelable
+							_this.dispatchEvent(evt);
+						});
+					}
+				}
+			})(),
+			//触发事件可以是自定义事件
+			trigger : function(ele,type,data){
+				if($$.isInArray(type,$$.Event.type)){
+					this.fire(ele,type,data);
+				}else{
+					ele.each(function(){
+						$(this).data(name).call(this);
+					});
+				}
+			}
+		}
+
+		/*指定公共方法*/
+		$$.prototype = {
+			//对象合并
+			extend : function(){//后面的属性会覆盖前面的属性
+				var _length = arguments.length,
+				_target = _length==1?this:arguments[0];
+				for(var i=0;i<_length;i++){
+					var _arg = arguments[i];
+					for(var n in _arg){
+						_target[n] = _arg[n];
+					}
+				}
+			},
+			//绑定事件
+			bind : function(name,fn){
+				$$.Event.add(this,name,fn);
+				return this;
+			},
+			//触发事件
+			trigger : function(name,data){
+				$$.Event.trigger(this,name);
+				return this;
+			},
+			//得到或设置
+			html : function(content){
+				if(content){
+					this.each(function(i,v){
+						v.innerHTML = content;
+					});
+					return this;
+				}else{
+					return this[0].innerHTML;
+				}
+			},
+			//得到结果集中第一个元素
+			first : function(){
+				return $(this[0]);
+			},
+			//得到结果集中最后一个元素
+			last : function(){
+				return $(this[this.length>=1?this.length-1:0]);
+			},
+			//得到结果集中指写索引的元素，索引从0开始
+			eq : function(i){
+				return i >= 0 && this.length > i ? $(this[i]): $();
+			},
+			//遍历结果集中每个对象
+			each : function(fn){
+				$$.each(this,fn);
+			},
+			//存储或得到自定义数据
+			data : function(name,value){
+				var _this = this,
+					isObj = false;
+				if(arguments.length == 1 && typeof name == 'object'){
+					value = arguments[0];
+					isObj = true;
+				}
+				if(value){
+					_this.each(function(i,ele){
+						if(!ele[$$.expando]){
+							ele[$$.expando] = ++$$.cacheId;//指定数据缓存中索引
+						}
+						var _data = $$.cache[ele[$$.expando]];
+						_data = _data?_data:{};
+						if(isObj){
+							_this.extend(_data,value);
+						}else{
+							_data[name] = value;
+						}
+						$$.cache[ele[$$.expando]] = _data;//将数据存入缓存
+					});
+					return this;
+				}else{
+					var _id = this[0][$$.expando];
+					return _id?$$.cache[_id][name]:null;
+				}
+			},
+			animate : function(opt,delay,callback){
+				this.each(function(i,v){
+					new $$.animate(v,opt,delay,callback);
+				});
+			}
+		}
+		window.$ = function(ele){
+			return new $$(ele);
+		}
+	})()
+	/*var divs = $('div').bind('abc',function(){
+		this.html('this is new content');
+	}).trigger('abc');
+	alert(divs.length);*/
+	/*$('div').each(function(i,v){
+		$(this).html(i+'test')
+	});
+	*/
+	/*$('div').each(function(i,v){
+		this.onclick = function(){
+			alert(
+		}
+	});*/
+	/*$('div').html('test');
+	alert($('div').html())*/
+	//$('div').first().html('first');
+
+	/*function Person(){
+		this.length = 5
+		for(var i = 0;i<5;i++){
+			this[i] = {'name':'a'+i};
+		}
+	}
+	Person.prototype.say = function(i){
+		alert(this[i].name);
+	}
+	var p = new Person();
+	//alert(p[0].name);
+	p.say(2);
+	var Man = {'name':'man'}
+	Man[1] = 'test';
+	//alert(Man[1]);
+	var str = '';
+	for(var i in Man){
+		str += i+':'+Man[i]+'\n';
+	}
+	alert(str);*/
+	/*$('div').first().html('test');
+	$('#test1').html($('#test1').html()+' add');*/
+	
+	/*$('div').first().html('first');
+	$('div').last().html('last');
+	$('div').eq(1).html('eq');
+	*/
+
+	/*$('div').first().bind('abc',function(){
+		this.innerHTML = 'test'
+		//alert($(this).html());
+	}).trigger('abc')*/
+	/*$('div').first().data('test',function(){
+		this.name = 'window';
+	});
+	var d = $('div').first().data('test');
+	alert(d);
+	*/
+	//$('div').first().trigger('abc');
+	/*var d = document.getElementById('test1');
+	d.attachEvent('onclick',function(){
+		alert(this.innerHTML);
+	});*/
+	
+	/*$('div').bind('test',function(){
+		alert('I\' in function bind test,txt is :'+$(this).html());
+	});
+	//$('div').first().trigger('test');
+	$('div').data({
+		'a':'this is a value',
+		'b': function(){
+			alert('this is a function,my innerHTML is : '+$(this).html());
+		}
+	}).bind('click',function(){
+		//alert('I\' in function bind click,txt is :'+$(this).html()+'   '+$(this).data('a')+'   '+$(this).data('b'));
+		$(this).data('b').call(this)
+	}).bind('click',function(){
+		alert($(this).html())
+	})
+	$('div').eq(1).trigger('click');
+
+	alert($('div').first().data('a'));
+	*/
+
+	$('div').first().animate({'width':300,'height':400},1000);
+	$('div').eq(1).animate({'height':250},1000);
+  //-->
+  </script>
+ </body>
+</html>

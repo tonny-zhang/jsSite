@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+  <!--
+	//01 11 23
+	var reg = /([01]\d|2[0123]):([0-5]\d):([0-5]\d)/;
+	var time = '12:59:01';
+	//alert(reg.exec(time));
+
+	/* JS里不支持反向预搜索(?<=) */
+	var str = 'js-source/js-source';
+	var reg = /(\/.*?)-source(?=\/)/g;
+	reg = new RegExp('((^|/).*?)-source($|(?=/))','g');
+	alert(str.replace(reg,'$1'));
+
+	var file = 'css2-source/';
+	var TARGET_RE = new RegExp('(/.*?)-source(?=/)','g');
+	//alert(file.replace(TARGET_RE,'$1'));
+
+	//alert(/^(\w:|\/|\.)/.test('abc/'));
+  //-->
+  </script>
+ </body>
+</html>

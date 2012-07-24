@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+	<style>
+		.pa{position:absolute;}
+		.pixel{width:1px;height:1px;background:red;position:absolute;font-size:0;}
+		.canvas{width:500px;height:500px;position:relative;border:1px solid black;background-color:white;overflow:hidden;margin:0 auto;}
+		.line{background:blue;position:absolute;font-size:0;}
+		.info{color:#666;}
+	</style>
+ </head>
+
+ <body>
+  <div class="pixel"></div>
+  <div class="canvas" id="canvasId"></div>
+  <script type="text/javascript">
+  <!--
+	
+	function Draw(width,height){
+		var zeroX = width/2;
+		var zeroY = height/2;
+		function $(id){
+			return document.getElementById(id);
+		}
+		var canvas = $('canvasId');
+		canvas.style.width = width + "px";
+		canvas.style.height = height + "px";
+		/**初始化座标系*/
+		function initZuobiao(){
+			var xLine = document.createElement('div');
+			xLine.style.height = '1px';
+			xLine.style.width = width + 'px';
+			xLine.style.top = height/2 + 'px';
+			canvas.appendChild(xLine);
+			
+			var yLine = document.createElement('div');
+			yLine.style.width = '1px';
+			yLine.style.height = height + 'px';
+			yLine.style.left = width/2 + 'px';
+			canvas.appendChild(yLine);
+			
+			xLine.className = yLine.className = 'line';
+			
+			var jianJu = 50;//间距
+			for(var j = parseInt(width/jianJu),i=1,y=height/2,x=width/2;i<j;i++){
+				var xBiao = document.createElement('div');
+				xBiao.style.borderLeft = '1px solid black';
+				xBiao.innerHTML = i*jianJu - x;
+				xBiao.className = 'pa';
+				xBiao.style.top = y + 'px';
+				xBiao.style.left = i * jianJu + 'px';
+				canvas.appendChild(xBiao);
+			}
+			for(var j = parseInt(height/jianJu),i=1,y=height/2,x=width/2;i<j;i++){
+				var yBiao = document.createElement('div');
+				yBiao.style.borderTop = '1px solid black';
+				yBiao.innerHTML = y - i*jianJu == 0?'':y - i*jianJu;
+				yBiao.className = 'pa';
+				yBiao.style.top = i * jianJu + 'px';
+				yBiao.style.left = x + 'px';
+				canvas.appendChild(yBiao);
+			}
+		}
+		/**得到座标系相对座标*/
+		function getPos(x,y){
+			return {'x':zeroX+x,'y':zeroY-y};
+		}
+		/**画点*/
+		function drawDot(x,y,opt){
+			var aa = getPos(x,y);
+			//alert(x+" "+y+" "+aa.x+" "+aa.y);
+			var pixel = document.createElement('div');
+			pixel.className = 'pixel';//alert(getPos(x,y).x+"  "+getPos(x,y).y);
+			pixel.style.left = (getPos(x,y).x-(opt&&opt.width?parseInt(opt.width)/2:0)).toFixed(2)+"px";
+			pixel.style.top = (getPos(x,y).y-(opt&&opt.height?parseInt(opt.height)/2:0)).toFixed(2)+"px";
+			canvas.appendChild(pixel);
+			for(var i in opt){
+				pixel.style[i] = opt[i];
+			}
+		}
+		/**显示提示点座标*/
+		function drawInfo(x,y){
+			var info = document.createElement('div');
+			info.className = 'pa info';
+			info.innerHTML = '('+x+','+y+')';
+			info.style.top = getPos(x,y).y+"px";
+			info.style.left = getPos(x,y).x+"px";
+			canvas.appendChild(info);
+
+			drawDot(x,y,{'width':'4px','height':'4px','background':'006633'});
+		}
+		/**画直线*/
+		function _line(start,end,showDot){
+			if(start.x == end.x){//斜率为０
+				var sY = start.y;
+				var eY = end.y;
+				if(sY > eY){
+					sY = end.y;
+					eY = start.y;
+				}
+				var bothX = start.x;
+				for(;sY<eY;sY++){
+					drawDot(bothX,sY);
+				}
+			}else{
+				var sX = start.x;
+				var eX = end.x;
+				var sY = start.y;
+				var eY = end.y;
+				var k = (sY-eY)/(sX-eX);			
+				var b = sY-k*sX;
+				if(Math.abs(sX-eX) > Math.abs(sY-eY)){//保证两点间隙最小
+					if(sX > eX){
+						sX = end.x;
+						eX = start.x;
+					}
+					for(;sX<eX;sX++){
+						drawDot(sX,k*sX+b);
+					}
+				}else{
+					if(sY > eY){
+						sY = end.y;
+						eY = start.y;
+					}
+					for(;sY<eY;sY++){
+						drawDot((sY-b)/k,sY);
+					}
+				}
+			}
+			if(true){
+				drawInfo(start.x,start.y);
+				drawInfo(end.x,end.y);
+			}
+		}
+		/**画圆*/
+		function _circle(x,y,r){
+			for(var i=0;i<360;i++){
+				drawDot(Math.cos(i)*r+x,Math.sin(i)*r+y,{'background':'blue'});
+			}
+			drawInfo(x,y);
+		}
+		/**画椭圆*/
+		function _tuoCircle(x,y,a,b){
+			for(var i=0;i<360;i++){
+				drawDot(a*Math.cos(i)+x,b*Math.sin(i)+y,{'background':'yellow'});
+			}
+			drawInfo(x,y);
+		}
+		/**画双曲线*/
+		function _shuanquxian(x,y,a,b){
+			for(var i=0;i<360;i++){
+				if(i == Math.PI/2 || i == Math.PI/3){
+					continue;
+				}
+				drawDot(a*1/Math.cos(i)+x,b*Math.tan(i)+y,{'background':'black'});
+			}
+			drawInfo(x,y);
+		}
+		/**画抛物线
+			y = a*(x+b)^+c
+		*/
+		function _paowuxian(a,b,c){ 
+			for(var x = -zeroX,oldY = a*x*x+b;x<=zeroX;x++){//,{'width':'4px','height':'4px'}
+				var newY = a*Math.pow(x+b,2)+c;
+				if(Math.abs(newY) > zeroY){
+					oldY = newY;
+					continue;
+				}
+				/*if(Math.abs(newY-oldY) > 1){//补齐出现的空隙
+					var nY = newY;
+					var oY = oldY;
+					if(oY>nY){
+						nY = oldY;
+						oY = newY;
+					}
+					for(var y = oY;y<nY;y++){
+						var xx = Math.sqrt(Math.abs((y-c)/a));
+						xx = x<-b?-xx:xx;
+						drawDot(xx-b,y);
+					}
+				}
+				oldY = newY;*/
+				drawDot(x,newY,{'background':'green'});
+			}
+			drawInfo(-b,c);
+		}
+		(function(){
+			initZuobiao();
+		})()
+		return {
+			line :_line,
+			circle : _circle,
+			tuoCircle : _tuoCircle,
+			paowuxian : _paowuxian,
+			shuanquxian : _shuanquxian
+		}
+	}
+	
+	
+	var draw = new Draw(1000,600);
+	draw.line({'x':-200,'y':50},{'x':100,'y':300});
+	draw.line({'x':-250,'y':250},{'x':400,'y':-150});
+	draw.circle(-80,-30,105);
+	draw.circle(100,100,30);
+	draw.paowuxian(-1/100,-100,-30);
+	draw.paowuxian(1/30,300,50);
+	draw.tuoCircle(100,20,80,150);
+	draw.shuanquxian(-100,-50,25,37);
+	draw.circle(-200,-200,4);
+  //-->
+  </script>
+ </body>
+</html>

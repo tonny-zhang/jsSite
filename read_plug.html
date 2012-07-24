@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+// Create the Sapi SpVoice object
+var VoiceObj = new ActiveXObject("Sapi.SpVoice");
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+// Code in the BODY of the webpage is used to initialize controls and
+// to handle SAPI events
+
+/***** Initializer code *****/
+
+function InitializeControls()
+{
+	// Initialize the Voices and AudioOutput Select boxes
+	var VoicesToken = VoiceObj.GetVoices();
+	var AudioOutputsToken = VoiceObj.GetAudioOutputs();
+}
+
+InitializeControls();
+
+// Handle EndStream event	
+function VoiceObj::EndStream()
+{
+	idbSpeakText.value = "朗读";
+}
+
+// Handle StartStream event	
+function VoiceObj::StartStream()
+{
+	idbSpeakText.value = "停止";
+}
+
+// SpeakText() function:
+//		This function gets the text from the textbox and sends it to the
+//		Voice object's Speak() function. The value "1" for the second
+//      parameter corresponds to the SVSFlagsAsync value in the SpeechVoiceSpeakFlags
+//		enumerated type.
+function SpeakText()
+{
+//alert(document.body.innerText);
+	if (idbSpeakText.value == "朗读")
+	{
+		// Speak the string in the edit box
+		try
+		{
+			VoiceObj.Speak(document.body.innerText, 1);
+		}
+		catch (exception)
+		{
+			alert("Error");
+		}
+	}
+	else if(idbSpeakText.value == "停止")
+	{
+		// Speak empty string to Stop current speaking. The value "2" for 
+		// the second parameter corresponds to the SVSFPurgeBeforeSpeak
+		// value in the SpeechVoiceSpeakFlags enumerated type.
+		VoiceObj.Speak( "", 2);
+	}
+}
+</script>
+
+<SCRIPT FOR="window" EVENT="OnQuit()" LANGUAGE="JavaScript">
+	// Clean up voice object
+	delete VoiceObj;
+</SCRIPT>
+</HEAD>
+
+<body>
+<BUTTON id="idbSpeakText" onclick="SpeakText();">朗读</BUTTON>
+<P>　　这场比赛跟我预想的一样，德国队被西班牙玩死了。</P>
+<P>　　此前德国队横扫英格兰队和阿根廷队，立即吸引了众多墙头草，被捧为夺冠最大热门。</P>
+<P>　　其实熟悉欧洲俱乐部赛事的人都知道，德国俱乐部球队遇上西班牙球队成绩都不太理想。即使在西班牙联赛中水平表现一般的赫塔菲都能给德甲领头羊拜仁慕尼黑制造难堪。作为西甲领头羊的巴萨这几年对德国球队更是捷报频传，对阵不莱梅、斯图加特、沙尔克04、拜仁慕尼黑，不仅比分占优，而且在控球、传球上的技术优势也非常明显。</P>
+<P>　　此次西班牙对阵德国，西班牙队内首发的巴萨球员达到7人，除了巴尔德斯外，其他球员全部都上场了，普约尔和皮克坐镇后防线，哈维、布斯克茨、伊涅斯塔打中场，比利亚和佩德罗则打前锋。另外法布雷加斯和雷纳也出自巴萨青训营。而德国队首发阵容中来自拜仁的球员包括克洛泽、施魏因斯泰格和拉姆三人，如果不是托马斯-穆勒累积黄牌停赛，肯定也将是首发中的一员，而波多尔斯基和特罗肖夫斯基也曾在拜仁效力，另外替补席上的巴德施图贝尔、托尼-克罗斯、戈麦斯和布特也都是来自拜仁，也就是说这辆日尔曼战车同样有10名“拜仁帮”的球员。从一定意义上说，这场比赛就是 巴萨 vs 拜仁慕尼黑，西班牙队胜面很大。</P>
+</body>
+</html>
