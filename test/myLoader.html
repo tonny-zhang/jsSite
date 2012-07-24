@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+  <!--
+	/**
+	动态创建JS，并解决模块中的依赖关系
+	
+	递归判断其依赖模块是否加载完成，来触发其回调事件
+
+	require('a.js',function(a){
+		a.method();
+	})
+	require(['a.js','b.js'],function(a,b){
+		a.method();
+		b.method();
+	})
+	*/
+	/*
+	function createEle(eleName,styleConfig,config){
+		var d = document.createElement(eleName);
+		if(styleConfig){
+			for(var i in styleConfig){
+				d.style[i] = styleConfig[i];
+			}
+		}
+		if(config){
+			for(var i in config){
+				d[i] = config[i];
+			}
+		}
+		return d;
+	}
+	var script = createEle('script',null,{'src':'http://www.fan.com/tools/ajax/is_login_share_tool.fan?callback='+Math.random(),'onload':fixedBtn,'onreadystatechange':function(){
+			head.removeChild(this);
+			var rs = this.readyState;
+	        if (rs === 'loaded' || rs === 'complete' || rs === 'interactive') {
+	          fixedBtn();
+	        }
+		}});
+		head.appendChild(script);
+	*/
+	(function(host){
+		var moduleId = 1;
+		function getModuleId (){
+			return 'module_'+(++moduleId);
+		}
+		//创建一个JS，并可以设置回调函数 
+		var _createJS = function(src,callback){
+			var loadScript = document.createElement('script');
+			loadScript.moduleId = getModuleId();
+			document.getElementsByTagName('head')[0].appendChild(loadScript);
+			
+			loadScript.onload = function(){alert(this);
+				var mId = this['moduleId'];alert(this);
+				window.define = function(){
+					_define.call(null,mId);
+				}
+				alert(window.define);
+				callback.call(this);
+			}
+			loadScript.src = src;
+		}
+		var require1 = function(src,callback){
+			if(typeof src === 'string'){
+				src = [src];
+			}
+			for(var i = 0,j=src.length;i<j;i++){//这里要用一个队列去维护
+				createJs(src[i],function(){
+					
+				});
+			}
+		}
+		var require = function(src,callback){
+			_createJS(src,callback);
+		}
+		//定义模块，并返回模块接口
+		var _define = function(fn,moduleId){
+			if(typeof fn === 'object'){
+				return fn;
+			}
+			return fn.call(null);
+		}
+		window.require = require;
+	})(window)
+	require('a.js');
+	//require('a.js',function(a){
+	//	alert(a);//a.show();
+	//});
+  //-->
+  </script>
+ </body>
+</html>

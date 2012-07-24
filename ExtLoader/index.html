@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title>Ext Core 4 Class Example</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <script type="text/javascript" src="ext-bootstrap-debug.js"></script>
+        <script>
+            Ext.Loader.setConfig({
+                enabled: true,
+                basePath: 'src'
+            });
+        </script>
+        <script>
+            var sources = {};
+
+            function storeCode() {
+                var i = 0,
+                    name,
+                    pre;
+
+                while (++i) {
+                    name = 'sample' + i;
+                    pre = document.getElementById(name);
+
+                    if (!pre) {
+                        break;
+                    }
+
+                    sources[name] = pre.innerHTML;
+                }
+            };
+
+            function run(id) {
+                eval(sources[id]);
+            };
+
+        </script>
+    </head>
+    <body onload="storeCode();">
+        <h1>Ext JS Dynamic Loading Examples</h1>
+        
+        <p>
+            This page contains 4 examples demonstrating Ext JS 4's brand new class loading system. The best way to understand what is happening is to run the examples with firebug or the web inspector
+            open and watch the AJAX requests being made to the server. Each example loads only the code it needs to run - from a single file for the first example to 6 files for the fourth.
+        </p>
+        
+        <p>
+            Once a class has been loaded for one example it does not have to be loaded again for the other examples. Try running the examples in a different order to see which when each file is loaded
+            and how Ext JS follows the dependency path to ensure that everything is loaded. The individual class files are all very simple and are linked to below:
+        </p>
+        
+        <h2>1. Loading a single file</h2>
+        <p>This example just loads a single file. Once it's loaded (from <a href="src/Product.js" target="_blank">src/Product.js</a>), we create a product instance with the newly-loaded class.</p>
+        <pre id="sample1">
+            Ext.require('Product', function() {
+                var product = new Product();
+                product.setName('Ext JS 4');
+                
+                alert("Product name: " + product.getName());
+            });
+        </pre>
+        <p>
+            <button onclick="run('sample1')">Run Code</button>
+        </p>
+        
+        <h2>2. Loading a file with dependencies</h2>
+        <p>
+            This time, we're asking Ext to load the SuperUser class (see <a href="src/SuperUser.js" target="_blank">src/SuperUser.js</a>). SuperUser extends User (see <a href="src/User.js" target="_blank">src/User.js</a>), 
+            which isn't loaded yet, so the loader will automatically load User first, then call our code.
+        </p>
+        <pre id="sample2">
+            Ext.require('SuperUser', function() {
+                var superUser = new SuperUser();
+                superUser.setEmail('ed@sencha.com');
+                
+                alert("Is a SuperUser: " + superUser.isSuper());
+            });
+        </pre>
+        <p>
+            <button onclick="run('sample2')">Run Code</button>
+        </p>
+        
+        <h2>3. Mixins</h2>
+        <p>
+            This time we're going to mix functionality into a class using a mixin. We'll use the same User class as above to create the <a href="src/Developer.js" target="_blank">Developer class</a>, to which we'll
+            add the <a href="src/MadSkills.js" target="_blank">MadSkills mixin</a>. The MadSkills mixin contains a function called hackAway, which will be added to Developer:
+        </p>
+        <pre id="sample3">
+            Ext.require('Developer', function() {
+                var dev = new Developer();
+                dev.setEmail('tommy@sencha.com');
+                dev.hackAway();
+            });
+        </pre>
+        <p>
+            <button onclick="run('sample3')">Run Code</button>
+        </p>
+        
+        <h2>4. Bringing it all together</h2>
+        <p>
+            Finally we'll demonstrate several aspects of the loader working in tandem. Our final class extends the Developer class we used above, mixing in the <a href="src/LeetSkills.js" target="_blank">LeetSkills mixin</a> as well
+            as the earlier MadSkills mixin, and requires the <a href="src/CommitReverter.js" target="_blank">CommitReverter class</a>, which is used by the revertCommits function at the end of the example.
+        </p>
+        <pre id="sample4">
+            Ext.require('Architect', function() {
+                var ed = new Architect();
+                
+                //from the MadSkills mixin
+                ed.hackAway();
+                
+                //from the LeetSkills mixin
+                ed.makeItBetter();
+                
+                //from the RevertChanges requirement
+                ed.revertCommits(2);
+            });
+        </pre>
+        <p>
+            <button onclick="run('sample4')">Run Code</button>
+        </p>
+    </body>
+</html>

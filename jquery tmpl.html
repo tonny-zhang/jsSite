@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="js/jquery-1.6.4.min.js"></script>
+  <script src="js/jquery.tmpl.min.js"></script>
+ </head>
+
+ <body>
+ <div class="testData" data-url="baidu.com"></div>
+  <ul id="movieList"></ul>
+
+	<script id="movieTemplate" type="text/x-jquery-tmpl">
+		<li><b>${Name}</b> (${ReleaseYear})</li>
+	</script>
+	<div id="test" style="display:none">
+		<li><b>${Name}</b> (${ReleaseYear})</li>
+	</div>
+
+	<script type="text/javascript">
+		//alert($(".testData").data('url'));
+		var movies = [
+			{ Name: "The Red Violin", ReleaseYear: "1998" },
+			{ Name: "Eyes Wide Shut", ReleaseYear: "1999" },
+			{ Name: "The Inheritance", ReleaseYear: "1976" }
+		];
+		//movies = [{ Name: "The Red Violin", ReleaseYear: "1998" }];
+		// Render the template with the movies data and insert
+		// the rendered HTML under the "movieList" element
+		$( "#test" ).tmpl( movies )
+			.appendTo( "#movieList" );
+	</script>
+
+<br/><br/><br/>
+
+	<script id="tmplTwo" type="text/x-jquery-tmpl"> 
+    <li>
+    Title: ${Name}.
+        {{if ( Languages && true ) }}
+            (Alternative languages: ${Languages}).
+        {{else Subtitles}} 
+            (Original language only. Subtitles in ${Subtitles}).
+        {{else}} 
+            (Original version only, without subtitles).
+        {{/if}}
+    </li>
+</script>
+
+<ul id="listTwo"></ul>
+
+<script>
+var moviesTwo = [
+    { Name: "Meet Joe Black", Languages: "French", Subtitles: "English" },
+    { Name: "The Mighty", Subtitles: "French and Spanish" },
+    { Name: "The Mighty" },
+    { Name: "City Hunter", Languages: "Mandarin and Cantonese" }
+];
+
+/* Render the template with the movies data */
+/*$( "#tmplTwo" ).tmpl( moviesTwo )
+    .appendTo( "#listTwo" );*/
+$.tmpl($("#tmplTwo").html(),moviesTwo) .appendTo( "#listTwo" );
+</script>
+<script id="tmplTwo1" type="text/x-jquery-tmpl"> 
+	<div class="level_process_small hide">
+		<i class="p_small_left"></i>
+		<i class="p_small_middle" style="width:${taskNum}px;border:1px solid blue;">${taskNum*10}</i>
+		<i class="p_small_right"></i>
+	</div>
+</script>
+<script>
+var task = {
+	name : 'fan达人',
+	taskNum	: 4,
+	taskDone : 2
+}
+$('#tmplTwo1').tmpl(task).appendTo($('body'));
+</script>
+ </body>
+</html>

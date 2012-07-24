@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+		.loadingDiv{
+			font-size:12px;
+			text-align:center;
+			border:1px solid blue;
+			background:#ccc;
+			position:absolute;
+			width:30px;
+			height:15px;
+			line-height:15px;
+		}
+		</style>
+		<script src="js/jquery-1.6.4.js"></script>
+		<script>
+		$('.loading').live('click',aa);
+		
+		function aa(e){
+			if(!$('body').length){//确保body存在
+				var fn = arguments.callee;console.log('no body');
+				setTimeout(function(){
+					fn.apply(null,e);
+				},10);//10ms检测一次
+			}else{
+				var x = e.pageX,
+					y = e.pageY;
+				var loading = $('#loading');
+				if(!loading.length){
+					loading = $('<div></div>').addClass('loadingDiv').html('loading');
+					$('body').append(loading);
+				}
+				loading.css({'left':x-15,'top':y-7});
+				loading.fadeIn().delay(1000).fadeOut();
+			}
+		}
+		if(false){
+			$(function(){
+				$('.loading').die('click',aa);//可以在document.ready事件清除，也可以在某事件中（如某js文件加载完成后清除）
+				$('#one').click(function(){
+					alert('one');
+					$('#two').die('click',aa).click(function(){
+						alert('one give me event');
+					});;
+				})
+				
+			})
+		}
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="test" class="loading" id="one"/>
+		<input type="button" value="test" class="loading" id="two"/>
+		<script>
+		$('#two').removeClass('loading').click(function(){
+			alert('two');
+		})
+		</script>
+	</body>
+</html>

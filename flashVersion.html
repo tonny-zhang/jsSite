@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<script type="text/javascript">
+	<!--
+	function getFlashVersion() {
+	   if (window.ActiveXObject) {
+		  var control = null;
+		  try {
+			 control = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+		  }
+		  catch (e) {
+		  }
+		  if (control) {
+			 version = control.GetVariable('$version').substring(4);
+			 version = version.split(',');
+			 version = parseFloat(version[0] + '.' + version[1]);
+			 delete control;
+			 return version;
+		  }
+	   }
+	   else if(typeof navigator.plugins['Shockwave Flash']!=='undefined') {
+		  var words = navigator.plugins['Shockwave Flash'].description.split(' ');
+		  var aword;
+		  for (var i = 0; i < words.length; ++i) {
+			 if (isNaN(parseInt(words[i])))
+				continue;
+			 aword = words[i];
+		  }
+		  return aword;
+	   }
+	   return 0;
+	}
+	function SetCookie(name,value)//两个参数，一个是cookie的名子，一个是值
+	{
+		var Days = 30; //此 cookie 将被保存 30 天
+		var exp  = new Date();    //new Date("December 31, 9998");
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	function getCookie(name)//取cookies函数        
+	{
+		var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+		 if(arr != null) return unescape(arr[2]); return null;
+
+	}
+	function delCookie(name)//删除cookie
+	{
+		var exp = new Date();
+		exp.setTime(exp.getTime() - 1);
+		var cval=getCookie(name);
+		if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+	}
+	if(getCookie('flash')){
+		alert('checked have_flash');
+	}
+		var version = getFlashVersion();
+		if(version){
+			SetCookie('flash',version);
+			alert('flash:'+version);
+		}
+	
+	//-->
+	</script>
+	</body>
+</html>

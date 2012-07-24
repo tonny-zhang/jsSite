@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+<meta charset="utf-8" />
+<title>uploadify Demo</title>
+<link href="http://js.zk.com/upload/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>!window.jQuery && document.write('<script src="http://code.jquery.com/jquery-1.4.2.min.js"><\/script>');</script>
+<script type="text/javascript" src="http://js.zk.com/upload/uploadify/swfobject.js"></script>
+<script type="text/javascript" src="http://js.zk.com/upload/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#file_upload').uploadify({
+    'uploader': 'http://js.zk.com/upload/uploadify/uploadify.swf',
+    'script': 'http://js.zk.com/upload/uploadify/uploadify.php',
+    'cancelImg': 'http://js.zk.com/upload/uploadify/cancel.png',
+    'buttonImg' : 'http://www.fandongxi.com/img2/sp_upload_164x148.png',
+    'width':164,
+    'height':36,
+    'folder': '/upload/uploads',
+    'auto': false,
+    'multi': true,
+    'wmode': 'transparent'
+  });
+});
+</script>
+
+
+</head> 
+<body> 
+    <div>
+    <input id="file_upload" type="file" name="file_upload" />
+</div>
+  <table style="width: 90%;">  
+        <tr>  
+            <td style="width: 100px;">  
+                <input type="file" name="uploadify" id="uploadify" />  
+            </td>  
+            <td align="left">  
+                <a href="javascript:$('#file_upload').uploadifyUpload()">开始上传</a>|  
+            <a href="javascript:$('#file_upload').uploadifyClearQueue()">取消上传</a>  
+            <span id="result" style="font-size: 13px;color: red"></span>  
+            </td>  
+        </tr>  
+    </table>  
+        <div id="fileQueue" style="width: 400px;height: 300px; border: 2px solid green;"></div>  
+        <div id="status-message"></div>
+</body> 
+</html> 

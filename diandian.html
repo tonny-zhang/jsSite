@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<div id="showContainer">One</div>
+	<input type="button" value="change" onclick="tiaozhuan()"/>
+	<input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">  
+	<input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">  
+<a href="#" id="fileSelect">Select some files</a>   
+<div id="fileList">  
+  <p>No files selected!</p>  
+</div>  
+	<script type="text/javascript">
+	<!--
+		var showCon = document.getElementById('showContainer');
+		function tiaozhuan(){console.log(history)
+			//history.replaceState && history.replaceState(null,'test','http://js.zk.com/login');
+			history.replaceState && history.replaceState({foo:'bar'},'page 2','ajax.php');
+		}
+
+		window.URL = window.URL || window.webkitURL;  
+  
+var fileSelect = document.getElementById("fileSelect"),  
+    fileElem = document.getElementById("fileElem"),  
+    fileList = document.getElementById("fileList");  
+  
+fileSelect.addEventListener("click", function (e) {  
+  if (fileElem) {  
+    fileElem.click();  
+  }  
+  e.preventDefault(); // prevent navigation to "#"  
+}, false);  
+  
+function handleFiles(files) {  
+  if (!files.length) {  
+    fileList.innerHTML = "<p>No files selected!</p>";  
+  } else {  
+    var list = document.createElement("ul");  
+    for (var i = 0; i < files.length; i++) {  
+      var li = document.createElement("li");  
+      list.appendChild(li);  
+        
+      var img = document.createElement("img");  
+      img.src = window.URL.createObjectURL(files[i]);  
+      img.height = 60;  
+      img.onload = function(e) {  
+        window.URL.revokeObjectURL(this.src);  
+      }  
+      li.appendChild(img);  
+        
+      var info = document.createElement("span");  
+      info.innerHTML = files[i].name + ": " + files[i].size + " bytes";  
+      li.appendChild(info);  
+    }  
+    fileList.appendChild(list);  
+  }  
+}  
+	//-->
+	</script>
+	</body>
+</html>

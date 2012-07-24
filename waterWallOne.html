@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="/js/jquery-1.6.4.min.js"></script>
+  <script src="/js/jquery.masonry.js"></script>
+ </head>
+
+ <body>
+   <script type="text/javascript">
+  <!--
+	var imgArr = new Array();
+imgArr[0] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJDj4JCCAbQDAgIBkgMjY1TidITkpJSUpWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[1] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFKVyxJNhk7FSAaOgggICBNETwXLidISkpITElWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[2] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFKVyxJOxJJFiAUPjYgIBtBKTQ9VidJSUlBSktWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[3] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJISkdFyAfKjEgICAKNBlPVidJSUlLS01WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[4] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJTzUQSyASEBwgIBoxMQwbLidISkhJTExWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[5] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJHCsULyAQADsgIBo8Chk5TCdITUlPSU5WEggfJ0tJSABLSUhWEggf/220.jpg';
+
+imgArr[6] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJEQlNCSAUDBwgIBoXDEoxSCdIS0xBSklWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[7] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJEygJGSAfDDogIBo7Eic1TydITk1ASEBWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[8] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJHR1NGSAcEBUgIBsKED0pSidITE1NTExWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[9] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJMB0vFCAWKhQgIBkRCwsLLSdISUtASUBWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[10] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJGihJGiARQBsgIBlMPSspQCdIT0lOSkxWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[11] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJAh5BEiAVTAIgICAxCBMbISdIS0hKSkhWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[12] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJPilMOyAeQBwgIBkrFhIbQSdIT0tASE1WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[13] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFNVyxJHhUVFCASIDYgICAnADYLTydITk1ISE9WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[14] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFPVyxJKw0vFyAbICAgIBkrIBEXTydITkxASUBWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[15] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFOVyxJC0kqQSAeABMgIBs9FwEPLSdISUxBSElWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[16] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFJVyxJKS8qTiAZACAgICAIFCAiJydIT01KTE5WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[17] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFJVyxJMgINCSASNhIgICA6SRZWLCdISUpBTU9WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[18] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJTQxINCAWKjAgIBkfCxRLJydJSUhMSEtWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[19] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJAAAATiAXADkgICBLTkwxTCdITUpBSk1WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[20] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFJVyxJKh1NEiAePjogIBkKNQwTQSdJSEtITExWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[21] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLV0FMSk1KT0BIVyxKFCdMDSAfNjUgICAgICAgICdZWUFMSk1KT0BIVhIIHydLSUgAS0lIVhIIHw%3D%3D/220.jpg';
+imgArr[22] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFPVyxJTzcVCCAcOhQgIBkaHxsXVidIQElNSEBWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[23] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMV0FMSk1KT0BIVyxKECFINCAVTCAgICAgICAgICdZWUFMSk1KT0BIVhIIHydLSUgAS0lIVhIIHw%3D%3D/220.jpg';
+imgArr[24] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFJV0FMSk1KT0BIVyxKMyxADSAdMjUgICAgICAgICdZWUFMSk1KT0BIVhIIHydLSUgAS0lIVhIIHw%3D%3D/220.jpg';
+imgArr[25] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJPBIUTSARDAwgIBkONDE0GidIQUtLTUxWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[26] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFNVyxJLzQrCSAeMg0gIBs5OhoTVidIQElLTU5WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[27] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFKV0tNTEBNSE9OT1csSgxINkogGxQaICAgICAgICAnWVlLTUxATUhPTk9WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[28] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFKVyxJCjkyPSASIDkgICAcFAFOGSdJSklNS0hWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[29] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJORUVESAWIAAgIBoqQEALQCdIT0lMTExWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[30] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFKVyxJETUNCSAgSA0gIBkaSjwpQSdJSE1ISEpWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[31] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFAVyxJCz07HiAbFA0gICAWFTIxSSdITEhOSE5WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[32] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFJVyxJSU0RCSASQB8gICAgOydWQSdJSExPSk5WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[33] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFAVyxJFgsuSyAVEBYgIBpKT1ZWQCdJSEpKSktWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[34] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJGxQdCiAbKjIgICABGy8oGidJSkpASkhWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[35] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJGxQdCiAbKjIgICABGy8oGidJSkpASkhWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[36] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJHxcdEiAVHA8gIBkyOS4xTCdITUlOSEBWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[37] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hKVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFKVyxJG0sBCSAQOgwgIBkZQCcLQSdJSExOS09WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[38] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFAVyxJExEMMiAQMhMgIBsVDSEOGidJSkpBSEFWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[39] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJCUkVCSAVOiggIBo5MycpQSdJSExPSElWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[40] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJTjwNFCASLgEgIBkVMRBLLSdISU1JSk5WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[41] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJJxEyCSAUKgwgIBoqNzA8GidJSkpBSkxWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[42] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJMicNFSAQFC8gIBkMTD0fLCdISUtLSElWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[43] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hJVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFJVyxJGxkyNyAfIAIgIBobETITLSdISUxKSk5WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[44] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLVyxJNg0vCCAXTA0gIBsoHUhKGidIQUtNSktWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[45] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMV09MTktOS0tBQFcsSjk1Mi8gGkgZICAgICAgICAnWVlPTE5LTktLQUBWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[46] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJPCkBCSAdQDcgIBpPPAtOGidJSktMSUpWEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[47] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hMVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFMVyxJDxwcKSAWDBwgIBkAAE0XLidISklJSU1WEggfJ0tJSABLSUhWEggf/220.jpg';
+imgArr[48] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLV0FMSk1KT0BIVyxKEzMANiARIBkgICAgICAgICdZWUFMSk1KT0BIVhIIHydLSUgAS0lIVhIIHw%3D%3D/220.jpg';
+imgArr[49] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLV0FMSk1KT0BIVyxKKAxINiAbLhogICAgICAgICdZWUFMSk1KT0BIVhIIHydLSUgAS0lIVhIIHw%3D%3D/220.jpg';
+imgArr[50] = 'http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLV0FMSk1KT0BIVyxKJx0INiATSBkgICAgICAgICdZWUFMSk1KT0BIVhIIHydLSUgAS0lIVhIIHw%3D%3D/220.jpg';
+
+  //-->
+  </script>
+  <style>
+  .containDiv{width:150px;height:auto;float:left;background:#cccccc;margin:0 2px;}
+  .containDiv img{margin:2px 0;}
+  .bu{background-color:blue;margin:2px;}
+  </style>
+  <div id="totalDiv" style="background:red;float:left;">
+	  <div class="containDiv" id="con0"></div>
+	  <div class="containDiv" id="con1"></div>
+	  <div class="containDiv" id="con2"></div>
+	  <div class="containDiv" id="con3"></div>
+  </div>
+  <div id="none_contain" style="display:none;width:200px;background:#777777;float:left;"></div>
+  <script type="text/javascript">
+  <!--
+	var numLoad = imgArr.length;
+	var containHeight = [0,0,0,0];
+	function getContainIndex (){
+		var returnIndex = 0;
+		for(var i=1,min=containHeight[0],j=containHeight.length;i<j;i++){
+			if(containHeight[i] < min){
+				returnIndex = i;
+				min = containHeight[i];
+			}
+		}//alert(returnIndex+"  "+containHeight[0]+"  "+containHeight[1]+"  "+containHeight[2]+"  "+containHeight[3]);
+		return returnIndex;
+	}
+	
+	for(var i = 0,j=imgArr.length;i<j;i++){//if(imgArr[i] == undefined){alert(imgArr[i]);break;}
+		$("#none_contain").prepend($("<div><img src='"+imgArr[i]+"?r="+Math.random()+"'/></div>"));
+	}
+	$("#none_contain").find("div").each(function(){
+		if($(this).imagesLoaded){
+			$(this).imagesLoaded(function($img){
+				//if($img.length()==0){alert(this.html())}
+				var conIndex = getContainIndex();
+				var img = $($img[0])
+				img.css("width","150").appendTo("#con"+conIndex);
+				containHeight[conIndex] += img.width() / 150 * img.height();
+				numLoad--;
+				if(numLoad < 1){
+					var waiHeight = $("#totalDiv").height();
+					$("#totalDiv").find("div").each(function(){//alert(waiHeight+"  "+$(this).height()+"  "+(waiHeight-$(this).height()))
+						var hh = waiHeight-$(this).height();
+						if(hh > 2){
+							$(this).append($("<div class='bu' style='height:"+hh+"px'></div>"));
+						}
+					});
+				}
+			});
+		}
+	});
+  //-->
+  </script>
+ </body>
+</html>

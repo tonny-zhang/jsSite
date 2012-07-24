@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+<script src="/js/jquery-1.6.4.min.js"></script>
+  <script src="js/sea-debug.js"></script>
+  <div id="result" class="commonDiv"></div>
+  <script>
+	seajs.config({
+		base: '/seajs/js/module/'
+	});
+	//debugger
+	/*seajs.use(['data','Math','Person'],function(data,myMath,waiPerson){
+		$("#result").html("name:"+data.name+"<br/>"+"text:"+data.text+"<br/>");
+		$("#result").html($("#result").html()+myMath.add(10,20)+"<br/>");
+	});*/
+  var test = 'Perso'+'n';
+  seajs.use(test,function(d){
+    alert(d);
+  });
+  </script>
+ </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="js/jquery-1.6.4.js" type="text/javascript"></script>
+ </head>
+
+ <body>
+  <div class="a">
+	<input type="button" class="b" value="test"/>
+  </div>
+  <div id="result" style="border:1px solid blue;width:500px;height:200px;">
+  
+  </div>
+  <script type="text/javascript">
+  <!--
+	//_1_ = \((?:\([^()]+\)|[^()]+)+\)
+	//_2_ = \[[^\[\]]*\]
+	//_3_ = ['"][^'"]*['"]
+	//_4_ = [^\[\]'"]+
+	//_5_ = \[(?:_2_|_3_|_4_)+\]
+	//_6_ = \\.
+	//_7_  = [^ >+~,(\[\\]+
+ /// chunker = /((?:_1_|_5_|_6_|_7_)+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g,
+	/*var a = [1,2,3,4,5]
+	alert(a);
+	a.push(6);
+	alert(a);
+	a.pop();
+	alert(a);*/
+	//alert(document.querySelectorAll);
+	//alert(document.getElementsByClassName)
+	//debugger
+	//var len = $('.a input');
+	//console.log(len.length);
+	/*var resultObj = $('#result');
+
+	var tN = 10000;
+	var startTime = 0;
+	var endTime = 0;
+	function start(){
+		startTime = new Date().getTime();
+	}
+	function end(){
+		endTime = new Date().getTime();
+		resultObj.append($('<div>'+(endTime - startTime)+'</div>'));
+	}*/
+	/*start();
+	for(var i = 0;i<tN;i++){
+		$('div.a input.b')
+	}
+	end();
+	start();
+	for(var i = 0;i<tN;i++){
+		$('.a .b')
+	}
+	end();*/
+	/*start();
+	for(var i = 0;i<tN;i++){
+		$('.a').find('.b');
+	}
+	end();*/
+	/*start();
+	for(var i = 0;i<tN;i++){
+		$('.b')
+	}
+	end();
+	start();
+	for(var i = 0;i<tN;i++){
+		$('div .b')
+	}
+	end();
+	start();
+	for(var i = 0;i<tN;i++){
+		$('div input')
+	}
+	end();
+	start();
+	for(var i = 0;i<tN;i++){
+		$('div input.b')
+	}
+	end();*/
+
+	$.ajax({
+		url: "php/test.php",
+		type: "GET",
+		timeout: 1000,
+		success: function(response) { 
+			alert(response); 
+		},
+		error: function(x, t, m) {
+			if(t==="timeout") {
+				alert("got timeout");
+			} else {
+				alert(t);
+			}
+		}
+	});​
+  //-->
+  </script>
+ </body>
+</html>

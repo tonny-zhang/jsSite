@@ -1,0 +1,9 @@
+.test{
+	height:100px;
+	border:1px solid blue;
+	zoom:expression(function(ele){
+		ele.style.background = 'url(http://misc.fan.com/img2/sp_733x104.png)';
+		ele.style.behavior = 'url('+vv+'../js/tool/iepngfix/iepngfix.htc)';
+		ele.style.zoom = 1;
+	}(this));
+}

@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt IE 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if IE 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if IE 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="gtie8"> <!--<![endif]-->
+ <head>
+<!--[if lt IE 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if IE 7]> <title>IE 7</title> <![endif]-->
+<!--[if IE 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt IE 8]><title>IE 8 以上版本</title><![endif]--> 
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta charset="utf-8"/>
+  <style>
+  body{
+	background-color:#eee;
+  }
+  .gtie8 body{
+	background-color:#fff;
+  }
+	fieldset{
+		padding:10px;
+		font-size:12px;
+		border:2px solid black;
+	}
+	legend{
+		color:#3c3c3c;
+		font-size:30px;
+		font-weight:bold;
+	}
+	fieldset .info{
+		color:red;
+	}
+	.clearfix:after {/* Clear Fix : :: 用于内部有浮动元素的元素，可以起到关闭浮动的作用 */
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.clearfix {
+		display:block;
+	}
+
+	.fl{float:left;display:inline;}
+	.mb10{margin-bottom:10px;}
+	.mt10{margin-top:10px;}
+	.mb20{margin-bottom:20px;}
+	.mt20{margin-top:20px;}
+
+	.bg_blue{background-color:blue;}
+	.bg_red{background-color:red;}
+	.bg_white{background-color:white;}
+	.bg_hl{background-color:#aaa;};
+  </style>
+ </head>
+
+ <body>
+	<!-- clearfix -->
+	<fieldset class="one1">
+		<legend >clearfix</legend>
+		<style>
+			.one1 ul{
+				list-style:none;
+				*padding-bottom:10px;/*这里补白IE6、IE7底部*/
+				width:300px;/*设置了宽度或高度时IE6、IE7会自动撑开，其它则会“塌陷(父级高度为０)”*/
+			}
+			.one1 ul li{
+				float:left;
+				width:20px;
+				background-color:red;
+				margin:10px;
+				text-align:center;
+			}
+		</style>
+		<p class="info">
+		1.ul设置固定高度时ie6会自动撑开，其它则不会<br/>
+		2.
+		</p>
+		<ul class="bg_blue mb1" style="margin-bottom:50px;">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul class="bg_blue clearfix">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</fieldset>
+	<!-- 行级元素的padding和margin -->
+	<fieldset class="one">
+		<legend >行级元素的padding和margin</legend>
+		<style>
+			.one .con{
+				border:1px solid blue;
+				
+			}
+			.one span{
+				padding:10px;
+				margin:10px;
+				background:red;
+				line-height:40px;
+				display:inline-block;
+			}
+		</style>
+		<p class="info">行级元素的父级高度由于行高决定</p>
+		<div class="con">
+			<span>one</span>
+			<span>two</span>
+		</div>
+	</fieldset>
+	<!-- IE6下3px hack -->
+	<fieldset class="two">
+		<legend >IE6下3px hack</legend>
+		<style>
+		.two .con{
+			background:#cccccc;
+			width:600px;
+			height:100px;
+			padding:10px;
+			overflow:hidden;
+		}
+		.two .con .myDiv{
+			width:100px;
+			height:100px;
+		}
+		</style>
+		<p class="info"></p>
+		<div class="con mb10">
+			<div class="fl myDiv bg_red">浮动元素</div>
+			<div class="bg_blue">非浮动元素<br/>IE6下　没有固定宽度高度时我内容有3PX</div>
+		</div>
+		<div class="con">
+			<div class="fl myDiv bg_red">浮动元素</div>
+			<div class="myDiv bg_blue" style="width:300px">非浮动元素<br/>IE6下　有固定宽度高度时我和前面浮动元素间距3PX<font color="red">有固定宽度是IE6外在左侧浮动元素下开始计算，IE6下从左侧浮动元素右侧开始计算</font></div>
+		</div>
+	</fieldset>
+	<!-- 分页居中 -->
+	<fieldset class="three">
+		<legend >分页居中</legend>
+		<style>
+		.three .page{
+			width:500px;
+			border:1px solid blue;
+			clear:both;
+			overflow:hidden;
+		}
+		.three .page ul{
+			list-style:none;
+			padding:0;
+			margin:0;
+			position:relative;
+			left:50%;
+			float:left;
+			clear:both;
+		}
+		.three .page ul li{
+			overflow:hidden;
+			float:left;
+			margin:3px;
+			background-color:#ccc;
+			width:35px;
+			height:30px;
+			text-align:center;
+			position:relative;
+			left:-50%;
+		}
+		.three .page ul li a{
+			display:block;
+			width:15px;
+			background:red;
+		}
+		</style>
+		<p class="info"></p>
+		<div class="page">
+			<ul>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			</ul>
+		</div>
+	</fieldset>
+	<!-- IE6下DIV的最小高度 -->
+	<fieldset class="c_1">
+		<legend >IE6下DIV的最小高度</legend>
+		<style>
+		.c_1 .min_height{
+			height:5px;
+			width:100px;
+			background:#ccc;
+		}
+		</style>
+		<p class="info">IE6的最小高度为设置的font-sizer的值，默认为12px,(<font class="bg_hl">其它浏览器表现为字溢出</font>)</p>
+		<div class="min_height">没有设置font-size</div>
+		<div class="min_height mt20" style="font-size:0;">设置font-size</div>
+	</fieldset>
+	<!-- 垂直居中 -->
+	<fieldset class="c_2">
+		<legend >垂直居中</legend>
+		<style>
+		.c_2 .wrap{
+			width:200px;
+			height:100px;
+			background:#cccccc;
+			display:table-cell;
+			vertical-align:middle;
+			
+		}
+		.ie6 .c_2 .wrap,
+		.ie7 .c_2 .wrap{
+			position:relative;
+		}
+		.ie6 .c_2 .wrap .verticalWrap,
+		.ie7 .c_2 .wrap .verticalWrap{
+			position:absolute;
+			top:50%;
+		}
+		.ie6 .c_2 .wrap .verticalWrap .vertical,
+		.ie7 .c_2 .wrap .verticalWrap .vertical{
+			position:relative;
+			top:-50%;
+		}
+		</style>
+		<p class="info">只有IE6、IE7不支持display:table-cell和vertical-align:middle;</p>
+		<div class="mb20">
+			<div class="wrap">
+				<div class="verticalWrap">
+					<div class="vertical">
+						Hello world!<br/>
+						Hello world!<br/>
+						Hello world!
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mb20">
+			<div class="wrap">
+				<div class="verticalWrap">
+					<img class="vertical" src="http://map.baidu.com/image/logo-map.png"/>
+				</div>
+			</div>
+		</div>
+		<div class="mb20">
+			<div class="wrap">
+				<div class="verticalWrap">
+					<div class="vertical">
+						Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!<img src="http://map.baidu.com/image/logo-map.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<!-- 边距叠加 -->
+	<fieldset class="c_3">
+		<legend >边距叠加</legend>
+		<style>
+		.c_3 .container{
+			width:500px;
+			height:20px;
+		}
+		.c_3 .child{
+			width:100%;
+			height:100%;
+		}
+		.c_3 .border{
+			border:1px solid blue;
+		}
+		</style>
+		<p class="info">只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并</p>
+		<div class="bg_red" style="height:20px;"></div>
+		<div class="bg_white" style="margin:20px">
+			<div style="margin:30px"  class="container bg_red">
+				当我出现在一个元素内部时，我的边距会和父元素的边距叠加在一起(视觉效果)
+			</div>
+			<div style="margin:10px" class="container bg_blue">
+				当我出现在一个元素下方时，我和上面元素的边距会叠加在一起(视觉效果)
+			</div>
+		</div>
+		<div class="bg_red" style="height:20px;"></div>
+		<div>
+			<div class="bg_blue" style="height:25px;margin:20px;"></div>
+		</div>
+ </body>
+</html>

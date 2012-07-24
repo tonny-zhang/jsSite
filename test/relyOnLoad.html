@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+  <!--  
+	function createDIV(txt){
+		var d = document.createElement('div');
+		d.style.width = '100px';
+		d.style.height = '100px';
+		d.style.border = '1px solid blue';
+		d.innerHTML = txt;
+		document.body.appendChild(d);
+	}
+	/*(function(){
+		function require(src,callback){
+			var loadScript = document.createElement('script');
+			document.getElementsByTagName('head')[0].appendChild(loadScript);
+			loadScript.onload = function(){
+				callback && callback.call(null);
+			}
+			loadScript.src = src;
+			return {
+				show : function(){
+					alert('init');
+				}
+			}
+		}
+		var moduleId = 1;
+		var cache = {};
+		function getModuleId (){
+			return 'module_'+(++moduleId);
+		}
+		function define(fn){
+			var id = getModuleId();
+			cache[id] = fn.call(this,require,id);
+		}
+		function use(src,callback){
+			var a = require(src);
+			callback.call(null,a)
+		}
+		window.define = define;
+		window.use = use;
+		window.require = require;
+	})()*/
+	/**
+	动态创建JS，并解决模块中的依赖关系
+	
+	递归判断其依赖模块是否加载完成，来触发其回调事件
+
+	require('a.js',function(a){
+		a.method();
+	})
+	require(['a.js','b.js'],function(a,b){
+		a.method();
+		b.method();
+	})
+	*/
+	(function(host){	
+		var date = new Date().getTime();
+		var queue = [];
+		var require = function(src,callback){
+			var loadScript = document.createElement('script');
+			loadScript['R'+date] = src;
+			document.getElementsByTagName('head')[0].appendChild(loadScript);
+			var isLoaded = false;
+			if(/msie/.test(navigator.userAgent.toLowerCase())){
+				loadScript.onreadystatechange = function(){
+					if(/loaded|complete/.test(this.readyState)){
+						loaded.apply(this);
+					}
+				};
+			}
+			loadScript.onload = loaded;
+			loadScript.src = src;console.log(src);
+			queue[src] = {refer:[],state:'waitting_load'};
+			cache[src] = callback;
+			function loaded(){
+				queue[src].state = 'loaded';
+				document.getElementsByTagName('head')[0].removeChild(this);
+			}
+		}
+		function define(fn){
+			var src = getCurrentScriptName();
+			var content = fn.call(this,require);
+			cache[src] && cache[src].call(this,content);
+		}
+				
+		var moduleId = 1;
+		var cache = {};
+		function getModuleId (){
+			return 'module_'+(++moduleId);
+		}
+
+		function getCurrentScriptName(){
+			var scripts = document.getElementsByTagName('script');
+			for(var i = scripts.length-1;i>=0;i--){
+				if(scripts[i]['R'+date]){
+					return scripts[i]['R'+date];
+				}
+			}
+			return '';
+		}
+		window.require = require;
+		window.define = define;
+	})(window)
+	require('a.js',function(a){
+		a.show();
+	});
+	require('b.js',function(b){//alert(b);
+		b && b.apply(null);
+	});
+  //-->
+  </script>
+ </body>
+</html>

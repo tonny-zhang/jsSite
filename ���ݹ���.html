@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="js/jquery-1.6.4.min.js"></script>
+  <script src="js/jquery.tmpl.min.js"></script>
+  <style>
+	.wai{width:400px;height:300px;border:1px solid blue;overflow:hidden;}
+	.nei{width:300px;height:100px;background:#cccccc;margin:1px auto;text-align:center;}
+  </style>
+ </head>
+
+ <body>
+ <div class="wai">
+
+ </div>
+	<script id="movieTemplate" type="text/x-jquery-tmpl">
+		<div class='nei'>${context}</div>
+	</script>
+  <script type="text/javascript">
+  <!--
+	var num = 1;
+	/*setInterval(function(){
+		$("#movieTemplate").tmpl({context:"这是内容 "+(num++)}).prependTo($(".wai"));
+		$(".wai").find(":last-child").bind("rmDiv",function(){
+			if($(this).position().top > $(".wai").height()){
+				$(this).remove();
+			}
+		}).trigger("rmDiv");
+		alert($(".wai").find(":last-child").html());
+	},2000);*/
+	$(".wai").bind("addDiv",function(){
+		var waiDiv = $(this);
+		setInterval(function(){
+			$("#movieTemplate").tmpl({context:"这是内容 "+(num++)}).prependTo(waiDiv);
+			waiDiv.find(":last-child").bind("rmDiv",function(){//防止DOM树过大，占用过大内存
+				if($(this).position().top > $(".wai").height()){
+					$(this).remove();
+				}
+			}).trigger("rmDiv");
+			//alert(waiDiv.find(":last-child").html());
+		},1000);
+	}).trigger("addDiv");
+  //-->
+  </script>
+ </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	<style>
+	.counter{
+		background:url(http://img.t.sinajs.cn/t4/appstyle/event/images/common/event_bd_bg.png?id=1326699231848) no-repeat 0 -80px;
+		width:160px;
+		height:23px;
+		padding-top:7px;
+	}
+	.counter ul{
+		height:14px;
+		height:14px;
+		margin:0;
+		padding:0;
+		overflow:hidden;
+		position:relative;
+	}
+	.counter li{
+		position:absolute;
+		float:left;
+		display:inline;
+		background-image:url(http://img.t.sinajs.cn/t4/appstyle/event/images/common/nm_bg.png?id=1326699231848);
+		background-repeat:no-repeat;
+		width:10px;
+		height:253px;
+		margin:0 5px;
+	}
+	</style>
+	</head>
+	<body>
+	<div class="counter">
+		<ul>
+			<li style="left:0"></li>
+			<li style="left:20px"></li>
+			<li style="left:40px"></li>
+			<li style="left:60px"></li>
+			<li style="left:80px"></li>
+			<li style="left:100px"></li>
+			<li style="left:120px"></li>
+			<li style="left:140px"></li>
+		</ul>
+	</div>
+	<div class="counter">
+		<ul>
+			<li style="left:0"></li>
+			<li style="left:20px"></li>
+			<li style="left:40px"></li>
+			<li style="left:60px"></li>
+			<li style="left:80px"></li>
+			<li style="left:100px"></li>
+			<li style="left:120px"></li>
+			<li style="left:140px"></li>
+		</ul>
+	</div>
+	<script src="http://js.zk.com/js/jquery-1.6.4.js" type="text/javascript"></script> 
+	<script type="text/javascript">
+	<!--
+		function Counter(container){
+			var counter = container.find('ul');
+			//得到计数的每个元素
+			var numEles = counter.find('li');
+			this.oldNum = 0;//记录上一次的结果
+			this.add = function(num){
+				//得到最新的结果
+				num += this.oldNum;
+				//将原来的结果重置
+				this.oldNum = num;
+				/*
+				从元素的最后一个算起
+				得到的最新的数求余10得到要显示的数字，如：123%10=3
+				*/
+				for(var i = numEles.length-1;i>=0;i--){
+					if(num <= 0){
+						break;
+					}
+					var showNum = num % 10;
+					(function(to,ii){
+						//用动画初始化每个元素的背景图位置
+						$(numEles[ii]).animate({'top':to});						
+					})(-24*showNum,i)
+					//得到去除了最后一位的值,如:parseInt(123/10) = 12
+					num = parseInt(num / 10);
+					
+				}
+			}
+		}
+		//初始化一个实例
+		var c1 = new Counter($('.counter').first());
+		//在原来的基础上初始化要显示的数字
+		c1.add(00000000);
+		//每隔2秒，数字随机加一个数
+		setInterval(function(){
+			c1.add(123456);
+		},2000);
+		//初始化一个实例
+		var c2 = new Counter($('.counter').eq(1));
+		//在原来的基础上初始化要显示的数字
+		c2.add(00000000);
+		//每隔2秒，数字随机加一个数
+		setInterval(function(){
+			c2.add(11);
+		},2000);
+	//-->
+	</script>
+	</body>
+</html>

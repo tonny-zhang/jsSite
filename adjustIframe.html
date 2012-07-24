@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+document.domain="zk.com";
+function adjustIframe(id)
+ {
+    var iframe = document.getElementById(id)
+    var idoc = iframe.contentWindow && iframe.contentWindow.document || iframe.contentDocument;
+    var callback = function () {alert(idoc.body.offsetHeight);
+        var iheight = Math.max(idoc.body.scrollHeight, idoc.documentElement.scrollHeight); //取得其高
+        iframe.style.height = iheight + "px";
+    }
+    if (iframe.attachEvent) {
+        iframe.attachEvent("onload", callback);
+    } else {
+        iframe.onload = callback
+    }
+ }
+
+
+
+     
+       var ifm=document.createElement("iframe");
+      ifm.src="http://js.tonny.com/js%e7%94%bb%e5%b8%83.html";
+      ifm.width=1000;
+       ifm.id="ok1";
+       ifm.domain="tonny.com";
+      document.body.appendChild(ifm);
+      adjustIframe("ok1");
+
+   
+
+</script>
+
+</body>
+</html>

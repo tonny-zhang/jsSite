@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+			#canvasId{
+			width:700px;
+				border:1px solid blue;
+			}
+		</style>
+	</head>
+
+	<body>
+	<canvas id="c1">no support canvas</canvas>
+	<canvas id="c2">no support canvas</canvas>
+	<canvas id="c3">no support canvas</canvas>
+	<canvas id="canvasId" width="500" height="500">no support canvas</canvas>
+    <script type="text/javascript">
+                window.onload = function (){
+                        document.getElementById('c1').onclick = paint;
+                        document.getElementById('c2').onclick = paint;
+                        document.getElementById('c3').onclick = paint;
+						document.getElementById('canvasId').onclick = paint;
+                }
+                function paint(){
+                        var context = this.getContext("2d");
+                        var canvasWidth = this.width,
+                        canvasHeight = this.height,
+                        cx = canvasWidth/2,
+                        cy = canvasHeight/2;   
+                        context.beginPath();
+                        context.moveTo(cx,cy);
+                       context.arc(cx,cy,30,0,Math.PI*2,true);
+                                context.fill();
+                }
+    </script>
+	<script type="text/javascript">
+	<!--
+		function $(id){
+			return document.getElementById(id);
+		}
+		if(typeof Worker != 'undefined'){
+			var ctx = $('canvasId').getContext('2d');
+			/*
+			ctx.moveTo(10.5,10.5);
+			ctx.lineTo(150.5,10.5);
+			ctx.lineTo(150.5,10.5);
+			ctx.lineTo(150.5,10.5);
+			ctx.lineTo(150.5,10.5);*/
+			//ctx.stroke();
+			function drawLine(dotXY,ops){
+				ctx.beginPath();
+				for(var atr in ops){
+					ctx[atr] = ops[atr];
+				}
+				dotXY = dotXY.constructor == Object ? [dotXY || { x: 0, y: 0}] : dotXY;
+				ctx.moveTo(dotXY[0].x, dotXY[0].y);
+				for (var i = 1, len = dotXY.length; i < len; i++){
+					ctx.lineTo(dotXY[i].x, dotXY[i].y);
+				}
+				ctx.stroke();
+			}
+			drawLine([{x:10.5,y:10.5},{x:10.5,y:200.5}],{lineWidth:1,strokeStyle:'rgb(255,25,0)'});
+		}
+		/*function Vector(x,y){
+			this.x = x;
+			this.y = y;
+		}
+		//障碍向量
+		var barrier_vector = new Vector(1,0);
+		//速度向量
+		var speed_vector = new Vector(1,-1);
+		//障碍向量法向量
+		var normal_vector = new Vector(-barrier_vector.y,barrier_vector.x);
+alert(normal_vector.x+'  '+normal_vector.y);
+		//法向量长度
+		var length_normal_v = Math.sqrt(Math.pow(normal_vector.x,2)+Math.pow(normal_vector.y,2));
+alert(length_normal_v);
+		//障碍向量法向量的单位向量
+		var unit_vector = new Vector(normal_vector.x/length_normal_v,normal_vector.y/length_normal_v);
+alert('单位向量：'+unit_vector.x+'  '+unit_vector.y);
+		var a = 2 * (speed_vector.x * unit_vector.x + speed_vector.y * unit_vector.y);
+		var to_vector = new Vector(a*unit_vector.x+speed_vector.x,a*unit_vector.y+speed_vector.y);
+		alert(to_vector.x+'  '+to_vector.y);
+		*/
+	//-->
+	</script>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+	<style>
+		body{font-size:12px;}
+		a{color:yellow}
+		a:visited{color:red}
+		a:hover{color:blue}
+		a:active{color:black}
+		.fl{float:left;display:inline;}
+		.myDiv{
+		width:100px;height:100px;background:#123456;color:white
+		}
+	</style>
+  <a href="#">test</a>
+  <span style="background:red;margin:10px 20px 30px 40px;padding:10px 20px 30px 40px">abcB</span>
+  <span style="background:red;margin:10px 20px 30px 40px;padding:10px 20px 30px 40px">abcB</span>test
+
+	<fieldset>
+	</fieldset>
+  IE6下3px hack
+	<div style="background:#cccccc;width:600px;height:100px;padding-top:30px;overflow:hidden;">
+		<div class="fl myDiv">浮动元素</div>
+		<div style="background:red">非浮动元素<br/>没有固定宽度高度时我内容有3PX</div>
+	</div>
+	<div style="background:#cccccc;width:600px;height:100px;padding-top:30px;">
+		<div class="fl myDiv">浮动元素</div>
+		<div class="myDiv" style="background:red;">非浮动元素<br/>有固定宽度高度时我和前面浮动元素间距3PX</div>
+	</div>
+
+	分布居中显示
+	<style>
+	.page{
+		width:500px;
+		border:1px solid blue;
+		clear:both;
+		overflow:hidden;
+	}
+	.page ul{
+		list-style:none;
+		padding:0;
+		margin:0;
+		position:relative;
+		left:50%;
+		float:left;
+		clear:both;
+	}
+	.page ul li{
+		float:left;
+		margin:3px;
+		background-color:#ccc;
+		width:35px;
+		text-align:center;
+		position:relative;
+		left:-50%;
+	}
+	.page ul li a{
+		display:block;
+		width:15px;
+		background:#343434;
+	}
+	</style>
+	<div class="page">
+		<ul>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+		</ul>
+	</div>
+
+ </body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style>
+	.contain{width:250px;height:200px;background:blue;overflow:hidden;position:relative;}
+	.contain div{width:1000000px;position:absolute;}
+	.contain ul{overflow:hidden;background:#cccccc;padding:0;margin:0;height:100px;}
+	.contain ul li{float:left;display:inline;width:40px;height:40px;background:red;margin:35px 2px;list-style:none;}
+  </style>
+  <script src="js/jquery-1.6.4.js"></script>
+ </head>
+
+ <body>
+ <script type="text/javascript">
+ <!--
+	var browerName = (function getBrowerName(){
+		var info = navigator.userAgent.toLowerCase() ;
+		if(~info.indexOf('chrome')){
+			return 'chrome';
+		}else if(~info.indexOf('msie')){
+			return /msie \d/.exec(info);
+		}
+	})()
+	$(function(){
+		//alert(browerName+" : "+$('.contain').find('ul').width());
+	});
+	/*
+	1.左右滚动、上下滚动
+	2.滚动到头时取消向一侧滚动事件
+	3.一次滚动的距离，默认可以是父级宽度，即一屏
+	4.每次滚动完成提供回调函数，
+		回调传参{isFirst(是还已经是第一个),isLast(是否已经是最后一个),index(当前索引),totalIndex(总共可以滚动的次数)}
+	5.提供定时滚动
+	*/
+	myScroll($('.contain'),{
+		direction : 'ud',
+		scrollSpace : '',
+		callback : function(d){
+			alert(d.isFirst+"  "+d.isLast+" "+d.index+"  "+d.totalIndex);
+		}
+	});
+	(function(){
+		var options = {
+			direction : 'ud',//up|lr
+			scrollWidth : 0,//0时滚动一屏
+			callback : null,
+			second : 0//0时不加定时
+		};
+		function myScroll(obj,opt){
+			opt = $.extend({},opt,options);
+			var viewSpace = opt.direction == 'ud'?obj.height():obj.width,
+			scrollSpace = opt.scrollSpace?opt.scrollSpace:viewSpace,
+
+			
+			return {
+				left : null,
+				right : null,
+				up : null,
+				down : null
+			}
+		}
+	})()
+	
+	
+ //-->
+ </script>
+	<button>left</button><button>right</button>
+  <div class="contain">
+	<div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+			<li>15</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+			<li>15</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+			<li>15</li>
+		</ul>
+		<ul>
+			<li>a1</li>
+			<li>a2</li>
+			<li>a3</li>
+			<li>a4</li>
+			<li>a5</li>
+			<li>a6</li>
+			<li>a7</li>
+			<li>a8</li>
+			<li>a9</li>
+			<li>a10</li>
+			<li>a11</li>
+			<li>a12</li>
+			<li>a13</li>
+			<li>a14</li>
+			<li>a15</li>
+			<li>a1</li>
+			<li>a2</li>
+			<li>a3</li>
+			<li>a4</li>
+			<li>a5</li>
+			<li>a6</li>
+			<li>a7</li>
+			<li>a8</li>
+			<li>a9</li>
+			<li>a10</li>
+			<li>a11</li>
+			<li>a12</li>
+			<li>a13</li>
+			<li>a14</li>
+			<li>a15</li>
+			<li>a1</li>
+			<li>a2</li>
+			<li>a3</li>
+			<li>a4</li>
+			<li>a5</li>
+			<li>a6</li>
+			<li>a7</li>
+			<li>a8</li>
+			<li>a9</li>
+			<li>a10</li>
+			<li>a11</li>
+			<li>a12</li>
+			<li>a13</li>
+			<li>a14</li>
+			<li>a15</li>
+			<li>a1</li>
+			<li>a2</li>
+			<li>a3</li>
+			<li>a4</li>
+			<li>a5</li>
+			<li>a6</li>
+			<li>a7</li>
+			<li>a8</li>
+			<li>a9</li>
+			<li>a10</li>
+			<li>a11</li>
+			<li>a12</li>
+			<li>a13</li>
+			<li>a14</li>
+			<li>a15</li>
+		</ul>
+	</div>
+  </div>
+ </body>
+</html>

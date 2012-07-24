@@ -1,0 +1,335 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<script src="http://js.zk.com/js/jquery-1.6.4.js"></script>
+		<script src="http://js.zk.com/js/jquery.tmpl.min.js"></script>
+		<script>
+		//解析自定义标签
+		$(function(){
+			var cc = $('.fanTag');//console.log(cc.children().length);
+			var fn = cc.attr('fn');
+			var event = cc.attr('event');
+			cc.children().bind(event,function(){
+				eval(fn).apply($(this));
+			});
+		})
+		function show(){
+			//console.log($(this).html());
+		}
+		</script>
+	</head>
+
+	<body>
+	<button id="btn_test">test</button>
+	<!-- 自定义标签，定义要初始化的内容(类似于后台的模板引擎) -->
+	<fan:click target="$('#btn_test')" fn="alert(this.value)"></fan:click>
+	<fan:user name="test"><div style="border:1px solid blue">testabc</div></fan:user>
+	
+	<fan event="click" fn="show" class="fanTag">
+	<button>fan:click button</button>
+	</fan>
+
+
+
+
+
+	<!-- 初始化数据并添加事件 -->
+
+		<!-- 模型 列表 开始 -->
+		<style>
+		ul,ll{ 
+			margin:0; 
+			padding:0;  
+		}
+		/* Clearfix */
+		.clearfix:after {/* Clear Fix : :: 用于内部有浮动元素的元素，可以起到关闭浮动的作用 */
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		.clearfix {
+			display: inline-block;
+		}
+		/* End of Clearfix */
+		.hide{
+			display: none;
+		}
+		.info_container{
+			border:1px solid blue;
+			margin-top:20px;
+			overflow:hidden;
+		}
+		.info_list{
+			overflow:hidden;
+			float:left;
+			display:inline;
+			width:100px;
+			background:#ccc;
+			list-style:none;
+			margin:10px;
+		}
+		.info_list div,
+		.info_list li{float:left;
+			width:100%;
+			cursor:pointer;
+			height:20px;
+			line-height:20px;
+			padding:2px;
+		}
+		.info_list div.on{
+			background:blue;
+		}
+		.info_list li.on{
+			background:#a00;
+			color:#0a0;
+		}
+		.info_list div.over{
+			background:red;
+		}
+		.info_list li.over{
+			background:#0a0;
+			color:#00a;
+		}
+		.info_content{
+			float:left;
+			width:300px;
+			height:200px;
+			display:inline;
+			background:#eee;
+		}
+		tmpl{
+			display:none;
+		}
+		</style>
+
+	<div class="info_container clearfix">
+		<ul class="info_list">
+			<li style="width:50px;background:yellow;">test</li>
+		</ul>
+	</div>
+		<div class="info_container hide">
+			<ul class="info_list">
+				<li>One</li>
+				<li>Two</li>
+				<li>Three</li>
+			</ul>
+			<p class="info_content">One info</p>
+		</div>
+		<!-- 模型 列表 结束 -->
+
+		<!-- 封闭 开始 -->
+		<!-- class="out_page" 的js是外部JS -->
+		<script class="out_page">
+
+			var info_json = {'infoList':[{'name':'One','info':'One info'},{'name':'Two','info':'Two info'},{'name':'Three','info':'Three info'}]};
+			/** 一般写法 begin */
+			$(function(){
+				var container = $('#info_container');
+				$('#item-tmpl').tmpl(info_json).appendTo(container);
+				container.find('.info_list').children().click(function(){
+					container.find('.info_content').html(info_json.infoList[$(this).index()].info);
+					$(this).parents('.info_list').find('.on').removeClass('on');
+					$(this).addClass('on');
+				}).mouseenter(function(){
+					$(this).addClass('over');
+				}).mouseleave(function(){
+					$(this).removeClass('over');
+				});
+			})
+			/** 一般写法 end */
+
+			/** {模块 begin */
+			var Center = (function(){
+				var events = {};
+				return {
+					//发布
+					'publish' : function(name,fn){
+						if(events[name]){
+							events[name].push(fn);
+						}else{
+							events[name] = [fn]
+						}
+					},
+					//订阅
+					'subscription' : function(name){
+						if(!events[name]){
+							return false;
+						}
+						var arg = Array.prototype.slice.call(arguments,1);//分离出执行函数的参数
+						for(var e = events[name],i=e.length-1;i>=0;i--){
+							e[i].apply(null,arg);
+						}
+					}
+				}
+			})();
+			function formateObj(str){
+				return eval('('+str+')');
+			}
+			$(function(){
+				$('fan').each(function(i,v){
+					var sub = $(v).attr('subscription');
+					if(sub){
+						var parm = $(v).attr('paramter');
+						if(/^\[.+\]$|^{.+}$/.test(parm)){
+							parm = eval('('+parm+')');//是数组或对象时强制转换
+						}//console.log(sub,parm);
+						Center.subscription(sub,parm);
+					}
+				});
+			});/*两个函数之间的括号中间不能没有分号*/
+
+			//发布初始化数据列表及事件
+			(function(){
+				var options_default = {
+					'onClassName' : 'on',
+					'overClassName' : 'over',
+					'items' : '#info_container_two > .info_list > li',
+					'showObj' : '#info_container_two >  .info_content',
+					'tmpl' : '#item-tmpl',
+					'toObj' : '#info_container_two'
+				}
+				Center.publish('initList',function(op){
+					var opt = $.extend({},options_default,op);//console.log(opt)
+					$(opt.toObj).append($(opt.tmpl).tmpl(info_json));	
+					
+					var onCN = opt.onClassName;
+					var overCN = opt.overClassName;
+					var showObj = $(opt.showObj);
+					var items = $(opt.items).click(function(){
+						showObj.html(info_json.infoList[$(this).index()].info);
+						
+						items.removeClass(onCN);
+						$(this).addClass(onCN);
+					}).mouseenter(function(){
+						$(this).addClass(overCN);
+					}).mouseleave(function(){
+						$(this).removeClass(overCN);
+					});
+				})
+			})();
+			//发布自定义按钮事件
+			(function(){
+				Center.publish('initBut',function (cN){
+					$(cN).click(function(){
+						alert($(this).html());
+					});
+				});
+			})();
+			/** 模块 end } */
+
+		</script>
+		<br/>
+		<div class="info_container clearfix" id="info_container"></div>
+		<div class="info_container clearfix" id="info_container_two"></div>
+		<div class="info_container clearfix" id="info_container_three"></div>
+		<tmpl type="text/tmpl" id="item-tmpl">
+			<ul class="info_list">
+			{{each(i,v) infoList}}
+				<li {{if i == 0}}class="on"{{/if}}>${v.name}</li>
+			{{/each}}
+			</ul>
+			<p class="info_content">${infoList[0].info}</p>
+		</tmpl>
+		<tmpl type="text/tmpl" id="item-2-tmpl">
+			<div class="info_list">
+			{{each(i,v) infoList}}
+				<div {{if i == 0}}class="on"{{/if}}>${v.name}</div>
+			{{/each}}
+			</div>
+			<p class="info_content">${infoList[0].info}</p>
+		</tmpl>
+		<fan subscription="initList"></fan>
+		<fan subscription="initList" paramter="{'toObj':'#info_container_three','items':'#info_container_three > .info_list > div','showObj':'#info_container_three > .info_content','tmpl':'#item-2-tmpl'}"></fan>
+		<!-- 封装 结束 -->
+		<button class="test_btn">这是一个测试</button>
+		<fan subscription="initBut" paramter="button.test_btn"/>
+
+
+
+
+
+
+
+
+
+	
+	<!--   ***********************************************************************     -->
+	<script type="text/javascript 1">
+	<!--
+		var user = document.getElementsByTagName('fan:user')
+		document.writeln(user[0].getAttribute('name'));
+		var str = "";
+		for(var i in user[0]){
+			//str += i+':'+user[0][i]+'<br/>  ';
+		}
+		//document.writeln(str);
+		var atrs = user[0]['attributes'][0];
+		for(var i in atrs){
+			str += i+':'+atrs[i]+'<br/>  ';
+		}
+		document.writeln(str);
+	//-->
+	</script>
+	<script type="text/javascript 123">
+	<!--
+		//http://www.kuqin.com/system-analysis/20110724/92678.html  大型应用的JavaScript架构
+		/**
+		目的：优化前端加载及渲染速度、提升用户体验
+
+		１.解除模块之间的耦合(事件控制中心)
+		２.依托seajs对模块进行管理
+		３.添加事件响应机制
+		４.html代码和js代码最好分离（更好地扩展）
+		５.优先处理事件（如按钮的点击事件）:元素显示后绑定事件.html
+		６.当模块初始化失败时重复进行初始化
+		*/
+		var Center = (function(){
+			var events = {};
+			return {
+				'register' : function(name,fn){
+					if(events[name]){
+						events[name].push(fn);
+					}else{
+						events[name] = [fn]
+					}
+				},
+				'broadcast' : function(name){
+					if(!events[name]){
+						return false;
+					}
+					var arg = Array.prototype.slice.call(arguments,0);
+					for(var e = events[name],i=e.length-1;i>=0;i--){
+						e[i].apply(null,arg);
+					}
+				}
+			}
+		})();
+		//in one.js
+		Center.register('one',function(){
+			console && console.log('one 1')
+		});
+		//in two.js
+		Center.register('one',function(name){
+			console && console.log('one 2 '+name)
+		});
+		//in three.js
+		Center.broadcast('one','test');
+	//-->
+	</script>
+	</body>
+</html>

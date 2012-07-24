@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<canvas id="myCanvas" width="500" height="500">your brower is not support canvas</canvas>
+	<script type="text/javascript">
+	<!--
+		var myCanvas = document.getElementById('myCanvas');
+		(function(){
+			if(!myCanvas || !myCanvas.getContext){
+				return;
+			}
+			var context = myCanvas.getContext('2d');
+			/*context.fillStyle ='#0ff';
+			context.fillRect(10,10,100,100)*/
+			
+			/*context.fillStyle   = '#00f'; // blue   
+			context.strokeStyle = '#f00'; // red   
+			context.lineWidth   = 4;   
+			// Draw some rectangles.   
+			context.fillRect  (0,   0, 150, 50);   
+			context.strokeRect(0,  60, 150, 50);   
+			context.clearRect (30, 25,  90, 60);   
+			context.strokeRect(30, 25,  90, 60);  
+			*/
+
+			// Set the style properties.   
+			context.fillStyle   = '#00f';   
+			context.strokeStyle = '#f00';   
+			context.lineWidth   = 4;   
+			context.beginPath();   
+			// Start from the top-left point.   
+			context.moveTo(10, 10); // give the (x,y) coordinates   
+			context.lineTo(100, 10);   
+			context.lineTo(10, 100);   
+			context.lineTo(30, 50);
+			context.lineTo(9, 9);   
+			// Done! Now fill the shape, 和 draw the stroke.   
+			// Note: your shape will not be visible until you call any of the two methods.   
+			context.fill();   
+			context.stroke();   
+			context.closePath();  
+		})()
+		
+	//-->
+	</script>
+	</body>
+</html>

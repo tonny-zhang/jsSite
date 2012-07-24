@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="js/jquery-1.6.4.min.js"></script>
+  <script src="js/fancybox.js"></script>
+ </head>
+
+ <body>
+  <a class="fancybox" href="http://www.baidu.com">点击我</a>
+  <script>
+  var option = {
+			'transitionIn'  :   'elastic',
+			'transitionOut' :   'fade',
+			'speedIn'       :   200,
+			'speedOut'      :   200,
+			'overlayShow'   :   true,
+			'hideOnOverlayClick' : true,
+			'scrolling'     :   'no',
+			'centerOnScroll':   true,
+			'onComplete': function(a) {				
+				var j_current = $(a);
+				var titleArray = {
+					'show': '你还木有登录叻~赶紧登录或注册吧！',
+					'reply': '想评价下这张look？那就赶快登录吧！',
+					'upload': '登录翻东西，上传你的生活装扮！',
+					'brand': '“我喜欢”一个品牌后，你将会优先获得关于该品牌的一切最新动向。',
+					'theme': '马上登录，马上参与，上传你的生活装扮！',
+					'user': '想关注TA？那就马上登录翻东西，和TA一起分享生活中的shopping 乐趣！',
+					'product': '赶快登录翻东西，马上收藏它！'
+				};											
+				var titlePageArray = {
+					'sale.fan': '登录翻东西，立刻获得千余种品牌每日打折信息！让翻东西记住你的喜好！',
+					'news.fan': '快速注册，获得最新潮牌资讯，让翻东西记住你的喜好。',
+					'show.fan': '快速注册，记录每一天的装扮look，分享生活中的shopping 乐趣！',
+					'single.fan': '快速注册，记录每一天的装扮look，分享生活中的shopping 乐趣！'
+				};
+				var type = j_current.data('type'), text;				
+				
+				if(typeof type != 'undefined'){
+					text = titleArray[type] || '马上登录，与你心仪的宝贝完美邂逅，分享shopping乐趣~';
+				}
+				else{
+					var key = window.location.href.split('/').pop();					
+					text = 	titlePageArray[key.indexOf('?') == -1 ? key : key.substr(0, key.indexOf('?'))] || '马上登录，与你心仪的宝贝完美邂逅，分享shopping乐趣~';
+				}				
+				$('#ajaxlogin .ajaxtips p').text(text);
+				
+				$('#ajax_username, #ajax_password').placeholder();
+				
+				//fix: 在IE6下关闭按钮不显示，强迫节点重绘(redraw)
+				if($.browser.msie && $.browser.version == '6.0'){
+					$('#fancybox-close').addClass('hide').removeClass('hide');
+				}
+			}
+		}
+  $(".fancybox").fancybox();
+  </script>
+ </body>
+</html>

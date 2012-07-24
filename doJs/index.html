@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta charset='utf-8'/>
+  <style>
+  .testDiv{border:1px solid blue;width:400px;height:100px;}
+  </style>
+  <script type="text/javascript" src="http://img3.douban.com/js/packed_do7035717041.js" data-cfg-corelib="http://js.zk.com/js/jquery-1.6.4.min.js"></script>
+ </head>
+
+ <body>
+	<div class="testDiv">one</div>
+  <script type="text/javascript">
+  <!--
+	/*
+	1、加载JS时以path为索引，相同索引不重复加载
+	2、模块中再加Do.add及Do()时优先加载依赖JS，再运行文件中代码
+	*/
+	/*Do('one.js',function(){
+		console.log('one.js loaded');
+	});*/
+	var twoNum = 1;
+	Do.add('one', {path: 'one.js', type: 'js'});
+	Do.add('abc', {path: 'two.js?id=1', type: 'js',requires:['four']});//这里要加载的JS和one中加载的JS相同，只是模块名不一样，这
+	Do.add('four', {path: 'four.js', type: 'js'});
+	Do(function(){
+		console.log("I'm in function after loaded one.js!");
+		/*var a = new Date().getTime();
+		while(1){
+			if(new Date().getTime() - a > 5000){
+				console.log('5 seconds later:'+txt.length);
+				break;
+			}
+		}*/
+	},'one','abc',function(){
+		console.log("I'm in function two!");
+	});
+  //-->
+  </script>
+  <div class="testDiv">two</div>
+ </body>
+</html>

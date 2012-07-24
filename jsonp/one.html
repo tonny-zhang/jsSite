@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="../js/tool/getJSON.js"></script>
+ </head>
+
+ <body>
+  <script type="text/javascript">
+  <!--
+	window.onload = function(){
+		getJSON('http://js.zk.com/jsonp/suggest.php?symbol=test&price=120',function(d){
+			alert(d.symbol+'\' price is '+d.price);
+		},true);
+		getJSON('http://js.zk.com/jsonp/suggest.php?symbol=test&price=111',function(d){
+			alert(d.symbol+'\' price is '+d.price);
+		},false);
+		getJSON('http://js.zk.com/jsonp/suggest.php?symbol=abc&price=34',function(d){
+			alert(d.symbol+'\' price is '+d.price);
+		},'asdf');
+	}
+  //-->
+  </script>
+ </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+	<style>
+		.myShow{
+			width:100px;
+			height:100px;
+			border:1px solid blue;
+			cursor:pointer;
+		}
+		.abs{
+			position:absolute;
+		}
+	</style>
+ </head>
+
+ <body>
+	元素加 position:relative 后改变其默认行为，只需要加 background:url('about:blank') 就可改善
+	<div class="myShow"></div>
+	<a class="myShow" href="#" style="display:block;"></a>
+	<a class="myShow abs" href="#" style="display:block;top:100px;left:150px;"></a>
+	<div class="myShow abs">
+		<a class="myShow" href="#" style="display:block;">test</a>
+	</div>
+
+	<div style="position:relative;">
+		<img src="http://misc.fan.com/img/interview/20120203/29_05.jpg"/>
+		<a class="myShow abs" href="#" style="display:block;top:0;left:0;background:url('about:blank')">abc</a>
+	</div>
+	<div>test<sup>2</sup> abc<sub>2</sub>H<sub>2</sub>SO<sub>4</sub></div>
+
+	&lt;ol&gt; 默认为序号
+	<ol>
+		<li>o 1</li>
+		<li>o 2</li>
+		<li>o 3</li>
+		<li>o 4</li>
+		<li>o 5</li>
+	</ol>
+	&lt;ul&gt; 默认为圆点
+	<ul>
+		<li>u 1</li>
+		<li>u 2</li>
+		<li>u 3</li>
+		<li>u 4</li>
+		<li>u 5</li>
+	</ul>
+	<em>这</em><i>这</i><strong>这</strong>
+	<table border=1>
+		<caption>这个是table的具体用法</caption>
+		<thead>
+			<tr>
+				<th>标题一</th>
+				<th>标题二</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>标题一11</th>
+				<td>标题二11</th>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>标题一1</th>
+				<td>标题二1</th>
+			</tr>
+		</tfoot>
+	</table>
+	<div class="myShow" style="margin-bottom:10px;">aa</div>
+	<div class="myShow" style="margin-top:10px;">aa</div>
+
+	<div>
+		<div class="myShow" style="margin-right:10px;float:left">aa</div>
+		<div class="myShow" style="margin-left:10px;">aa</div>
+	</div>
+ </body>
+</html>

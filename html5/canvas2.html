@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<script type="text/javascript">
+	<!--
+		function MyCanvas(w,h){
+			this.width = w,this.height = h,
+			this.ballPos = [];
+			this.speed = 10;
+
+			var canvas = document.createElement('canvas');
+			document.body.appendChild(canvas);
+			if(typeof Worker == 'undefined'){
+				canvas.innerHTML = 'no support canvas';
+				return;
+			}
+			canvas.width = w;
+			canvas.height = h;
+			canvas.style.border = '1px solid black';
+
+			this.canvasContext = canvas.getContext('2d');
+			this.defaultColor = '#000';
+		}
+		MyCanvas.prototype.drawCircle = function(x,y,r,toX,toY){
+			var ctx = this.canvasContext;
+			
+			ctx.beginPath();
+			ctx.arc(x,y,r,0,Math.PI*2,true);
+            ctx.fill();
+			this.ballPos.push({x:x,y:y,r:r,toX:toX,toY:toY});//存圆心和向量
+			ctx.fillStyle = this.defaultColor;//还原默认颜色
+		}
+		MyCanvas.prototype.draw = function(){
+			var ctx = this.canvasContext;
+			ctx.fillStyle='rgb(220,220,220)';
+			ctx.fillRect(0,0,this.width, this.height); //涂白清屏（带透明度）
+			ctx.fillStyle = this.defaultColor;//还原默认颜色
+			
+			var w = myCanvas.width,
+				h = myCanvas.height,
+				r = 30,
+				ballPos = this.ballPos;
+			
+			if(!ballPos.length){
+				for(var i = 0;i<1;i++){
+					var x = getRandom(w,r),
+						y = getRandom(h,r);
+					this.drawCircle(x,y,r,x+(i+1)*50,y+(i+1)*50);
+				}
+			}else{
+				this.check();
+				var speed = this.speed;
+				var oldBallPos = ballPos.splice(0,ballPos.length);
+				for(var i = 0,j = oldBallPos.length;i<j;i++){
+					var ball = oldBallPos[i];
+					var jiao = Math.atan((ball.toY-ball.y)/(ball.toX-ball.x));
+					console.log('to:',ball.toY,ball.toX,jiao,(ball.toY-ball.y)/(ball.toX-ball.x));
+					console.log('old:',ball.y,ball.x,'\n\r')
+					var dirX = ball.toX > ball.x?1:-1,
+						dirY = ball.toY > ball.y?1:-1;
+					//console.log(speed*Math.cos(jiao),speed*Math.sin(jiao));
+					this.drawCircle(ball.x+speed*Math.cos(jiao)*dirX,ball.y+speed*Math.sin(jiao)*dirY,ball.r,ball.toX,ball.toY);
+					//this.drawCircle(ball.x+speed*dirX,ball.y+speed*dirY,ball.r,ball.toX,ball.toY);
+				}
+			}
+		}
+		MyCanvas.prototype.start = function(){
+			var _this = this;
+			_this.draw();
+			this.tt = setInterval(function(){
+				_this.draw();
+			},500);
+		};
+		MyCanvas.prototype.stop = function(){
+			clearInterval(this.tt);
+		}
+		MyCanvas.prototype.check = function(){
+			var ballPos = this.ballPos,
+				w = this.width,
+				h = this.height;
+			for(var i = 0,j=ballPos.length;i<j;i++){
+				var ball = ballPos[i],
+					x = ball.x,
+					y = ball.y,
+					r = ball.r;
+				//和边界有碰撞
+				if(x-r <= 0 || x+r >= w){console.log('x边界');
+					ball.toX = 2*ball.x-ball.toX;
+				}
+				if(y-r <=0 || y+r >= h){console.log('y边界');
+					ball.toY = 2*ball.y-ball.toY;
+				}
+			}
+		};
+		function getRandom(w,r){
+			return Math.random()*(w-2*r);
+		}
+		var myCanvas = new MyCanvas(300,300);
+		myCanvas.start();
+	//-->
+	</script>
+	<input type="button" value="stop" onclick="myCanvas.stop()"/>
+	</body>
+</html>

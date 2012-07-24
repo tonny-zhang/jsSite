@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<title>jQuery UI MultiSelect Widget</title>
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="stylesheet">
+
+<style>
+select {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 14px;
+  width: 100px;
+}
+</style>
+
+</head>
+
+<body>
+
+<p>A demo showcasing the jQuery UI demo plugin, jango. Be sure to check out the <a href="http://corydorning.com/projects/jangle">jangle project page</a> or just <a href="https://github.com/corydorning/jangle">grab the source code</a>.</p>
+
+<h2>Simple Muliselect</h2>
+The following version is the barebones version of multiselect with no specified options, setup using nothing but the defaults.
+
+<select multiple="multiple" class="simple">
+  <option value="foo">Foo</option>
+  <option value="bar">Bar</option>
+  <option value="foobar">Foo Bar</option>
+</select>
+
+<p style="margin-top: 14px;"><a href="#toggle" class="toggle-simple">Show HTML Select Element</a>
+<span style="font-size: 11px; padding-top: 7px;">NOTE: This displays the hidden &lt;select&gt; element so you can see the interaction that takes place between the widget and the original mark-up.</span></p>
+
+<h2>Muliselect w/ Options</h2>
+The following version incorporates each of the advanced options exposed for the multiselect plugin. It includes the following:
+<ul>
+<li>label: '-- Select Your Options --'</li>
+<li>minWidth: 300</li>
+<li>maxWidth: 400</li>
+<li>scroll: 80</li>
+</ul>
+
+<select multiple="multiple" class="w-options">
+  <option value="foo">Foo</option>
+  <option value="bar">Bar</option>
+  <option value="foobar">Foo Bar</option>
+  <option value="foo">More Foo</option>
+  <option value="bar">More Bar</option>
+  <option value="foobar">More Foo Bar</option>
+</select>
+
+<p style="margin-top: 14px;"><a href="#toggle" class="toggle-options">Show HTML Select Element</a>
+<span style="font-size: 11px; padding-top: 7px;">NOTE: This displays the hidden &lt;select&gt; element so you can see the interaction that takes place between the widget and the original mark-up.</span></p>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script src="../js/jquery.ui.multiselect.js"></script>
+
+<script>
+$(function() {
+  // initialize the plugin
+  $('.simple').multiselect();
+
+  $('.w-options').multiselect({
+    label: '-- Select Your Options --',
+    minWidth: 300,
+    maxWidth: 400,
+    scroll: 80
+  });
+
+
+  // added to show interaction - overrides the hiding of the original <select> element
+  $('.toggle-simple').click(function() {
+    $('.simple').toggle();
+    return false;
+  });
+
+  $('.toggle-options').click(function() {
+    $('.w-options').toggle();
+    return false;
+  });
+})
+</script>
+</body>
+</html>
