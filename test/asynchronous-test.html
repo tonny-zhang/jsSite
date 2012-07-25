@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 多线程异步动画 </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta charset="utf8"/>
+ </head>
+
+ <body>
+	<div id="test" style="background-color:blue;height:40px;width:0;"></div><br/>
+	<div id="test1" style="background-color:blue;height:40px;width:0;"></div>
+  <script type="text/javascript">
+  <!--
+	//维持当前生命周期内所有程序
+	//单层
+	function Task(){
+		this.handles = [];
+		this.currentTimeId = null;
+	}
+	Task.prototype.add = function(fn,delay){		
+		this.handles.push(function(_this){//将执行体放入执行队列中
+			return setTimeout((function(_t){
+				return function(){
+					fn();
+					clearTimeout(_t.currentTimeId);//清除当前延时函数
+					_t.start();//执行下一个执行体
+				}
+			})(_this),delay);
+		});
+		return this;
+	}
+	Task.prototype.start = function(){
+		if(this.handles.length > 0){
+			this.currentTimeId = this.handles.shift()(this);
+		}
+		return this;
+	}
+	Task.prototype.cancel = function(){
+		clearTimeout(this.currentTimeId);
+		return this;
+	}
+	
+
+	function Decimal(obj,opt,second){
+		var t = new Task();
+		var minTime = 13;//最小的间隔时间为13ms
+		for(var i = Math.ceil(second/minTime);i>0;i--){
+			t.add(function(){
+				obj.style.width = obj.offsetWidth + 2 + 'px';
+			},minTime);
+			//console.log(t.handles);
+		}
+		t.start();
+	}
+	new Decimal(document.getElementById('test'),1000);
+	/*var tt = new Task();
+	var div = document.getElementById('test');
+	for(var i = 0; i < 20; i++){
+		(function(){
+			tt.add(function(){
+				div.style.width = div.offsetWidth + i/10 + 'px';
+			},50);
+		})(i)
+	}
+	tt.start();
+
+	var tt1 = new Task();
+	var div1 = document.getElementById('test1');
+	for(var i = 0; i < 400; i++){
+		tt1.add(function(){
+			div1.style.width = div1.offsetWidth + 1 + 'px';
+		},10);
+	}
+	tt1.start();
+
+	var tt2 = new Task();
+	tt2.add(function(){
+		alert('I\'m comming!');
+	},2000).start();
+	*/
+  //-->
+  </script>
+ </body>
+</html>

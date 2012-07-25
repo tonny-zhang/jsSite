@@ -6,15 +6,53 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
+  <style>
+  .box{
+	border:1px solid blue;width:100px;height:100px;
+  }
+  </style>
  </head>
 
  <body>
 	<div id="test1" style="border:0px solid blue;background-color:#ccc;width:101px;height:100px;">1</div>
 	<div id="test2" style="border:1px solid blue;width:100px;height:100px;">2</div>
 	<div id="test3" style="border:1px solid blue;width:100px;height:100px;">3</div>
+	<div class="box"><a href="http://www.baidu.com" target="_blank" id='link1'>test</a></div>
+	<div class="box"><form target="_blank" action="http://www.baidu.com" id="form1"><input type="submit" id="btn_submit1"/></form></div>
   <script type="text/javascript">
   <!--
 	(function(){
+		(function(){
+			/*扩充字符串操作方法*/
+
+			//是否以指定字符串开头
+			String.prototype.startWith = function(str){
+				return this.indexOf(str) == 0;
+			}
+			//是否以指定字符串结尾
+			String.prototype.endWith = function(str){
+				return this.lastIndexOf(str) == this.length - str.length;
+			}
+			if(!Array.prototype.indexOf){
+				Array.prototype.indexOf = function(e){
+					for(var i = this.length-1;i>=0;i--){
+						if(this[i] == e){
+							return i;
+						}
+					}
+					return -1;
+				}
+			}
+			if(!Array.prototype.remove){
+				Array.prototype.remove = function(e){
+					var i ;
+					while((i = this.indexOf(e)) > -1){
+						this.splice(i,1);
+					}
+				}
+			}
+		})();
+		
 		function $$(selector){
 			_this = this;
 			selector = selector || document;
@@ -45,7 +83,7 @@
 			}else{
 				return function(){}
 			}		
-		})()
+		})();
 		//用于储存数据
 		$$.cache = {};
 		$$.expando = '$$' + new Date().getTime();
@@ -58,14 +96,7 @@
 		
 		//查看元素有没有在数据里
 		$$.isInArray = function(ele,arr){
-			if(Array.prototype.indeOf){
-				return Array.indexOf( elem );  
-			}
-			for(var i=0,j=arr.length;i<j;i++){
-				if(arr[i] == ele)
-					return true;
-			}
-			return false;
+			return Array.prototype.indexOf.call( arr,ele ) > -1;  
 		}
 		
 		$$.animate = function(ele,opt,delay){
@@ -73,7 +104,7 @@
 			this.timeIndex = 0;
 			for(var i in opt){
 				if(i in $$.animate.config){
-					this.handle.push(new $$.animate.Task(this,ele,i,opt[i],opt,delay));
+					this.handle.push(new $$.animate.Task(this,ele,i,opt[i],opt,delay || 500));
 				}
 			}
 			if(this.handle.length > 0){
@@ -114,47 +145,22 @@
 		$$.animate.prototype.start = function(){
 			var _this = this;
 			if(!_this.timeIndex){
-				_this.timeIndex = setInterval(function(){
+				_this.timeIndex = setTimeout(function(){
 					for(var h = _this.handle,i=h.length-1;i>=0;i--){
 						h[i].exec();
 					}
 					if(!_this.handle.length){
 						_this.stop();
+					}else{
+						_this.timeIndex = setTimeout(arguments.callee,$$.animate.minExecTime);
 					}
 				},$$.animate.minExecTime);
 			}
 		}
 		$$.animate.prototype.stop = function(){
-			clearInterval(this.timeIndex);
+			clearTimeout(this.timeIndex);
 		}
-		/*扩充字符串操作方法*/
-
-		//是否以指定字符串开头
-		String.prototype.startWith = function(str){
-			return this.indexOf(str) == 0;
-		}
-		//是否以指定字符串结尾
-		String.prototype.endWith = function(str){
-			return this.lastIndexOf(str) == this.length - str.length;
-		}
-		if(!Array.prototype.indeOf){
-			Array.prototype.indeOf = function(e){
-				for(var i = this.length-1;i>=0;i--){
-					if(this[i] == e){
-						return i;
-					}
-				}
-				return -1;
-			}
-		}
-		if(!Array.prototype.remove){
-			Array.prototype.remove = function(e){
-				var i ;
-				while((i = this.indexOf(e)) > -1){
-					this.splice(i,1);
-				}
-			}
-		}
+		
 		//处理事件
 		$$.Event = {
 			//指定原生事件名称
@@ -385,8 +391,12 @@
 	alert($('div').first().data('a'));
 	*/
 
-	$('div').first().animate({'width':300,'height':400},1000);
-	$('div').eq(1).animate({'height':250},1000);
+	$('div').first().animate({'width':300,'height':400},100);
+	$('div').eq(1).animate({'height':250});
+
+	//$('#link1').trigger('click');
+	//$('#btn_submit1').trigger('click');
+	//$('#form1')[0].submit();
   //-->
   </script>
  </body>
