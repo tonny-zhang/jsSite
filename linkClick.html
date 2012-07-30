@@ -31,8 +31,8 @@
 		$('#test').click(function(){
 			open($(this));
 		});
-		function open(obj){
-			$.getJSON('/php/otherCommit.php',function(){
+		function open(obj){console && console.log('open');
+			$.get('/php/otherCommit.php',function(){console && console.log('open1');
 				$('<form action="http://js.zk.com" target="_blank"></form>').appendTo($('body')).submit();
 			});
 		}
@@ -40,7 +40,7 @@
 	</script>
 	<a href="javascript:;" id="aa">点击</a>
 	<form action="http://js.zk.com/php/otherCommit.php" method="POST">
-	<input type="submit" value="go to other"/>
-</form>
+		<input type="submit" value="go to other"/>
+	</form>
 	</body>
 </html>

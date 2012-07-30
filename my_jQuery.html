@@ -53,6 +53,7 @@
 			}
 		})();
 		
+		//构造函数
 		function $$(selector){
 			_this = this;
 			selector = selector || document;
@@ -100,11 +101,12 @@
 		}
 		
 		$$.animate = function(ele,opt,delay){
+			delay = delay || 500;
 			this.handle = [];//每个动画对象有一个队列
 			this.timeIndex = 0;
 			for(var i in opt){
 				if(i in $$.animate.config){
-					this.handle.push(new $$.animate.Task(this,ele,i,opt[i],opt,delay || 500));
+					this.handle.push(new $$.animate.Task(this,ele,i,opt[i],opt,delay));
 				}
 			}
 			if(this.handle.length > 0){

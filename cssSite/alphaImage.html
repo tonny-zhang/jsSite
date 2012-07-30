@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+		body{
+			background:#eee;
+		}
+		.divTest{
+			width:500px;
+			height:60px;
+			border:1px solid blue;
+			color:blue;
+			background-repeat:no-repeat;
+			text-indent:150px;
+			line-height:60px;
+		}
+		.pngImg{
+			_zoom:expression((function(ele){
+				var isIe6 = window['__ie6__'];
+				if(typeof isIe6 == 'undefined'){
+					isIe6 = window['__ie6__'] = /msie 6/.test(navigator.userAgent.toLowerCase());
+				}
+				if(isIe6){
+					var img = ele.currentStyle.backgroundImage.replace('url(','').replace(')','');
+					ele.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader (sizingMethod=crop, src='+img+')';
+					ele.style.backgroundImage = 'none';
+					ele.style.zoom = 1;
+				}
+			})(this));
+		}
+		.fl{
+			float:left;
+			display:inline;
+		}
+		.fr{
+			float:left;
+			display:inline;
+		}
+		.clearfix:after {/* Clear Fix : :: 用于内部有浮动元素的元素，可以起到关闭浮动的作用 */
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		.clearfix {
+			display:block;
+		}
+
+
+		.imgAlpha{
+			background-image:url(./images/png-8.png);
+		}
+		.imgAlpha1{
+			background-image:url(./images/png-24.png);
+		}
+		.imgAlpha2{
+			background-image:url(./images/png-24.png);
+			_background:none;
+			_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader (sizingMethod=crop, src='./images/png-24.png');
+		}
+		.imgAlpha3{
+			background-image:url(./images/png-24.png);
+		}
+
+		.div1{
+			background-image:url(./images/png-24.png);
+			background-position:-12px 0;
+			width:45px;
+			height:60px;
+			margin-left:100px;
+		}
+		.div2{
+			position:absolute;
+			left:10px;
+			top:3px;
+			background-image:url(./images/png-24.png);
+			background-position:-50px 0;
+			width:45px;
+			height:60px;
+		}
+		</style>
+	</head>
+	<body>
+	<div class="divTest imgAlpha">png8</div>
+	<div class="divTest imgAlpha1">png24 no _filter</div>
+	<div class="divTest imgAlpha2">png24 with _filter</div>
+	<div class="divTest imgAlpha3 pngImg" id="test">png24 with pngImg expression</div>
+	<div class="divTest clearfix" style="position:relative">
+		<div class="fl div1"></div>
+		<div class="fl div2"></div>
+		<span>position float</span>
+	</div>
+	<script type="text/javascript">
+	<!--
+	window.onload = function(){
+		var div = document.createElement('div');
+		div.className = 'divTest pngImg';
+		div.style.backgroundImage = 'url(./images/png-24.png)';
+		document.body.appendChild(div);
+	}
+	//-->
+	</script>
+	</body>
+</html>
