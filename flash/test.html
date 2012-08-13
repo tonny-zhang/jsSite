@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_cn" lang="zh_cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>test</title>
+<script language="javascript">AC_FL_RunContent = 0;</script>
+<script src="AC_RunActiveContent.js" language="javascript"></script>
+</head>
+<body bgcolor="#ffffff">
+<!--影片中使用的 URL-->
+<!--影片中使用的文本-->
+<!-- saved from url=(0013)about:internet -->
+<script language="javascript">
+	if (AC_FL_RunContent == 0) {
+		alert("此页需要 AC_RunActiveContent.js");
+	} else {
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '550',
+			'height', '400',
+			'src', 'test',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'false',
+			'id', 'test',
+			'bgcolor', '#ffffff',
+			'name', 'test',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess','sameDomain',
+			'movie', 'test',
+			'salign', ''
+			); //end AC code
+	}
+</script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function thisMovie(movieName){
+	if(navigator.appName.indexOf("Microsoft") != -1){
+		return window[movieName]; 
+	}else{
+		return document[movieName];
+	}
+} 
+function funcWaitingForFlash(val){//flash要调用的方法
+	alert("您输入的是:"+val);
+}
+var flashObj = thisMovie("test");
+window.onload = function(){
+	flashObj.style.position="absolute";
+	flashObj.style.border="1px solid blue";
+	flashObj.style.left = "100px";
+	flashObj.style.top = "100px";
+}
+function callFlash(){//调用flash里的方法
+	
+	flashObj.flashFunc("我flash里来");
+}
+//-->
+</SCRIPT>
+<noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="550" height="400" id="test" align="middle" name='test'>
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="test.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="test.swf" quality="high" bgcolor="#ffffff" width="550" height="400" name="test" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+</noscript>
+<input type="button" value="去flash" onclick="callFlash()"/>
+</body>
+</html>
