@@ -4,6 +4,9 @@
 </form>
 <?php
 $arr = array(1,3,4);
+array_splice($arr,1,1);
+var_dump($arr);
+exit();
 $arr = array('image'=>'test');
 echo empty($arr[count($arr)-1]);
 try{

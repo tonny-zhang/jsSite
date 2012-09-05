@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<style>
+	body{font-size:18px;font-weight:bold;}
+	div{
+		display: block;
+		overflow: auto;
+		padding: 5px 10px;
+		border: 1px solid #eee;
+		word-wrap:break-word; /* Internet Explorer 5.5+ */ 
+		white-space: pre-wrap; /* Firefox */
+	}
+	div{color:red !important}
+	div{color:green}
+	div.test{color:yellow}
+	#testId{color:black}
+	</style>
+	<div class="test" id="testId" style="color:blue !important">
+	<pre>
+CSS样式定义多了，常常出现显示效果与预期不一致的情况。其中很大一部分原因在于起作用的样式。 
+
+1.多个选择器可能会选择同一个元素，有3个规则，从上到下重要性降低： 
+      ！important的用户样式 
+      ！important的作者样式 
+      作者样式 
+      用户样式 
+      浏览器定义的样式 
+
+2. 
+CSS规范为不同类型的选择器定义了特殊性权重，特殊性权重越高，样式会被优先应用。 
+权重设定如下： 
+html选择器，权重为1； 
+类选择器，权重为10； 
+id选择器，权重为100； 
+这里还有一种情况：在html标签中直接使用style属性，这里的style属性的权重为1000； 
+即如下情况： 
+#x34y {color:red} 
+<.  p id=x34y style="color:green">  优先选择style=""设定的样式。 
+
+例子： 
+h1{color:blue}  权重为1 
+p  em{color:yellow}  权重为2 
+.warning{color:red}  权重为10 
+p.note em.dark{color:grag}  权重为22 
+#main{color:black}  权重为100     这里还有一种情况： 
+权重一样时如何处理？ 
+
+3.CSS样式的层叠原则——谁离我近，谁说了算。 
+当权重一样时，会采用“层叠原则” 后定义的会被应用。 
+如：p{color:yellow} 
+        p{color:red} 
+作用到这里   <. p >我的什么颜色呢？< /p> 
+结果会是red的。 
+
+
+4.CSS样式的特殊标记——谁有特权，谁说了算。 
+如果有人看不顺眼，非得要自己说了算，那可以搞点特权，如下即可 
+p {color:blue !important;} 
+加上!important;可将自己权重设为最高。</pre></div>
+	</body>
+</html>

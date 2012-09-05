@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+			#test{
+				width:100px;
+				border:1px solid blue;
+			}
+			.console{
+				width:250px;
+				position:absolute;
+				right:10px;
+				top:10px;
+				background-color:#ccc;
+				font-size:14px;
+			}
+			.console.close{
+				top:auto;
+				bottom:0;
+			}
+			.console ul{
+				overflow-y:auto;
+				height:300px;
+				list-style:none;
+				padding:10px;
+				margin:0;
+			}
+			.console .top_bar{
+				height:30px;
+				cursor:move;
+			}
+			.console .top_bar .close{
+				float:right;
+				margin-right:5px;
+				margin-top:5px;
+				cursor:pointer;
+				border:1px solid #bbb;
+				padding:0px 4px;
+			}
+		</style>
+	</head>
+
+	<body>
+	<div id="test" style="height:100px;"></div>
+	<script type="text/javascript">
+	<!--
+		/*
+		DOM标准引入了覆盖样式表的概念，当我们用document.getElementById("id").style.backgroundColor 获取样式时 获取的只是id中style属性中设置的背景色，如果id中的style属性中没有设置background-color那么就会返回空，也就是说如果id用class属性引用了一个外部样式表，在这个外部样式表中设置的背景色，那么不好意思document.getElementById("id").style.backgroundColor 这种写法不好使，如果要获取外部样式表中的设置，需要用到window对象的getComputedStyle()方法，代码这样写window.getComputedStyle(id,null).backgroundColor 
+		但是兼容问题又来了，这么写在firefox中好使，但在IE中不好使 
+		两者兼容的方式写成 
+		window.getComputedStyle?window.getComputedStyle(id,null).backgroundColor:id.currentStyle["backgroundColor"]; 
+		如果是获取背景色，这种方法在firefox和IE中的返回值还是不一样的，IE中是返回"#ffff99"样子的，而firefox中返回"rgb(238, 44, 34) " 
+		值得注意的是：window.getComputedStyle(id,null)这种方式不能设置样式，只能获取，要设置还得写成类似这样id.style.background="#EE2C21";
+		*/
+		var log = (function(){
+			if(typeof console != 'undefined' && typeof console.log == 'function'){
+				return function(){
+					console.log.apply(console,Array.prototype.slice.call(arguments,0));
+				}
+			}else{
+				var div = document.createElement('div');
+				div.className = 'console';
+				var topBar = document.createElement('div');
+				topBar.className = 'top_bar';
+				div.appendChild(topBar);
+				var btnClose = document.createElement('span');
+				btnClose.className = 'close';
+				btnClose.innerHTML = '-';
+				topBar.appendChild(btnClose);
+				topBar.onmousedown = function(e){
+					e = e || window.event;
+					var ele = e.target || e.srcElement;
+					if(ele.className == 'close'){
+						return;
+					}
+					var xCha = e.offsetX,yCha = e.offsetY;
+					topBar.onmouseout = topBar.onmouseup = function(e1){
+						topBar.onmouseout = null;
+						topBar.onmouseup = null;
+						topBar.onmousemove = null;
+					}
+					topBar.onmousemove = function(e2){
+						e2 = e2 || window.event;
+						console.log('x--',ul.offsetLeft,e2.offsetX,xCha);
+						console.log('y--',ul.offsetTop,e2.offsetY,yCha);
+						div.style.left = e2.clientX - xCha  +'px';
+						div.style.top = e2.clientY - yCha  +'px';
+					}
+				}
+				var ul = document.createElement('ul');
+				document.body.appendChild(div);
+				div.appendChild(ul);
+				ul.onselectstart = function(){
+					return false;
+				};
+				btnClose.onclick = function(){
+					if(div.className == 'console'){
+						ul.style.display = 'none';
+						div.className = 'console close';
+						btnClose.innerHTML = '+';
+						div.scrollTop = 0;
+						div.style.height = '30px';
+					}else{
+						ul.style.display = 'block';
+						div.className = 'console';
+						btnClose.innerHTML = '-';
+						ul.scrollTop = div.scrollHeight;
+						div.style.height = 'auto';
+					}
+				}
+				
+				return function(){
+					var li = document.createElement('li');
+					li.innerHTML = Array.prototype.slice.call(arguments,0);
+					
+					ul.appendChild(li);
+					ul.scrollTop = ul.scrollHeight;
+				};
+			}
+		})();
+		/*得到所有样式*/
+		var getStyle = (function(){
+			if(window.getComputedStyle){
+				return function(dom){
+					return window.getComputedStyle(dom);
+				}
+			}else{
+				return function(dom){
+					return dom.currentStyle;
+				}
+			}
+		})();
+		function showPop(dom,pop){
+			log(pop+':'+getStyle(dom)[pop]);
+		}
+		var dom = document.getElementById('test');
+		showPop(dom,'height');
+		showPop(dom,'width');
+		showPop(dom,'border');
+
+
+		/*是否支持css3的某个属性*/
+		(function(){
+			var prefix = ['webkit','Moz','Ms','O'],
+				style = document.documentElement.style;
+			function testProp(pop){
+				return typeof style[pop] != 'undefined';
+			}
+			window['isSupportCss3Prototype'] = function(pop){
+				//change text-shadow to textShadow
+				pop = pop.replace(/-([a-z])/,function(){
+					return arguments[1].toUpperCase();
+				});
+				var upperPop = pop.replace(/^[a-z]/,function(){
+					return arguments[0].toUpperCase();
+				});
+				var supportPorp = null;
+				//没有前缀
+				if(testProp(pop)){
+					supportPorp = pop;
+				}else if(prefix.length == 1 && testProp(prefix[0]+upperPop)){
+					supportPorp = prefix[0]+upperPop;
+				}else{
+					for(var i=0,j=prefix.length;i<j;i++){
+						var p = prefix[i] + upperPop;
+						if(testProp(p)){
+							supportPorp = p;
+							prefix = [prefix[i]];
+							break;
+						}
+					}
+				}
+				if(supportPorp){
+					log(supportPorp+' is supported');
+				}else{
+					log('no support '+pop);
+				}
+				return !!supportPorp;
+			};
+		})();
+
+		isSupportCss3Prototype('text-shadow');
+		isSupportCss3Prototype('box-shadow');
+		isSupportCss3Prototype('transform');
+		isSupportCss3Prototype('border');
+		isSupportCss3Prototype('border-radius');
+		isSupportCss3Prototype('box-align');
+	//-->
+	</script>
+	</body>
+</html>

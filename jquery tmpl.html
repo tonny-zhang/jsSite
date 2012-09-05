@@ -15,7 +15,7 @@
   <ul id="movieList"></ul>
 
 	<script id="movieTemplate" type="text/x-jquery-tmpl">
-		<li><b>${Name}</b> (${ReleaseYear})</li>
+		<li>{{if Name == '1'}}abc-{{/if}}<b>${Name}</b> (${ReleaseYear})</li>
 	</script>
 	<div id="test" style="display:none">
 		<li><b>${Name}</b> (${ReleaseYear})</li>
@@ -26,12 +26,14 @@
 		var movies = [
 			{ Name: "The Red Violin", ReleaseYear: "1998" },
 			{ Name: "Eyes Wide Shut", ReleaseYear: "1999" },
-			{ Name: "The Inheritance", ReleaseYear: "1976" }
+			{ Name: "The Inheritance", ReleaseYear: "1976" },
+			{ Name: "0", ReleaseYear: "123" },
+			{ Name: "1", ReleaseYear: "abc" }
 		];
 		//movies = [{ Name: "The Red Violin", ReleaseYear: "1998" }];
 		// Render the template with the movies data and insert
 		// the rendered HTML under the "movieList" element
-		$( "#test" ).tmpl( movies )
+		$( "#movieTemplate" ).tmpl( movies )
 			.appendTo( "#movieList" );
 	</script>
 

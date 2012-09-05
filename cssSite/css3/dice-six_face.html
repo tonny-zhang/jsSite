@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+			.dice{
+				color:black;
+				position:relative;
+				width:200px;
+				height:200px;
+				margin:0px auto;
+				margin-top:100px;
+				font-size:30px;
+				font-weight:bold;
+				/*-webkit-text-stroke-width: 1px;
+				-webkit-text-stroke-color: rgb(100, 100, 100);
+				-webkit-text-fill-color: rgb(0, 0, 0);*/
+				text-shadow:2px 1px 3px #ccc;
+				/*-webkit-perspective: 400;  triggers a 3D space */  
+				-webkit-transform-style: preserve-3d; /* maintains 3D space */  
+				-webkit-transform: translateZ(200px);
+				-webkit-transition: -webkit-transform 1s;
+			}
+			.dice.one{
+				-webkit-transform:rotateX(0deg) rotateY(0deg);
+			}
+			.dice.two{
+				-webkit-transform:rotateX(180deg) rotateY(0deg);
+			}
+			.dice.three{
+				-webkit-transform: rotateX(0deg) rotateY(-90deg);
+			}
+			.dice.four{
+				-webkit-transform:  rotateX(0deg) rotateY(90deg);
+			}
+			.dice.five{
+				-webkit-transform:rotateX(-90deg) rotateY(0deg);
+			}
+			.dice.six{
+				-webkit-transform:rotateX(90deg) rotateY(0deg);
+			}
+			.dice .face{
+				position:absolute;
+				left:0;
+				top:0;
+				width:200px;
+				height:200px;
+				line-height:200px;
+				text-align:center;
+				border-radius:10px;
+				box-shadow:0px 0px 100px rgba(100,100,100,0.5) inset;
+			}
+			.dice .face_1{
+				z-index:6;
+				background:red;
+				-webkit-transform: rotateX(0deg) translateZ(100px); 
+			}
+			.dice .face_2{
+				z-index:5;
+				background:black;
+				color:white;
+				-webkit-transform: rotateX(180deg) translateZ(100px);
+			}
+			.dice .face_3{
+				z-index:4;
+				background:blue;
+				-webkit-transform: rotateY(90deg) translateZ(100px)
+			}
+			.dice .face_4{	
+				z-index:3;
+				background:yellow;
+				-webkit-transform: rotateY(-90deg) translateZ(100px)
+			}
+			.dice .face_5{
+				z-index:2;
+				background:#ccc;
+				-webkit-transform: rotateX(90deg) translateZ(100px);  
+			}
+			.dice .face_6{
+				z-index:1;
+				background:green;
+				-webkit-transform: rotateX(-90deg) translateZ(100px);  
+			}
+			.test{
+				width:100px;
+				height:100px;
+				background:green;
+				-webkit-transform: rotateZ(45deg) translateX(50px);
+			}
+			#btn{
+				margin:10px auto;
+				border:1px solid blue;
+				text-align:center;
+			}
+			#btn div{
+				display:inline-block;
+				background-color:#ccc;
+				margin:5px;
+				cursor:pointer;
+				padding:3px;
+			}
+		</style>
+	</head>
+
+	<body>
+	<div class="test"></div>
+	<div id="btn">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+		<div class="four">four</div>
+		<div class="five">five</div>
+		<div class="six">six</div>
+	</div>
+	<div class="dice" id="dice">
+		<div class="face face_1">1</div>
+		<div class="face face_2">2</div>
+		<div class="face face_3">3</div>
+		<div class="face face_4">4</div>
+		<div class="face face_5">5</div>
+		<div class="face face_6">6</div>
+	</div>
+	<script type="text/javascript">
+	<!--
+		var btn = document.getElementById('btn');
+		var btns = btn.childNodes;
+		var dice = document.getElementById('dice');
+		for(var i = 0,j=btns.length;i<j;i++){
+			var bt = btns[i];
+			if(bt.nodeType == 1){
+				(function(b){
+					b.onclick = function(){
+						dice.className = 'dice '+b.className;
+					}
+				})(bt);
+			}
+		}
+		//自动轮转
+		(function(){
+			var classArr = ['one','two','three','four','five','six'];
+			var delay = 2000;
+			setTimeout(function(){
+				var cN = dice.className.split(/\s/);
+				if(cN.length > 1){
+					var toIndex = classArr.indexOf(cN[1]);
+					toIndex = toIndex == classArr.length-1?0:toIndex+1;
+				}else{
+					var toIndex = 1;
+				}
+				dice.className = 'dice '+classArr[toIndex];
+				setTimeout(arguments.callee,delay);
+			},delay);
+		})();
+		
+	//-->
+	</script>
+	</body>
+</html>
