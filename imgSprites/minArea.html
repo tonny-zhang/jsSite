@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+			#imgContainer{
+				background-color:#ccc;
+				position:relative;
+			}
+			#imgContainer img{
+				position:absolute;
+			}
+		</style>
+		<script src="http://js.zk.com/php/getSpritesImg.php"></script>
+	</head>
+
+	<body>
+	<div id="imgContainer"></div>
+	<script type="text/javascript">
+	<!--
+		(function(){
+			var loadedNum = 0;
+			imgsInfo = [];
+			for(var i = 0,j=imgs.length;i<j;i++){
+				var img = new Image();
+				img.onload = img.onerror = function(){
+					loadedNum++
+					imgsInfo.push({'w':this.width,'h':this.height,'src':this.src});
+					if(loadedNum == j){
+						analyseImgs();
+					}
+				}
+				img.src = imgs[i];
+			}
+			
+			function analyseImgs(){
+				var maxSize = 0,baseWidth = true,baseArr = imgsInfo.slice(0);
+				baseArr.sort(function(a,b){
+					return a.w < b.w?1:-1;
+				});
+				maxSize = baseArr[0]['w'];
+				var imgContainer = document.getElementById('imgContainer');
+				function showImg(imgInfo,left,top,width,height){
+					var img = document.createElement('img');
+					img.src = imgInfo.src;
+					img.style.left = left + 'px';
+					img.style.top = top + 'px';
+					imgContainer.appendChild(img);
+					imgInfo['top'] = top;
+					imgInfo['left'] = left;
+					imgInfo['sibling_left'] = imgInfo['w'] + left;
+					imgInfo['sibling_top'] = top;
+					placedArr.push(imgInfo);
+					if(maxImg){
+						maxImg['top'] + maxImg['h'] < imgInfo['top'] + imgInfo['h'] && (maxImg = imgInfo);
+					}else{
+						maxImg = imgInfo;
+					}
+					console.log('showImg',imgInfo.src,imgInfo['sibling_left'],imgInfo['sibling_top']);
+				}
+				var placedArr = [],
+					maxImg = null,
+					baseProperty = baseWidth?'w':'h',
+					baseProperty2 = baseWidth?'left':'top',
+					baseProperty3 = baseWidth?'h':'w',
+					baseProperty4 = baseWidth?'top':'left';
+
+				//放置最大元素
+				showImg(baseArr[0],0,0);
+				for(var i = 1,j=baseArr.length;i<j;i++){
+					var item = baseArr[i],bestIndex = 0,bestLeft=-1,bestTop=-1;
+					for(var ii = 1;ii<placedArr.length;ii++){
+						var compareItem = placedArr[ii];
+						var bLeft=-1,bTop=-1;
+						//console.log(item.src,compareItem.src,compareItem['w']+compareItem['left']+item['w'] <= maxSize,compareItem['h'],compareItem['top'],compareItem['sibling_top'] , item['h'])
+						
+						//可以向右添加
+						if(compareItem['sibling_left']+item['w'] <= maxSize 
+							&& compareItem['h']+compareItem['top']-compareItem['sibling_top'] >= item['h']){
+							item.suiteIndex = ii;
+							item.haveSibling = true;
+							bLeft = compareItem['sibling_left'];
+							bTop = compareItem['sibling_top'];
+							bestLeft == -1 && (bestLeft = bLeft);
+							bestTop == -1 && (bestTop = bTop);
+						}
+						if(bestIndex != item.suiteIndex 
+							&& (bestTop > bTop||bestLeft > bLeft)){
+							bestIndex = item.suiteIndex;
+							bestTop = bTop;
+							bestLeft = bLeft;
+						}
+					}
+					
+					if(bestLeft == -1 || bestTop == -1){
+						bestIndex = 0;
+						var lastPlacedImg = placedArr[placedArr.length-1];
+						bestLeft = 0;
+						bestTop = maxImg['h'] + maxImg['top'];
+					}
+					
+					if(item.haveSibling){
+						placedArr[item.suiteIndex]['sibling_top'] += item['h'];
+						console.log(item.src,placedArr[item.suiteIndex].src);
+					}
+					showImg(item,bestLeft,bestTop);
+				}
+			}
+		})();
+		
+		/*var imgs = ['file:///E:/imgSprites/1.png',
+		'file:///E:/imgSprites/2.png',
+		'file:///E:/imgSprites/3.png',
+		'file:///E:/imgSprites/4.png',
+		'file:///E:/imgSprites/5.gif',
+		'file:///E:/imgSprites/6.png',
+		'file:///E:/imgSprites/7.png',
+		'file:///E:/imgSprites/8.jpg',
+		'file:///E:/imgSprites/9.png',
+		'file:///E:/imgSprites/10.png'];
+*/
+		/*加载所有图片*/
+		/*(function(){
+			var loadedNum = 0;
+			imgsInfo = [];
+			for(var i = 0,j=imgs.length;i<j;i++){
+				var img = new Image();
+				img.onload = img.onerror = function(){
+					loadedNum++
+					//alert(loadedNum+'  '+j+' '+this.src+'  '+this.index);
+					imgsInfo.push({'w':this.width,'h':this.height,'src':this.src});
+					if(loadedNum == j){
+						analyseImgs();
+					}
+				}
+				img.src = imgs[i];
+			}
+			
+			function analyseImgs(){
+				var maxSize = 0,baseWidth = true,baseArr = imgsInfo.slice(0);
+				(function(){
+					baseArr.forEach(function(v,k){
+						var b = v.w>v.h,
+							vv = b?v.w:v.h;
+						if(vv >= maxSize){
+							maxSize = vv;
+							baseWidth = b;
+						}
+					});
+				});
+				if(baseWidth){
+					baseArr.sort(function(a,b){
+						return a.w < b.w?1:-1;
+					});
+				}else{
+					baseArr.sort(function(a,b){
+						return a.h < b.h?1:-1;
+					});
+				}
+				console.log(baseWidth,maxSize,baseArr);
+				
+				var imgContainer = document.getElementById('imgContainer');
+				function showImg(imgInfo,left,top,width,height){
+					var img = document.createElement('img');
+					img.src = imgInfo.src;
+					img.style.left = left + 'px';
+					img.style.top = top + 'px';
+					imgContainer.appendChild(img);
+					imgInfo['top'] = top;
+					imgInfo['left'] = left;
+					imgInfo['sibling_left'] = baseWidth?imgInfo['w'] + left:left;
+					imgInfo['sibling_top'] = baseWidth?top:imgInfo['h'] + top;
+					placedArr.push(imgInfo);
+					if(maxImg){
+						maxImg[baseProperty4] + maxImg[baseProperty3] < imgInfo[baseProperty4] + imgInfo[baseProperty3] && (maxImg = imgInfo);
+					}else{
+						maxImg = imgInfo;
+					}
+				}
+				var placedArr = [],
+					maxImg = null,
+					baseProperty = baseWidth?'w':'h',
+					baseProperty2 = baseWidth?'left':'top',
+					baseProperty3 = baseWidth?'h':'w',
+					baseProperty4 = baseWidth?'top':'left';
+				//放置最大元素
+				showImg(baseArr[0],0,0);
+				for(var i = 1,j=baseArr.length;i<j;i++){
+					var item = baseArr[i],left = -1,top = -1;
+					for(var ii = 1;ii<placedArr.length;ii++){
+						var compareItem = placedArr[ii];
+						if(!item.suiteIndex && !compareItem.haveSibling 
+							&& compareItem[baseProperty]+compareItem[baseProperty2]+item[baseProperty] <= maxSize){
+						console.log('---',compareItem[baseProperty3],compareItem[baseProperty4],compareItem['sibling_'+baseProperty4],(compareItem[baseProperty3]+compareItem[baseProperty4]-compareItem['sibling_'+baseProperty4]),item[baseProperty3]);
+							if((compareItem[baseProperty3]+compareItem[baseProperty4]-compareItem['sibling_'+baseProperty4])/item[baseProperty3] > 0.3){
+								left = compareItem['sibling_'+(baseWidth?baseProperty2:baseProperty4)];
+								top = compareItem['sibling_'+(baseWidth?baseProperty4:baseProperty2)];
+								compareItem.haveSibling = true;
+								item.suiteIndex = ii;
+							}
+						}
+						if(item.suiteIndex && item.suiteIndex < ii 
+							&& compareItem['sibling_'+baseProperty4] < top + item[baseProperty3]){
+							compareItem['sibling_'+baseProperty4] = top + item[baseProperty3];
+						}
+					}console.log(item.src,'------',left,top);
+					if(left == -1 || top == -1){
+						var lastPlacedItem = maxImg || placedArr[placedArr.length-1];
+						if(baseWidth){
+							left = 0;
+							top = lastPlacedItem['top'] + lastPlacedItem['h'];
+						}else{
+							left = lastPlacedItem['left'] + lastPlacedItem['w'];
+							top = 0;
+						}
+						
+						//console.log('no sute',lastPlacedItem,baseWidth,left,top);
+					}
+					showImg(item,left,top);
+				}
+			}
+		})();*/
+	//-->
+	</script>
+	</body>
+</html>

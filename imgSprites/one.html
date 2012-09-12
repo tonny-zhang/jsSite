@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+			#imgContainer{
+				background-color:#ccc;
+				position:relative;
+			}
+			#imgContainer img{
+				position:absolute;
+			}
+		</style>
+		<script src="http://js.zk.com/php/getSpritesImg.php"></script>
+	</head>
+
+	<body>
+	<div id="imgContainer"></div>
+	<script type="text/javascript">
+	<!--
+		//块类,width,height==Number.MAX_VALUE时表示无限制
+		function Block(left,top,width,height){
+			this.left = left;
+			this.top = top;
+			this.width = width;
+			this.height = height;
+			//console.log('create',Array.prototype.slice.call(arguments,0))
+		}
+		var blockProp = Block.prototype;
+		blockProp.canContain = function(childWidth,childHeight){
+			var _this = this,
+				_width = _this.width,
+				_height = _this.height;
+			return (_width == Number.MAX_VALUE || childWidth <= _width) && (_height == Number.MAX_VALUE || _height >= childHeight);
+		}
+		blockProp.add = function(childWidth,childHeight,canContain){
+			var _this = this,
+				_left = _this.left,
+				_top = _this.top,
+				_width = _this.width,
+				_height = _this.height;
+			
+			if(canContain || _this.canContain(childWidth,childHeight)){
+				var rightBlock,bottomBlock;
+				rightBlock = new Block(_left+childWidth,_top,_width-childWidth,childHeight);
+				bottomBlock = new Block(_left,_top + childHeight,_width,_height-childHeight);
+				if(rightBlock.width > 0 && rightBlock.height > 0){
+					blocks.push(rightBlock);
+				}
+				if(bottomBlock.width > 0 && bottomBlock.height > 0){
+					blocks.push(bottomBlock);
+				}
+			}
+			return this;
+		}
+		var blockCanvas = new Block(0,0,200,Number.MAX_VALUE) ;
+		var blocks = [blockCanvas],maxRight = 0,maxBottom = 0;
+		var loadedNum = 0;
+			imgsInfo = [];
+		for(var i = 0,j=imgs.length;i<j;i++){
+			var img = new Image();
+			img.onload = img.onerror = function(){
+				loadedNum++
+				imgsInfo.push({'w':this.width,'h':this.height,'src':this.src});
+				if(loadedNum == j){
+					analyseImgs();
+				}
+			}
+			img.src = imgs[i];
+		}
+		var imgContainer = document.getElementById('imgContainer');
+		function analyseImgs(){
+			//宽度从大到小
+			imgsInfo.sort(function(a,b){
+				return a.w < b.w?1:-1;
+			});
+			for(var i = 0,j=imgsInfo.length;i<j;i++){
+				var item = imgsInfo[i],bestIndex = -1,w = item['w'],h = item['h'],minArea = 0;
+				for(var ii = 0;ii<blocks.length;ii++){
+					var block = blocks[ii];
+					if(block.canContain(w,h)){
+						var r = (block.left + item.w > maxRight?block.left + item.w:maxRight);
+						var b = (block.top + item.h > maxBottom?block.top + item.h:maxBottom);
+						var mArea = r*b;
+						if(minArea == 0 || minArea > mArea){//寻找最小面积
+							bestIndex = ii;
+							minArea = mArea;
+						}
+					}
+				}
+				var b = blocks.splice(bestIndex,1)[0];
+				b.add(w,h,true);
+				
+				if(b.left + item.w > maxRight){
+					maxRight = b.left + item.w;
+				}
+				if(b.top + item.h > maxBottom){
+					maxBottom = b.top + item.h;
+				}
+				var img = document.createElement('img');
+				img.src = item.src;
+				img.style.left = b.left + 'px';
+				img.style.top = b.top + 'px';
+				imgContainer.appendChild(img);
+			}
+		}
+	//-->
+	</script>
+	</body>
+</html>
