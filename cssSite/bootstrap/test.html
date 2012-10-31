@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
 <!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
 <!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
@@ -13,32 +13,35 @@
 		<meta name="Author" content=""/>
 		<meta name="Keywords" content=""/>
 		<meta name="Description" content=""/>
+		<link href="./css/bootstrap.css" rel="stylesheet">
+		<style>
+			.bgc1{
+				background:#ccc;
+			}
+			.m10{
+				margin:10px 0;
+			}
+		</style>
 	</head>
 
 	<body>
-	<script type="text/javascript">
-	<!--
-		var Animation = {};
-		(function(){
-			var timeHandle;
-			function startTime(){
-				
-			}
-			Animation.animate = function(obj,options){
-				
-			}
-		})()
-		var arr = [];
-		function isArray(arr){
-			return arr != undefined && arr instanceof Array
-		}
-		var tt = setTimeout(function(){
-			alert('this is first')
-		},2);
-		tt = setTimeout(function(){
-			alert('this is second')
-		},1)
-	//-->
-	</script>
+	<div class="row m10">
+	  <div class="span2 bgc1 offset2">...</div>
+	  <div class="span8 bgc1">...</div>
+	</div>
+	<div class="row-fluid m10">
+	  <div class="span4 bgc1">...</div>
+	  <div class="span8 bgc1">...</div>
+	</div>
+	<div class="container-fluid m10 bgc1">
+	  <div class="row-fluid">
+		<div class="span2">
+		  
+		</div>
+		<div class="span10">
+		  
+		</div>
+	  </div>
+	</div>
 	</body>
 </html>

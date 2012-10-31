@@ -9,24 +9,14 @@
  </head>
 
  <body>
-<script src="/js/jquery-1.6.4.min.js"></script>
-  <script src="js/sea-debug.js"></script>
+  <script src="js/sea-debug.1.3.0.js"></script>
   <div id="result" class="commonDiv"></div>
   <script>
-	seajs.config({
-		base: '/seajs/js/module/'
-	});
-	//debugger
-	/*seajs.use(['data','Math','Person'],function(data,myMath,waiPerson){
-		$("#result").html("name:"+data.name+"<br/>"+"text:"+data.text+"<br/>");
-		$("#result").html($("#result").html()+myMath.add(10,20)+"<br/>");
-	});*/
-  var test = 'Perso'+'n';
-  seajs.use(test,function(d){
-    console.log(d);
-  });
   seajs.use('./js/test',function(d){
     console.log(d);
+    seajs.use('a',function(d){
+      console.log(d)
+    });
   });
   </script>
  </body>

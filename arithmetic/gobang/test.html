@@ -13,31 +13,44 @@
 		<meta name="Author" content=""/>
 		<meta name="Keywords" content=""/>
 		<meta name="Description" content=""/>
+		<script src="brain.js"></script>
 	</head>
 
 	<body>
 	<script type="text/javascript">
 	<!--
-		var Animation = {};
-		(function(){
-			var timeHandle;
-			function startTime(){
-				
+	function copyArrayDepth(arr){
+		var newArr = [];
+		for(var i in arr){
+			var a = arr[i];
+			if(typeof a == 'object'){
+				a = copyArrayDepth(a);
 			}
-			Animation.animate = function(obj,options){
-				
-			}
-		})()
-		var arr = [];
-		function isArray(arr){
-			return arr != undefined && arr instanceof Array
+			newArr[i] = a;
 		}
-		var tt = setTimeout(function(){
-			alert('this is first')
-		},2);
-		tt = setTimeout(function(){
-			alert('this is second')
-		},1)
+		return newArr;
+	}
+	var PLAYER_WHITE = 1,PLAYER_BLACK = 2;
+	var arr = [],
+		bs = 4,
+		mid = Math.floor(bs/2);
+	var obj = {
+		getData : function(){
+			for(var i = 0;i<bs;i++){
+				var temp = [];
+				for(var j = 0;j<bs;j++){
+					temp[j] = 0;
+				}
+				arr[i] = temp;
+			}
+			arr[mid][mid] = PLAYER_WHITE;
+			arr[2][2] = PLAYER_BLACK;
+			return arr.slice();
+		}
+	}
+	console.log(obj.getData());
+	console.log(new Brain(obj.getData(),PLAYER_WHITE).findBest(mid,mid));
+	console.log(obj.getData());
 	//-->
 	</script>
 	</body>

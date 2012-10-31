@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+		.fl{
+			float:left;
+			display:inline;
+		}
+		#info{
+			width:300px;
+			height:400px;
+			margin-right:10px;
+			background:#123;
+		}
+		#chess{
+			background:#ccc;
+		}
+		.board{
+			background-color:darkOrange;
+			position:relative;
+			*zoom:1;
+		}
+		.board .ab{
+			position:absolute;
+			z-index:10;
+		}
+		.board .txt{
+			width:10px;
+			height:10px;
+			text-align:center;
+		}
+		.board .flag{
+			width:5px;
+			height:5px;
+			background-color:black;
+		}
+		.board .bt{
+			width:30px;
+			height:30px;
+			background:url(#);
+			cursor:pointer;
+			z-index:11;
+		}
+		/*.board .bt:hover{
+			background:red;
+		}*/
+		.board .bt_hover{
+			width:30px;
+			height:30px;
+			display:none;
+		}
+		.board .bt_hover div{
+			background:red;
+		}
+		.board .bt_hover div.h{
+			width:10px;
+			height:2px;
+		}
+		.board .bt_hover div.v{
+			width:2px;
+			height:10px;
+		}
+		.board .bt_hover div.lth{
+			left:0;
+			top:0;
+		}
+		.board .bt_hover div.ltv{
+			left:0;
+			top:2px;
+		}
+		.board .bt_hover div.rth{
+			right:0;
+			top:0;
+		}
+		.board .bt_hover div.rtv{
+			right:0;
+			top:2px;
+		}
+		.board .bt_hover div.lbh{
+			left:0;
+			bottom:0;
+		}
+		.board .bt_hover div.lbv{
+			left:0;
+			bottom:2px;
+		}
+		.board .bt_hover div.rbh{
+			right:0;
+			bottom:0;
+		}
+		.board .bt_hover div.rbv{
+			right:0;
+			bottom:2px;
+		}
+		.board .line{
+			background-color:black;
+			font-size:0;
+		}
+		.board .line_h{
+			height:1px;
+		}
+		.board .line_v{
+			width:1px;
+		}
+		.board .chessman{
+			width:20px;
+			height:20px;
+			z-index:11;
+			font-size:10px;
+			text-align:center;
+			line-height:20px;
+		}
+		.board .chessman.white{
+			background-image:url(white.gif);
+			color:black;
+		}
+		.board .chessman.black{
+			background-image:url(black.gif);
+			color:white;
+		}
+		</style>
+		<script src="http://js.zk.com/js/jquery-1.6.4.js"></script>
+		<script src="chessboard.js"></script>
+		<script src="grade.js"></script>
+		<script src="brain.js"></script>
+	</head>
+
+	<body>
+	 <div id="info" class="fl"></div>
+	 <div id="chess" class="fl"></div>
+	 <script>
+	 function initChessBoard(){
+		var BORDER_SIZE = 15;//棋盘大小
+		var checkBoard = new Chessboard(BORDER_SIZE);
+		checkBoard.init().appendTo($('#chess'));
+		//checkBoard.robot();
+	 }
+	 initChessBoard();
+	 </script>
+	</body>
+</html>

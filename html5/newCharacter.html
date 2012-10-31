@@ -13,32 +13,21 @@
 		<meta name="Author" content=""/>
 		<meta name="Keywords" content=""/>
 		<meta name="Description" content=""/>
+		<style>
+			div{
+				width:100px;
+				height:100px;
+				background-color:#ccc;
+				margin:5px;
+				font-size:12px;
+			}
+		</style>
 	</head>
 
 	<body>
-	<script type="text/javascript">
-	<!--
-		var Animation = {};
-		(function(){
-			var timeHandle;
-			function startTime(){
-				
-			}
-			Animation.animate = function(obj,options){
-				
-			}
-		})()
-		var arr = [];
-		function isArray(arr){
-			return arr != undefined && arr instanceof Array
-		}
-		var tt = setTimeout(function(){
-			alert('this is first')
-		},2);
-		tt = setTimeout(function(){
-			alert('this is second')
-		},1)
-	//-->
-	</script>
+	<div style="draggable:true;">draggable:true</div>
+	<div style="contentextmenu:menu;">contentextmenu:menu</div>
+	<div id="menu" style="display:none">test</div>
+	<div style="contenteditable:true;">contenteditable:true</div>
 	</body>
 </html>

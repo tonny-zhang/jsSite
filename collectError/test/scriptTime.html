@@ -13,31 +13,34 @@
 		<meta name="Author" content=""/>
 		<meta name="Keywords" content=""/>
 		<meta name="Description" content=""/>
+		<script src="http://js.zk.com/js/jquery-1.6.4.js"></script>
 	</head>
 
 	<body>
 	<script type="text/javascript">
 	<!--
-		var Animation = {};
-		(function(){
-			var timeHandle;
-			function startTime(){
-				
-			}
-			Animation.animate = function(obj,options){
-				
-			}
-		})()
-		var arr = [];
-		function isArray(arr){
-			return arr != undefined && arr instanceof Array
+		function getScript(index){
+			return '<script src="http://www.7yougo.com/public_js/indexFocus.js?'+Math.random()+'_'+index+'"><'+'/script>';
 		}
-		var tt = setTimeout(function(){
-			alert('this is first')
-		},2);
-		tt = setTimeout(function(){
-			alert('this is second')
-		},1)
+		function addSomeScript(){
+			var header = $('head');
+			for(var i = 0;i<30;i++){
+				header.append($(getScript(i)));
+			}
+		}
+		function add2(){alert(1);
+			for(var i = 0;i<30;i++){
+				document.writeln(getScript(i));
+			}
+		}
+		//$(addSomeScript)
+		addSomeScript()
+	//-->
+	</script>
+	<div style="width:100px;margin:20px auto;height:100px;background-color:red">show</div>
+	<script type="text/javascript">
+	<!--
+		
 	//-->
 	</script>
 	</body>

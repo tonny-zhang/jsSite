@@ -13,32 +13,25 @@
 		<meta name="Author" content=""/>
 		<meta name="Keywords" content=""/>
 		<meta name="Description" content=""/>
+		<style>
+		</style>
 	</head>
 
-	<body>
+	<body style="background:url()">
+	<a class="abs" style="background:url(about:blank);height:100px;width:100px;border:1px solid red;"></a>
+	<a class="abs" style="background:url(#);height:100px;width:100px;border:1px solid blue;top:105px;"></a>
+	<a class="abs" style="background:url('');height:100px;width:100px;border:1px solid black;top:220px;"></a>
+		<form action="http://www.fandongxi.com"  id="testForm"></form>
 	<script type="text/javascript">
-	<!--
-		var Animation = {};
-		(function(){
-			var timeHandle;
-			function startTime(){
-				
-			}
-			Animation.animate = function(obj,options){
-				
-			}
-		})()
-		var arr = [];
-		function isArray(arr){
-			return arr != undefined && arr instanceof Array
-		}
-		var tt = setTimeout(function(){
-			alert('this is first')
-		},2);
-		tt = setTimeout(function(){
-			alert('this is second')
-		},1)
-	//-->
+
+
+window.onbeforeunload = function () {
+	var script = document.createElement('script')
+	script.src="http://js.zk.com";
+	document.getElementsByTagName('head')[0].appendChild(script);
+	return;
+
+}
 	</script>
 	</body>
 </html>

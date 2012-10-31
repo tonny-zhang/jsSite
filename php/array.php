@@ -1,8 +1,23 @@
+<?php echo time()?>
 <a href="otherCommit.php">go to otherCommit.php</a>
 <form action="http://js.zk.com/php/otherCommit.php" method="POST">
-	<input type="submit" value="go to other"/>
+	<input id="test" type="submit" value="go to other"/>
 </form>
+
+<script>
+	document.getElementById('test').onclick = function(){
+		this.value='init';
+		this.disabled = true;
+	}
+</script>
 <?php
+$arr = array('item'=>array());
+if($arr && isset($arr['id'])){
+	echo 'yes'.count($arr);
+}else{
+	echo 'no';
+}
+exit();
 $arr = array(1,3,4);
 array_splice($arr,1,1);
 var_dump($arr);

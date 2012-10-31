@@ -13,32 +13,44 @@
 		<meta name="Author" content=""/>
 		<meta name="Keywords" content=""/>
 		<meta name="Description" content=""/>
+		<style type="text/css">
+			.test{
+				background:red;
+				height:100px;
+				width:100px;
+				zoom:expression((function(e){
+					e.style.zoom = '1';
+					counter++;
+					e.style.behavior = '/../js/tool/iepngfix/iepngfix.htc';
+				})(this))
+			}
+		</style>
+		<script src="http://js.zk.com/js/jquery-1.6.4.js"></script>
 	</head>
 
 	<body>
 	<script type="text/javascript">
 	<!--
-		var Animation = {};
-		(function(){
-			var timeHandle;
-			function startTime(){
-				
-			}
-			Animation.animate = function(obj,options){
-				
-			}
-		})()
-		var arr = [];
-		function isArray(arr){
-			return arr != undefined && arr instanceof Array
+		var counter = 0;
+		function changedBody(){
+			var div = document.createElement('div');
+			div.className = 'test';
+			div.innerHTML = Math.random()
+			document.body.appendChild(div);
 		}
-		var tt = setTimeout(function(){
-			alert('this is first')
-		},2);
-		tt = setTimeout(function(){
-			alert('this is second')
-		},1)
+		function test(){
+			for(var i = 0;i<100;i++){
+				changedBody();
+			}
+			setTimeout(function(){
+				alert(counter);
+			},5000)
+			
+		}
 	//-->
 	</script>
+	<div class="test">1</div>
+	<div class="test">12</div>
+	<input type="button" value="changedBody()" onclick="test()"/>
 	</body>
 </html>
