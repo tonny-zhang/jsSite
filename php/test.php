@@ -1,4 +1,15 @@
 <?php
+echo (float)123456789123456;exit();
+phpinfo();exit();
+var_dump( explode('/','/data/log/www-mysql-error/'));
+echo microtime().'<br/>';
+echo microtime(true).'<br/>';
+$str = '13我们来自不同一的';$mark = '234-_-';
+echo strtr($mark, '-_', '+').'<br/>';
+echo hash_hmac("sha1", $str, strtr($mark, '-_', '+/')).'<br/>';
+echo hash_hmac("sha1", $str , strtr($mark, '-_', '+/'), true).'<br/>';exit();
+var_dump(explode(',',null));exit();
+var_dump( unserialize('a:4:{i:1;a:4:{s:4:"name";s:12:"出街热款";s:10:"image_name";s:32:"86c2f2fff62134000acdb74d2b53846c";s:10:"image_time";s:10:"1336737160";s:3:"tag";a:9:{i:0;s:4:"2203";i:1;s:4:"2393";i:2;s:4:"2579";i:3;s:4:"2049";i:4;s:4:"2204";i:5;s:4:"2383";i:6;s:4:"2391";i:7;s:4:"2381";i:8;s:4:"2631";}}i:2;a:4:{s:4:"name";s:12:"服饰搭配";s:10:"image_name";s:32:"45409bfc1eb0ccc56f1e2370bb5a5cec";s:10:"image_time";s:10:"1336737311";s:3:"tag";a:9:{i:0;s:4:"2051";i:1;s:4:"2054";i:2;s:4:"2202";i:3;s:4:"2192";i:4;s:4:"2387";i:5;s:4:"2056";i:6;s:4:"2053";i:7;s:4:"2580";i:8;s:4:"2052";}}i:3;a:4:{s:4:"name";s:9:"首饰盒";s:10:"image_name";s:32:"8ef03761b383f77fe5f39186e99e0056";s:10:"image_time";s:10:"1336737322";s:3:"tag";a:9:{i:0;s:4:"2585";i:1;s:4:"2205";i:2;s:4:"2534";i:3;s:4:"2389";i:4;s:4:"2535";i:5;s:4:"2533";i:6;s:4:"2392";i:7;s:4:"2386";i:8;s:4:"2378";}}i:4;a:4:{s:4:"name";s:12:"热门风格";s:10:"image_name";s:32:"e639d8ff685d201a29370e3cc4cb5cef";s:10:"image_time";s:10:"1336734932";s:3:"tag";a:9:{i:0;s:4:"2095";i:1;s:4:"2097";i:2;s:4:"2427";i:3;s:4:"2273";i:4;s:4:"2420";i:5;s:4:"2544";i:6;s:4:"2153";i:7;s:4:"2613";i:8;s:4:"2213";}}}'));
 echo '-朝阳区 -'.trim('朝阳区 ').'-';
 $str = '上海黄浦区南京西路338号1406室';
 echo '上海市黄浦区'.preg_replace('/^(上海(市)?)?黄浦区/', '', $str);

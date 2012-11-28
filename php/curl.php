@@ -1,4 +1,7 @@
 <?php
+$content = file_get_contents('http://gw.api.taobao.com/router/rest?app_key=12597121&method=taobao.taobaoke.items.detail.get&format=json&v=2.0&timestamp=2012-10-31+16%3A11%3A47&fields=click_url&num_iids=19826380973&nick=%E7%8B%AC%E7%AB%8B%E4%BD%93&outer_code=700101&sign=F2C16AB8E66B5B009A177A6B48C1450F');
+echo $content;
+exit();
 echo 'begin';
 print_r($_POST);
 if ($_POST && function_exists('curl_init')) {
