@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<pre>
+	ECMA262 Edition5. 严格模式(Strict Mode)
+	浏览器支持情况:
+	IE10+
+	Firefox4+
+	Chrome11+
+	Opera11.6+
+	Safari5.14+
+	</pre>
+	参考:<a href="http://www.cnblogs.com/_franky/articles/2184461.html">http://www.cnblogs.com/_franky/articles/2184461.html</a>
+	<script>
+	(function(){
+		/*
+		 * 在ES3(以及非严格模式)中，arguments对象和函数的形参共享一个动态的关系，修改一个形参，arguments对象中相应索引的值
+		 * 也会被修改，而修改arguments对象的一个值 ，相应的形参也会被改变。
+		 * !!!在严格模式下，这种对台戏存在，而arguments对象是不可改变的。!!!
+		 */
+		function switchArgs(a,b){
+			'use strict';
+			var c = b,
+				b = a,
+				a = c;
+			return [].slice.call(arguments);
+		}
+		//should result 2,3 in strict mode
+		//should result 3,2 in no strict mode and ES3
+		alert(switchArgs(2,3));
+	})();
+	//'use strict';
+//	var obj = {
+//		get name() {
+//			return this.Name;
+//		},
+//		set name(name) {
+//			console.log('setName to '+name);
+//			this.Name = name;
+//		},
+//		get test(){
+//			return 'test';
+//		}
+//	};
+//	var data = {'age' :  11};
+//	var name = 'abc';
+//	if (data[name]) {
+//		alert(data[name]);
+//	}else{
+//		alert('no value');
+//	}
+	</script>
+	<script type="text/javascript">
+	<!--
+//		function test(){
+//			'use strict';
+//			function inner(){
+//				
+//			}
+//		}
+//		eval('"use strict";');
+//		Function('"use strict";');
+//		var obj1 = {get name(){'use strict';}}
+	//-->
+	</script>
+	</body>
+</html>

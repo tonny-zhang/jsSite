@@ -1,4 +1,43 @@
+<?php error_reporting(E_ALL ^ E_NOTICE);?>
+<?php echo '_'.intval($abc).'_';?>
 <?php
+     $arr = array(1,2,3);
+    foreach($arr as &$val) {
+        $val += $val % 2 ? $val++ : $val--;
+    }
+    $val = 0;
+    print(join('',$arr));
+?>
+<?php
+$arr = array(
+	array(
+		'id' => '20121130'
+	),
+	array(
+		'id' => '20121230'
+	),
+	array(
+		'id' => '20121106'
+	),
+	array(
+		'id' => '20121110'
+	),
+);
+$id = '20121112';
+$newArray = array_filter($arr,function($a){
+	global $id;
+			return strcmp($a['id'],$id) < 0;
+		});
+var_dump($newArray);exit();
+$one = array(1);
+$two = array('name'=>array('test'),'val'=>array('abc'),'abc'=>array('123'));
+$one = array_slice($two,1,2);
+var_dump($one);exit();
+echo preg_replace('/（[^）]+）/','','123（@魏什么- ）test');exit();
+echo 10100%10000;exit();
+echo preg_replace('/^;|;$/','',';test=123;');exit();
+$result = getimagesize('E:\fdx_git\fandongxi\site\img2\interview\20121130\53_10.png');
+var_dump($result);exit();
 echo (float)123456789123456;exit();
 phpinfo();exit();
 var_dump( explode('/','/data/log/www-mysql-error/'));

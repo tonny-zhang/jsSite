@@ -7,7 +7,7 @@ class Helper_TaoBaoKe
 		2 => array('key' => '12597121', 'pass' => 'c376a58a706b0d290a507b1bb05feace', 'name' => '独立体'),
 		);
 
-	function Get($url, $account = 1, $outerCode ='', $ip = '') {
+	function Get($url, $account = 2, $outerCode ='', $ip = '') {
 		$id = self::GetId($url);
 		if (!$id) return false;
 		
@@ -18,7 +18,7 @@ class Helper_TaoBaoKe
 			'format' => 'json',
 			'v' => '2.0',
 			'timestamp' => date( 'Y-m-d H:i:s' ),
-			'fields' => 'click_url',
+			'fields' => 'price,click_url,commission,commission_rate,commission_num,commission_volume',
 			'num_iids' => $id,
 			'nick' => self::$cfg[$account]['name'],
 		);
@@ -45,7 +45,7 @@ class Helper_TaoBaoKe
 		curl_close($ch);
 
 		$result = json_decode( $result, true );
-
+var_dump($result);
 		$cilckUrl = $result['taobaoke_items_detail_get_response']['taobaoke_item_details']['taobaoke_item_detail'][0]['click_url'];
 
 		if ( $cilckUrl )

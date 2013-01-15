@@ -11,6 +11,15 @@
  <body>
   <script type="text/javascript">
   <!--
+	var str = 'abcabctest';
+	console.log(str,'=>',str.replace(/(a)/g,'_$1_'));//与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。
+	console.log(str,'=>',str.replace(/a/g,'_$&_'));//与 regexp 相匹配的子串。
+	console.log(str,'=>',str.replace(/a/g,'_$`_'));//位于匹配子串左侧的文本。
+	console.log(str,'=>',str.replace(/a/g,"_$'_"));//位于匹配子串右侧的文本。
+	//正则表达式里\1,\2...表式，第N个捕获到的括号里的内容
+	console.log(/(?:c)(a)\w*?\1/.exec('cabcabc'));
+	var reg = new RegExp('("[^"]+?")|\'[^\']+?\'','g');
+	console.log(reg.exec('"testabc\'"\''));
 	//01 11 23
 	var reg = /([01]\d|2[0123]):([0-5]\d):([0-5]\d)/;
 	var time = '12:59:01';

@@ -1,3 +1,21 @@
+<?php
+$arr = array();
+$arr[] = 1;
+$arr[] = 2;
+$arr[] = 3;
+echo json_encode($arr);	//[1,2,3]
+unset($arr[1]);
+echo json_encode($arr);	//{"0":1,"2":3}		//NOTICE:这里数组键值已经不是连续的，这时键值当成字符串解析，最后转成了Object
+array_unshift($arr,11);
+echo json_encode($arr);	//[11,1,3]
+exit();
+
+if($_GET['callback']){
+	echo $_GET['callback'].'("http://www.baidu.com")';
+}
+exit();
+?>
+
 <?php echo time()?>
 <a href="otherCommit.php">go to otherCommit.php</a>
 <form action="http://js.zk.com/php/otherCommit.php" method="POST">

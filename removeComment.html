@@ -1,0 +1,410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+		textarea{
+			width:500px;
+			height:300px;
+			display:block;
+		}
+		#btn_removecomment{
+			margin:10px 0;
+		}
+		</style>
+	</head>
+
+	<body>
+	<textarea id='code_require'>
+	define(function(require, exports, module) {
+
+  var test = require('../test');
+
+  var a = "They stretch'd in never-ending line.\\";
+  var bs ='\\';
+  var a = 1 / 2; //require("a2")
+
+  var a = c / b
+  require("./a")
+  //require("b2")
+
+  require('a');
+  require  ('b')
+  require(  "b"   )  ;
+  var o = {
+    require: function() {
+    },
+    f:require('f')
+  };
+  o.require('d');
+  o.require(require('e'   ));
+
+  /**
+  * require('./b')
+  */
+
+  var $require = function() {};
+  $require('$require');
+
+  var xrequire = function() {};
+  xrequire('xrequire');
+
+  test.assert(require('b').name === 'b', 'b');
+  test.assert(require('e').name === 'e', 'e');
+
+  /**
+   * @fileoverview Module authoring format.
+   */
+
+  var define = function() {
+  // some comment
+  var reg = /.*/g; // comment */
+  }
+
+  /* ok, I will disappear. */
+  var s = '// i am string'; require('x');
+  var t = 'i am string too'; // require('z');
+  exports.s = 'xx // xx' + require('s');
+
+  /* will not // be removed */ var xx = 'a';
+
+  //
+  //     var Calendar = require('calendar');
+
+  var str = " /* not a real comment */ ";
+  var regex = /\/*.*/;
+  var tt = '"\'';
+
+  var xxxx = 'require("show_me_the_money")';
+
+  var r = /\/*require('r')*/;
+  var r2 = /require("r2")/
+  var weird = / \/\/ \/b\//g;
+
+  $(element).
+    width().
+    height().
+    require("rare_ethan_zhang")
+
+  var r = /[//]no 'comment[*/]/
+  var rare=/ // /b\//g;
+
+  var rare2 = 'xxxx \
+  // xxxx\ require("rare_winter_1") \
+  '
+
+  var x =/ x /* 333
+  require("rare_winter_2")
+  /*
+  ^_^
+  */
+
+  var x =2/ x /* 333
+  require("rare_winter_3")
+  /*
+  ^_^
+  */
+
+  if(a+b)/ x /* 333
+  require("rare_winter_4")
+  /*
+  ^_^
+  */
+
+  (a+b)/ x /* 333
+  require("rare_winter_5")
+  /*
+  ^_^
+  */
+
+  });
+
+	</textarea>
+	<textarea id='code_require_bak'>
+var test = require('../test');
+
+  require('./a');
+  require  ('b')
+  require("b");
+  require('"c');require(' c');
+  require('c)');
+  var o = {
+    require: function() {
+    },
+    f:require('f')
+  };
+  o.require('d');
+  o.require(require('e'   ));
+
+  var $require = function() {};
+  $require('$require');
+
+  var xrequire = function() {};
+  xrequire('xrequire');
+
+  test.assert(require('b').name === 'b', 'b');
+  test.assert(require('e').name === 'e', 'e');
+
+  /**
+   * @fileoverview Module authoring format.
+   */
+
+  var define = function() {
+  // some comment
+  var reg = /.*/g; // comment */
+  }
+
+  /* ok, I will disappear. */
+  var s = '// i am string'; require('x');
+  var t = 'i am string too'; // require('z');
+
+  /* will not // be removed */ var xx = 'a';
+
+  //
+  //     var Calendar = require('calendar');
+
+  var str = " /* not a real comment */ ";
+  var regex = /\/*.*/;
+  var tt = '"\'';
+  var r = /\/*require('r')*/;
+  var a = / \/\/ \/b\//g;
+
+  // 不用考虑极端情况，比如
+  var a=/ // /b\//g;
+	</textarea>
+	<textarea id="code_source">
+/**
+  * @fileoverview Module authoring format.
+  */
+
+  var define = function() {
+  // some comment
+  var reg = /.*/g; // comment */
+  }
+
+  /* ok, I will disappear. */
+  var s = '// i am string'; require('xx');
+  var t = 'i am string too'; // require('zz');
+
+  /* will not // be removed */ var xx = 'a';
+
+  //
+  //     var Calendar = require('calendar');
+
+  var str = " /* not a real comment */ ";
+  var regex = /\/*.*/;
+  var z = '"\'';
+  var r = /\/*/require('mod')/**/;
+  var a = / \/\/ \/b\//g;
+
+  // 不用考虑下面这个极端情况
+  var a=/ // /b\//g;
+  var a = 3/2;//require('test');
+	</textarea>
+	<input type="button" value="removecomment" id="btn_removecomment" onclick="run()"/>
+	<input type="button" value="getDeps" id="btn_getDeps" onclick="getDeps()"/>
+	<textarea id="code_result"></textarea>
+	<script type="text/javascript">
+	<!--
+		 var reg = /([^\\]|^)(((\/\*)[\s\S]*?\*\/)|((\/\/).*$))/mg;
+		 //	/(?:[^\\]|^)((\/\*)([\s\S]*?\*\/)|(([^:\\]|^)(\/\/).*$)/mg
+		 function removeComment1(code){
+			return code.replace(reg, function(){
+			console.log(arguments);
+				var args = arguments,argsLen = args.length;
+				var comment = args[0],
+					pos = args[argsLen - 2];
+				var multi = args[3] && args[3] == '/*';
+				var prevCode = code.substring(0,args[argsLen-2]);
+				var nextCode = code.substr(comment.length+pos);
+				var lineCode = prevCode.substr(prevCode.lastIndexOf('\n')+1) + comment + nextCode.substring(0,nextCode.indexOf('\n')-1);
+				
+
+				var leftPos = lineCode.indexOf(multi?'/*':'//'),
+					rightPost = (multi?lineCode.indexOf('*/'):leftPos) + 2;
+				var quotesCode = multi?[lineCode.substring(0,leftPos),lineCode.substring(rightPost)]:lineCode.split('//');
+				var num;
+				if((num=quotesCode[0].split('"').length) > 1 && num % 2 == 0 && (num=quotesCode[1].split('"').length) > 1
+					|| (num=quotesCode[0].split("'").length) > 1 && num % 2 == 0 &&  (num=quotesCode[1].split("'").length)>1){//单数引号
+					return comment;					
+				}
+				return comment.charAt(0) == '/' ? '':comment.substr(0,1);
+			})
+		 }
+		 function removeComment2(code){
+			code = code.split(/\n+/);
+			var beginLine,endLine,beginCol,endCol,dealWidthQuotes;
+			code.forEach(function(v,i){
+				if(!beginLine){
+					if((beginCol=v.indexOf('/*')) > -1){
+						beginLine = i;
+					}
+				}
+				if((endCol=v.indexOf('*/')) > -1){
+					if(beginLine == i){
+						dealWidthQuotes = true;
+					}else{
+						code[beginLine] = code[beginLine].substring(0,beginCol);
+						beginLine = beginCol = 0;
+						for(var line = beginLine+1;line<i;line++){
+							code[line]
+						}
+						code[i] = code[i].substr(endCol);
+						endCol = 0;
+					}
+				}
+				if(v.indexOf('//') > -1){
+					dealWidthQuotes
+				}
+			});
+			return code.join('\n');
+		 }
+		 function removeComment11(code){
+			code = code.replace(reg,function(comment){
+				return comment.replace(/[\n\r]/g,'');
+			});
+			code = code.split(/\n+/);
+			code.forEach(function(v,i){
+				var isComment = reg.test(v);
+				var isInQuotes = /['"][^'"]*?((\/\*[\s\S]*?\*\/)|(\/\/))[^'"]*?['"]/.test(v);
+				console.log(isComment,isInQuotes,v);
+				if(isComment && !isInQuotes){
+					code[i] = v.replace(reg,'');console.log(v,'=>',code[i]);
+				}
+			});
+			return code.join('\n');
+		 }
+		 function removeComment12(code){
+			return code.replace(/([^\\]|^)(((\/\*)[\s\S]*?\*\/)|((\/\/).*$))/mg, function(){
+				var codeLen = code.length;
+				var args = arguments,argsLen = args.length;
+				var comment = args[0],
+					pos = args[argsLen - 2];
+
+				var tempChar,tempIndex = pos,haveRight = false;
+				while((tempChar = code.charAt(tempIndex++)) != '\n' && tempIndex < codeLen){
+					if(tempChar == "'" || tempChar == '"'){
+						haveRight = true;
+						break;
+					}
+				}
+				if(haveRight){
+					tempIndex = pos;
+					var leftQuotes = 0;
+					while((tempChar = code.charAt(tempIndex--)) != '\n' && tempIndex >= 0){
+						if(tempChar == "'" || tempChar == '"'){
+							leftQuotes ++;
+						}
+					}
+					if(leftQuotes % 2 == 1){//有单数个->注释在引号中
+						return comment;
+					}
+				}
+				return args[1];
+			});
+		 }
+		 function removeComment2(code){
+			return code.replace(/([^\\]|^)(((\/\*)[\s\S]*?\*\/)|((\/\/).*$))/mg, function(){
+				var codeLen = code.length;
+				var args = arguments,argsLen = args.length;
+				var comment = args[0],
+					pos = args[argsLen - 2],
+					multi = args[4] == '/*';
+				if(!~comment.indexOf('\n')){//多行不会出现在字符串中
+					var tempChar,tempIndex = pos + (multi?comment.length:2);
+					while((tempChar = code.charAt(tempIndex++)) != '\n' && tempIndex < codeLen){
+						if(tempChar == "'" || tempChar == '"'){
+							tempIndex = pos;
+							var leftQuotes = 0,rightChar = tempChar;
+							while((tempChar = code.charAt(tempIndex--)) != '\n' && tempIndex >= 0){
+								if(tempChar == rightChar){
+									leftQuotes ++;
+								}
+							}
+							if(leftQuotes % 2 == 1){//有单数个->注释在引号中
+								return comment;
+							}
+							break;
+						}
+					}
+				}
+				return args[1];
+			});
+		 }
+		 ///"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|[/][*][\S\s]*?(?:[*][/]|$)|[/](?:\\[/]|[^/])+[/]|[/][/].*/g
+		 function removeComment13(code) {
+			return code.replace(/"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|[/][*][\S\s]*?(?:[*][/]|$)|[/](?:\\[/]|[^/])+[/]|[/][/].*/g, function(match) {
+			console.log(match);
+				return /^([/][*]|[/][/])/.test(match) ? '' : match;
+			});
+		}
+		function removeComment(code){
+			var LINE_RE = /;/g
+			var COMMENT_RE = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg;
+			return code.replace(LINE_RE, ';\n').replace(COMMENT_RE, '');
+		}
+		function getDepences2(code){
+			var depences = [];
+			var require = function(uri){
+				depences.push(uri);
+			}
+			code = code.replace(/(^|[^\\])\/\*[\s\S]*?\*\//gm,'$1');
+			//console.log(code);
+			code = code.replace(/^[^\n]*?;$/gm,'try{\n$&\n}catch(e){console.log(e)}\n');
+			console.log(code);
+			var fn = new Function(code);
+			
+			console.log(depences);
+		}
+		/*先用正则把影响的元素都提取出来，再提取需要的元素*/
+		/*
+/\\\\/g		#排除以\\结尾对字符串的干扰
+
+/
+"(?:\\"|[^"])*"|	#双引号里内容
+'(?:\\'|[^'])*'|	#单引号里内容
+\/\*[\S\s]*?\*\/|	#多行注释符里内容
+\/(?:\\\/|[^/\r\n])+\/(?=[^\/])|	#处理正则表达式
+\/\/.*|				#处理单行注释
+\.\s*require|		#处理a.require的特殊情况
+(?:^|[^$])\brequire\s*\(\s*(["'])(.+?)\1\s*\)	#提取require
+/g
+
+		*/
+		function getDepences(code){
+			var REQUIRE_RE = /"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|\/\*[\S\s]*?\*\/|\/(?:\\\/|[^/\r\n])+\/(?=[^\/])|\/\/.*|\.\s*require|(?:^|[^$])\brequire\s*\(\s*(["'])(.+?)\1\s*\)/g
+		  var SLASH_RE = /\\\\/g
+		  var ret = [], m
+		  REQUIRE_RE.lastIndex = 0
+		  code = code.replace(SLASH_RE, '')
+
+		  while ((m = REQUIRE_RE.exec(code))) {
+			console.log(m.join('  -|-  '));
+		    if (m[2]) ret.push(m[2])
+		  }
+		  return ret.join('\n');
+		}
+		 function $(id){
+			return document.getElementById(id);
+		 }
+		 function run(){
+			$('code_result').value = removeComment($('code_source').value);
+		 }
+		 function getDeps(){
+			$('code_result').value = getDepences($('code_require').value);
+		 }
+	//-->
+	</script>
+	</body>
+</html>

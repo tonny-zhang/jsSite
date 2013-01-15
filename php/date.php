@@ -1,5 +1,8 @@
 <?php 
+var_dump(date('Y-m-d H::i::s',strtotime(date('Y-m-d').' 23:59:59')));exit();
 //phpinfo();
+var_dump(pathinfo('/abc/test.png', PATHINFO_EXTENSION));
+echo date('Ymd');exit();
 echo mktime(0, 0, 0, 7, 1, 2032).'<br/>';
 echo date(DATE_ATOM,2972245600);echo '<br/>';
 var_dump($_GET);echo '<br/>';

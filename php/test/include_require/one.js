@@ -1,0 +1,3 @@
+<?php
+$variableInChild = 'hello world';
+?>
