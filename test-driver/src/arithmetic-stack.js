@@ -135,6 +135,6 @@
 			}
 		}
 	}
-	window.util = util;//供测试使用
-	window.calculate = calculate;
+	global.util = util;//供测试使用
+	global.calculate = calculate;
 })(window);
