@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="../css/p_user.css"/>
+		<script src="../js/zepto.js"></script>
+		<script src="../js/feed.js"></script>
+	</head>
+	<body>
+		<header class="header">
+			<h1>miffy的个人主页</h1>
+		</header>
+		<section class="container">
+			<section class="user_info">
+				<div class="user_icon">
+					<img class="icon" src="http://img.fandongxi.com/icon/user/150_150/368/c9576e3878b5f41d3689c014cc8f4037.jpg"/>
+				</div>
+				<section class="user_desc">
+					<h1>miffy</h1><span>9955665555</span>
+					<p>来自：上海｜80后女生｜双鱼座</p>
+					<hr/>
+					<p class="data_info">哇晒：4528 分享：6523</p>
+				</section>
+				<a href="javascript:;" class="btn_share"></a>
+			</section>
+			<nav class="user_nav mt20">
+				<a class="selected"></a>
+				<a class="selected"></a>
+				<a class="selected"></a>
+			</nav>
+			<nav class="user_nav mt20">
+				<a></a>
+				<a></a>
+				<a></a>
+			</nav>
+			<section class="feed mt20">
+			</section>
+		</section>
+		<fotter class="fotter">
+			www.fandongxi.com
+		</fotter>
+		<script>
+		$(function(){
+			new MB.Feed({
+				container: $('.feed'),
+				colNum: 3,
+				dataUrl: './feed.json'
+			});
+		})
+		</script>
+	</body>
+</html>

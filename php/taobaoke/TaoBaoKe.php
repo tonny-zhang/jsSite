@@ -11,14 +11,14 @@ class Helper_TaoBaoKe
 		$id = self::GetId($url);
 		if (!$id) return false;
 		
-		if(!isset(self::$cfg[$account])) $account = 1;
+		if(!isset(self::$cfg[$account])) $account = 2;
 		$paramArr = array( 
 			'app_key' => self::$cfg[$account]['key'],
 			'method' => 'taobao.taobaoke.items.detail.get',
 			'format' => 'json',
 			'v' => '2.0',
 			'timestamp' => date( 'Y-m-d H:i:s' ),
-			'fields' => 'price,click_url,commission,commission_rate,commission_num,commission_volume',
+			'fields' => 'title,price,click_url,coupon_rate,coupon_price,commission,commission_rate,commission_num,commission_volume',
 			'num_iids' => $id,
 			'nick' => self::$cfg[$account]['name'],
 		);

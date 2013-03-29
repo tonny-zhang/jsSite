@@ -1,0 +1,47 @@
+.tag_info{
+	position:relative;
+	background:url(../img/bg_tag_info.png) center center no-repeat;
+	margin-top:10px;
+	height:184px;
+	margin-bottom:40px;
+}
+.tag_info h1,
+.tag_info span,
+.tag_info img,
+.tag_info .btn_share{
+	position:absolute;
+}
+
+.tag_info h1{
+	font-size: 36px;
+	font-weight: bold;
+	left: 170px;
+	top: 15px;
+}
+.tag_info span{
+	font-size: 24px;
+	left: 172px;
+	top: 75px;
+}
+.tag_info img{
+	left: 72px;
+	top: 29px;
+	width:70px;
+	height:70px;
+}
+.tag_info .btn_share{
+	right: 61px;
+	bottom: -27px;
+	width:56px;
+	height:96px;
+	background:url(../img/btn_share.png) no-repeat;
+	z-index:1;
+}
+.tag_info fotter{
+	height: 10px;
+	position: absolute;
+	bottom: 3px;
+	width: 590px;
+	left: 20px;
+	box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.4);
+}

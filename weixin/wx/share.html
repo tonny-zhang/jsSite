@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/reset.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/p_share.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/p_washai.css"/>
+		<script src="./js/zepto.js"></script>
+	</head>
+	<body>
+		<header class="header">
+			<h1>菁菁渐变色水貂毛编制外套开...</h1>
+		</header>
+		<section class="container">
+			<section class="user_info">
+				<img class="icon" src="http://img.fandongxi.com/icon/user/150_150/368/c9576e3878b5f41d3689c014cc8f4037.jpg"/>
+				<h2>小海豹分享的宝贝</h2>
+				<span><em>32</em>人喜欢</span>
+			</section>
+			<section class="share_info">
+				<section class="img_container">
+					<img src="http://img.fandongxi.com/f/EAwMCEJXVxEVH0hLVgwZFxoZFxscFlYbFxVXGhkXVw0IFBcZHB0cVxFLV0lNS01JSEpKSE5KTk5LTUhOVyxJFw0uOyAMNhwgICAgICAgICdZWUhVEQwdFScIERtWEggf/300.jpg"/>
+					<div></div>
+				</section>
+				<section class="share_price">
+					<a>5999元</a><a class="to_see" href="javascript:;">去看看></a>
+				</section>
+			</section>
+			<section class="mt20"></section>
+			<section class="thumbnails">
+				<ul>
+					<li><img src="http://img.fandongxi.com/show/s4/130310/e1dab73aeecd135bf3057f1c7d235acd.jpg"/></li>
+					<li><img src="http://img.fandongxi.com/show/s4/130311/1667df1b80bd647dd48757273aac5d4d.jpg"/></li>
+					<li><img src="http://img.fandongxi.com/show/s4/130312/f748984d2d69339ea23fbca11a74ce3a.jpg"/></li>
+					<li><img src="http://img.fandongxi.com/show/s4/130316/57976b25d7d0f1ddabfe3e9404c192f9.jpg"/></li>
+					<li><img src="http://img.fandongxi.com/show/s4/130317/98b2c75e984a0b57c837945a6805b21b.jpg"/></li>
+					<li><img src="http://img.fandongxi.com/show/s4/130318/b1efe33284789473e3d8ad1159e2d655.jpg"/></li>
+				</ul>
+			</section>
+			<section class="comment mt20">
+				<article>
+					<img src="http://img.fandongxi.com/icon/user/150_150/124/0d55e6c5712f2366ecf7e79f8e35fe3b.jpg"/>
+					<div>
+						<p>
+							<span class="user_name">用户名</span>
+							<span class="time">2012年03月03日</span>
+						</p>
+						<p>很好看的图片，求个地址！</p>
+					</div>
+				</article>
+				<article>
+					<a href="javascript:;" class="btn_open">点击展开</a>
+				</article>
+				<article>
+					<img src="http://img.fandongxi.com/icon/user/150_150/124/0d55e6c5712f2366ecf7e79f8e35fe3b.jpg"/>
+					<div>
+						<p>
+							<span class="user_name">用户名</span>
+							<span class="time">2012年03月03日</span>
+						</p>
+						<p>很好看的图片，求个地址！很好看的图片，求个地址！很好看的图片，求个地址！很好看的图片，求个地址！很好看的图片，求个地址！</p>
+					</div>
+				</article>
+				<article>
+					<img src="http://img.fandongxi.com/icon/user/150_150/124/0d55e6c5712f2366ecf7e79f8e35fe3b.jpg"/>
+					<div>
+						<p>
+							<span class="user_name">用户名</span>
+							<span class="time">2012年03月03日</span>
+						</p>
+						<p>很好看的图片，求个地址！</p>
+					</div>
+				</article>
+				<article>
+					<span class="tip_nocomment">还没有评论</span>
+				</article>
+			</section>
+		</section>
+		<fotter class="fotter">
+			www.fandongxi.com
+		</fotter>
+		<script>
+		$(function(){
+			var thumbnailsContainer = $('.thumbnails');
+			var moveContainer = thumbnailsContainer.find('ul');
+			var w_move = moveContainer.children('li').length * 160;
+			moveContainer.css('width',w_move);
+
+			var w_total = thumbnailsContainer.width();
+			thumbnailsContainer.on('swipeLeft',function(){
+				var left = parseFloat(moveContainer.css('margin-left'));//alert(1+' '+left+' '+w_move);
+				if(w_move - Math.abs(left) > w_total){
+					moveContainer.css('margin-left',left-160);
+				}
+			}).on('swipeRight',function(){//alert(2);
+				var left = parseFloat(moveContainer.css('margin-left'));
+				if(left < 0){
+					moveContainer.css('margin-left',left+160);
+				}
+			});
+		})
+		</script>
+	</body>
+</html>

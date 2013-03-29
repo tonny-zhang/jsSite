@@ -1,0 +1,137 @@
+.header h1{
+	font-size: 34px;
+}
+
+.container{
+	padding: 0;
+	margin-top: 105px;
+}
+.jpy_nav{
+	background: url(../img/bg_wood.png) repeat-y;
+	padding-top:40px;
+	overflow: hidden;
+}
+.jpy_nav::after{
+	content: '';
+	display: block;
+	height: 1px;
+	box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.7);
+}
+.jpy_nav div:first-child{
+	opacity: .99;
+	z-index: 1;
+}
+.jpy_nav a{
+	background: url(../img/bt_sort.png) no-repeat;
+	width: 187px;
+	height: 205px;
+	display: inline-block;
+	text-align: center;
+	color: #a2082c;
+	font-size: 23px;
+	text-shadow:1px 1px #fd7ba0;
+	cursor: pointer;
+	margin-left:18px;
+	margin-top:-50px;
+}
+.jpy_nav a:hover{
+	text-decoration: none;
+}
+.jpy_nav a img{
+	display: block;
+	width:105px;
+	height: 75px;
+	border:4px solid white;
+	margin: 50px 0 5px 35px;
+}
+
+.btn_sort{
+	margin-top:-4px;
+	position: relative;
+	height: 80px;
+	background: url(../img/bg_circle.png) left bottom repeat-x;
+	padding-bottom: 10px;
+}
+.btn_sort span{
+	position: absolute;
+}
+.sort_name,
+.sort_arrow{
+	background-image: url(../img/bg_tool.png);
+}
+.sort_name{
+	background-position: 0 0;
+	width: 95px;
+	height: 75px;
+	font-size: 24px;
+	color: #9e213e;
+	text-shadow: 0 1px #ff83a0;
+	text-align: center;
+	line-height: 55px;
+	top:-1px;
+	left:15px;
+	cursor: pointer;
+}
+.sort_tip{
+	color: #bfbfbf;
+	font-size: 24px;
+	left: 120px;
+	top: 20px;
+}
+.sort_arrow{
+	width: 26px;
+	height: 41px;
+	background-position: -143px 0;
+	right:10px;
+	top:10px;
+}
+.sort_arrow.down{
+	background-position: -112px 0;
+}
+
+.jpy_list{
+	letter-spacing: -4px;
+}	
+.jpy_list article{
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.jpy_list article.new{
+	position: relative;
+}
+.jpy_list article.new::after{
+	content: ' ';
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url(../img/bg_tool.png) -174px -2px;
+	width: 60px;
+	height: 63px;
+}
+.jpy_list article img{
+	width: 290px;
+	height: 180px;
+}
+.jpy_list article div{
+	background-color: #262626;
+	color: #d2d2d2;
+	font-size: 20px;
+	height: 35px;
+	line-height: 35px;
+	font-family: 黑体;
+	letter-spacing: 0.03em;
+	padding-left: 5px;
+}
+.jpy_list article div span{
+	color: #ff4772;
+	margin-left: 5px;
+}
+.btn_share{
+	width: 109px;
+	height: 104px;
+	background: url(../img/btn_share_2.png) -68px -56px;
+	border-radius: 50px;
+	margin: 30px 0 20px 260px;
+	cursor: pointer;
+}

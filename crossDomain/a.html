@@ -24,9 +24,14 @@
 		function receiveMessage(event){
 			alert(event);
 		}
-		window.addEventListener("message", receiveMessage, false);
+		//监听postMessage消息事件
+		if (typeof window.addEventListener != 'undefined') {
+			window.addEventListener('message', receiveMessage, false);
+		} else if (typeof window.attachEvent != 'undefined') {
+			window.attachEvent('onmessage', receiveMessage);
+		}
 		var one = window.frames[0];
-		function send(){console.log('send');
+		function send(){//console.log('send');
 			one.postMessage('from one.html','*');
 		}
 		

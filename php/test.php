@@ -1,6 +1,13 @@
 <?php error_reporting(E_ALL ^ E_NOTICE);?>
+<?php
+$c = 12;
+$a = $b || $c;
+echo $a;exit();
+echo json_encode(array('name'=>'test','score'=>false));exit();
+?>
 <?php echo '_'.intval($abc).'_';?>
 <?php
+echo json_encode(array(0=>1,1=>20,2=>500));exit();
      $arr = array(1,2,3);
     foreach($arr as &$val) {
         $val += $val % 2 ? $val++ : $val--;

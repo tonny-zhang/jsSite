@@ -22,10 +22,9 @@ TestCase('format input',{
 		assertSame(1,calculate('1'));
 	}
 });
-
 //从字符串读取一个数字
 TestCase('test util.readNum',{
-	'test read a number': function(){
+	'test read a number': function(){debugger;
 		assertSame("1",util.readNum('1',0));
 	},
 	'test read a number': function(){
@@ -181,4 +180,4 @@ TestCase('complex',{
 			calculate('-0.1*(-2*3+4-5/2');
 		},'Error');
 	}
-})
+});

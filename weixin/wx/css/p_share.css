@@ -1,0 +1,145 @@
+.user_info img{
+	width:76px;
+	height: 76px;
+	border:2px solid white;
+	vertical-align: text-bottom;
+}
+.user_info h2{
+	display: inline-block;
+	font-size: 26px;
+	font-weight: bold;
+	color:#3c3c3c;
+	width: 55%;
+	margin-left: 10px;
+}
+.user_info span{
+	font-size: 24px;
+	margin-right: 0;
+}
+.user_info span em{
+	color:#ff4772;
+}
+
+.share_info{
+	margin-top: 40px;
+}
+.img_container{
+	min-height: 230px;
+	width: 420px;
+	padding:10px;
+	margin: 10px auto;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	text-align: center;
+	position: relative;
+}
+.img_container img{
+	vertical-align: center;
+}
+.img_container div{
+	position: absolute;
+	right: -70px;
+	bottom: -50px;
+	background: url(../img/btn_share_2.png);
+	width: 181px;
+	height: 162px;
+	cursor: pointer;
+}
+.share_price{
+	padding-left: 90px;
+	line-height: 50px;
+}
+.share_price a{
+	padding: 0 10px;
+	height: 50px;
+	line-height: 50px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.share_price a:hover{
+	text-decoration: none;
+}
+.share_price a:first-child{
+	background-color: #3c3c3c;
+	color:white;
+	font-size: 24px;
+}
+.share_price a:last-child{
+	height: 44px;
+	line-height: 44px;
+	font-weight: bold;
+	font-size: 36px;
+	text-shadow:0 1px #ffa1b7;
+	cursor: pointer;
+	color: #ab2846;
+	background: #ff4772 ;
+	border-image: url(../img/bg_to_see.png) 0 50% 0 50% repeat;
+	border-image-width: 0 7px 0 0 ;
+	border-image-outset:  0 7px 0 0;
+}
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    /* 低端手机Styles */
+	.share_price a:last-child{
+		height: 50px;
+		line-height: 50px;
+	}
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+    /* 高端手机Styles */
+	.share_price a:last-child{
+		height: 38px;
+		line-height: 38px;
+	}
+}
+
+.comment article{
+	border-image: url(../img/bg_border.png) 50% 0 50% 0 repeat;
+	border-image-width: 5px 0;
+	background-color: white;
+	padding:20px;
+}
+.comment article img{
+	width: 55px;
+	height: 55px;
+	border: 3px solid white;
+	box-shadow: 0 0 1px 1px #e8e8e8;
+	vertical-align: top;
+	margin-right: 10px;
+}
+.comment article div{
+	display: inline-block;
+	font-size: 24px;
+	width: 85%;
+}
+.comment article div .user_name{
+	color: #ff4772;
+	width: 63%;
+	display: inline-block;
+}
+.comment article div p{
+	color: #3c3c3c;
+}
+.comment .time{
+	color: #7e7e7e;
+	font-size: 18px;
+}
+.comment .btn_open{
+	font-size: 24px;
+	color: #d0d0d0;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+.comment .btn_open:hover{
+	text-decoration: none;
+}
+.comment .tip_nocomment{
+	color: #a3a3a3;
+	font-size: 32px;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}

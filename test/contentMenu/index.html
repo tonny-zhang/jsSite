@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>自作简单js右键菜单</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="text/javascript" src="ContextMenu.js"></script>
+        <style>
+            table{width:720px;border-collapse:collapse;border:1px #1d953f solid;
+                text-align:center;font-weight:bold;color:red;}
+            td{border:2px #1d953f solid;width:20%;height:40px;}
+        </style>
+    </head>
+    <body>
+        <div id="test">
+            <center>
+              
+            <table>
+                <tr> <td colspan="5">必须点击菜单项，菜单才会消失。这是一个bug，欢迎改正该bug</td></tr>
+                <tr>
+                    <td>杜十娘</td>
+                    <td>柳如是</td>
+                    <td>紫霞仙子</td>
+                    <td>小龙女</td>
+                    <td>林徽因</td>
+                </tr>
+                <tr>
+                    <td>穆桂英</td>
+                    <td>武则天</td>
+                    <td>母夜叉</td>
+                    <td>扈三娘</td>
+                    <td>洪宣娇</td>
+                </tr>
+            </table>
+            </center>
+        </div>
+    </body>
+    <script>
+        var table       = document.getElementsByTagName("table")[0];
+        var meinv       = table.children[0].children[1];
+        var nvqiangren  = table.children[0].children[2];
+        
+        for(var i = 0;i < meinv.children.length;i++){
+           var menu    = new ContextMenu();
+           menu.addItem(
+                "她是什么人？",
+                "img/key.png",
+                function(obj){
+                    return function(){obj.innerHTML = "她是一个多情美女";}
+                }(meinv.children[i])
+           );
+           menu.addItem(
+                "@她",
+                "img/056.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "成功发送";}
+                }(meinv.children[i])
+            );
+           menu.addItem(
+                "关注她",
+                "img/003.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "关注成功";}
+                }(meinv.children[i])
+            );
+           menu.addItem(
+                "暗恋她",
+                "img/144.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "暗恋成功";}
+                }(meinv.children[i])
+            );
+           menu.addMenuTo(meinv.children[i]);
+        }
+        
+        for(var i = 0;i < nvqiangren.children.length;i++){
+            var menu    = new ContextMenu();
+            menu.addItem(
+                "维基解密？",
+                "img/key.png",
+                function(obj){
+                    return function(){obj.innerHTML = "她是一个女强人";}
+                }(nvqiangren.children[i])
+            );
+            menu.addItem(
+                "@她",
+                "img/056.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "成功发送";}
+                }(nvqiangren.children[i])
+            );
+            menu.addItem(
+                "关注她",
+                "img/003.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "关注成功";}
+                }(nvqiangren.children[i])
+            );
+            menu.addItem(
+                "暗恋她",
+                "img/144.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "暗恋成功";}
+                }(nvqiangren.children[i])
+            );
+            menu.addItem(
+                "娶 她",
+                "img/320.gif",
+                function(obj){
+                    return function(){obj.innerHTML = "你敢？";}
+                }(nvqiangren.children[i])
+            );
+            menu.addMenuTo(nvqiangren.children[i]);
+        }
+    </script>
+</html>

@@ -1,0 +1,50 @@
+/* Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td,
+article, aside, summary, details, figcaption, figure, footer, header, hgroup, menu, nav, section{ 
+	margin:0; 
+	padding:0;
+}
+article, aside, summary, details, figcaption, figure, footer, header, hgroup, menu, nav, section{
+  display: block;
+}
+table{ 
+	border-collapse:collapse; 
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0; 
+	vertical-align: middle;
+}
+address,caption,cite,code,dfn,em,strong,th,var { 
+	font-style:normal; 
+	font-weight:normal;
+}
+ol,ul { 
+	list-style:none;
+}
+h1,h2,h3,h4,h5,h6 { 
+	font-size: 100%;	
+}
+q:before,q:after { 
+	content:'';
+}
+abbr,acronym { 
+	border:0;
+}
+input, button, select{ 
+	font-size: 100%; 
+	vertical-align: middle;
+}
+
+body {font: 12px/1.4 微软雅黑,tahoma,arial; color: #404040;}
+a {color: #dd295c; text-decoration: none;}
+a:hover { color: #e76a8d;text-decoration: underline;}
+a.c_pink2:hover{color: #ff94b8;}
+a.c_grey1:hover{color: #dd295c;}
+a.c_grey4:hover{color: #ff6699;}
+button, input, select, textarea { margin: 0; }
+input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+textarea { overflow: auto; border: 1px solid #ccc; padding: 4px 3px; font-size: 100%; resize:none; }
+select { padding: 2px; border: 1px solid #ccc;}
+button { width: auto; overflow: visible;line-height:1.2;}
+button::-moz-focus-inner { border: 0;padding: 0;}

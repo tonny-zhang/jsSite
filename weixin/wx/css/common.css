@@ -1,0 +1,118 @@
+@media all{
+	body{
+		width:640px;
+		margin:0 auto;
+		background-color:#ececec;
+		position:relative;
+	}
+}
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    /* 低端手机Styles */
+	body{
+		zoom:0.5;
+	}
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+    /* 高端手机Styles */
+	body{
+		width:640px;
+	}
+}
+
+.mt20{
+	margin-top: 20px;
+}
+.mb20{
+	margin-bottom: 20px;
+}
+
+
+.header{
+	z-index:2;
+	position:fixed;
+	top:0;
+	left:0;
+	background:url(../img/bg_top.png) center top no-repeat;
+	height:123px;
+	width:100%;
+	text-align:center;
+	font-size: 24px;
+	font-family: bold;
+	color: #EFEFEF;
+	line-height: 55px;
+}
+.header h1{
+	margin-top:10px;
+	line-height: 60px;
+}
+.fotter{
+	width:100%;
+	background:url(../img/bg_fotter.png) center bottom no-repeat;
+	height:69px;
+	text-align:center;
+	font-size:16px;
+	color:#d9924d;
+	text-shadow:0 1px white;
+	display:block;
+	line-height:44px;
+	margin-top:10px;
+	background-color:#ececec;
+}
+.container{
+	margin-top:143px;
+	padding:0 10px;
+}
+
+.feed .content{
+	display: -webkit-box;
+	display: -moz-box;
+	display:box;
+}
+.feed .col{
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-box-flex:1;
+	-o-box-flex:1;
+	box-flex:1;
+	text-align:center;
+}
+.feed .col article{
+	margin:7px 0;
+}
+.feed .col article img{
+	width: 200px;
+	background: url(../img/loading.gif) center center no-repeat;
+}
+
+.btn_load,
+.loading{
+	height:55px;
+	padding-top:5px;
+	background-color:#d7d7d7;
+	width:95%;
+	margin:10px auto;
+	text-align:center;
+	font-size:30px;
+	font-weight:bold;
+	text-shadow:1px 1px white;
+}
+.loading{
+	background-image: url(../img/loading.gif);
+	background-position: 200px 16px;
+	background-repeat: no-repeat;
+}
+.loading,
+.btn_load a{
+	color:#b9b9b9;
+}
+.btn_load a:hover{
+	text-decoration:none;
+}
+.btn_load img{
+	margin-right:10px;
+	width:24px;
+	height:24px;
+}

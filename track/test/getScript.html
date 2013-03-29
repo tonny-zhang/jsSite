@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<script src='../lib/parse-js.js'></script>
+		<script src='../lib/process.js'></script>
+	</head>
+
+	<body>
+	<textarea id="script_content" style="width:500px;height:500px"></textarea>
+	<script type="text/javascript">
+	<!--
+		(function(){
+			var callbackIndex = 0;
+			function getScript(uri){
+				var callbackName = 'fn_'+callbackIndex++;
+				window[callbackName] = function(data){
+					var content = data.content.replace(/\\n/g,'\n');
+					document.getElementById('script_content').value = content;
+					window[callbackName] = null;
+					var ast = JsParse.parse(content);
+					ast = Process.gen_code(ast,{beautify: true});
+					console.log(ast);
+				}
+				
+				var script = document.createElement('script');
+				script.src = '../getScript.php?uri='+uri+'&callback='+callbackName;
+				document.getElementsByTagName('head')[0].appendChild(script);
+			}
+			window.onload = function(){
+				getScript('http://js.zk.com/js/jquery-1.6.4.js');
+			}
+		})();
+	//-->
+	</script>
+	</body>
+</html>

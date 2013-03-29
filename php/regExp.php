@@ -1,4 +1,6 @@
 <?php
+echo preg_replace(">test>", '__', 'abctestasdftest');exit();
+
 /**
 	* 压缩HTML
 	* @access private

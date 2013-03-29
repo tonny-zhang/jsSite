@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<style>
+			textarea{
+				width:500px;
+				height:400px;
+				float:left;
+			}
+		</style>
+	</head>
+
+	<body>
+	<textarea id="source_code">
+	var Person = {
+		name: 'test',
+		read: function(){
+			for(var i = 0;i<10;i++){
+				
+			}
+			for(var i = 0;i<10;i++){}
+			for(var i = 0;i<10;i++){this.name += 1;}
+			for(var i = 0;i<10;i++){this.name += '}';}//这种情况先不考虑了
+			for(var i in this){
+			
+			}
+			var i = 0;
+			while(i++<15){
+				
+			}
+			if(this.name == 'test'){
+				return 'test'
+			}else{
+				return 'read else'
+			}
+			
+			if(this.name) console.log('if name1');
+			else console.log('else name1');this.name = 'setname'
+
+			if(this.name)
+				this.name = 'rename';
+			else 
+				this.name = 'setname'
+
+			for(var i = 0;i<10;i++)
+				this.name += i
+			while(i<15) 
+				this.name += '_'+i;
+		}
+	}
+	function test(){
+		return 'test';
+	}
+	function personRead(){
+		var readVal = Person.read();
+		switch(readVal){
+			case 'test':
+				break;
+			case 'read else':
+				break;
+			default:
+				break;
+		}
+	}
+	personRead();
+	</textarea>
+	<textarea id="result_code">
+	</textarea>
+	<script type="text/javascript">
+	<!--		
+		//插桩统计
+		var counterData = {};
+		function counter(index){
+			var cd = counterData[index]
+			cd && cd['c']++;
+		}
+		function addCounter(code_index,line_index,code){
+			var name = codeIndex+'_'+i;
+			counterData[name] = {c: 0,code_index: codeIndex,line_index: i,code: code};
+			return 'counter("'+name+'");';
+		}
+		var source_code = document.getElementById('source_code');
+		var result_code = document.getElementById('result_code');
+		//只用在块结构后插入桩
+
+		var code = source_code.value;
+		var newCode = [];
+		var codeTree = code.split('\n');
+		var codeIndex = 1;
+		var addBlock = false;
+		var PREG = /"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|((?:(?:(?:if|for|while)\s*\([^)]+\))|else))([^{]*)$/;
+		for(var i = 0,j = codeTree.length;i<j;i++){
+			var c = codeTree[i].replace(/\n/,'').replace(/\s+$/,'');
+			var _counter = addCounter(codeIndex,i,c);
+			if(addBlock){//插入上行未结束的括号
+				c += '}';
+			}
+			addBlock = false;
+			
+			/***这里可以用正则处理引号里的特殊情况，和下面的else进行合并!!!!**/
+			//对以"{|}"结尾的进行插桩
+			if(/{[^}]*}?$/.test(c) && !/=\s*{[^}]*}?$/.test(c) && !/switch\s*\(.+\)/.test(c) || /(case |default).*:/.test(c)){
+				if(/}$/.test(c)){
+					c = c.replace(/}$/,_counter+'$&')
+				}else{
+					c += _counter;
+				}
+			}else{//只考虑单行,单行if|else|for|while进行插桩
+				PREG.lastIndex = 0;
+				var match = PREG.exec(c);//console.log(match);
+				if(match && match[1]){
+					c = match[1] + '{' + _counter;
+					if(match[2]){
+						c += match[2]+'}';
+					}else{
+						addBlock = true;//下行插入闭全括号
+					}
+				}
+			}
+			//把插桩多余的分号去除
+			c = c.replace(';;',';');
+			newCode.push(c);
+		}
+		result_code.value = newCode.join('\n');
+		var c = result_code.value;
+		
+		new Function(c)();//执行插桩后的代码
+		/**输出统计信息*/
+		function print(){
+			var arr = [];
+			for(var i in counterData){
+				arr.push(counterData[i])
+			}
+//			arr.sort(function(a,b){
+//				return a.c > b.c?-1:1;
+//			});
+			for(var i = 0,j=arr.length;i<j;i++){
+				var item = arr[i];
+				console.log(item.code_index+'_'+item.line_index+': '+item.c+'\t',item.code);
+			}
+		}
+		//print();
+	//-->
+	</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	http://developer.51cto.com/art/201102/245701.htm
+	<iframe style="width:400px;height:300px;" scrolling="no" id="testIframe"></iframe>
+	<input type="text" id="test_text"/>
+	<input type="button" value="send" id="btn_send"/>
+	<script type="text/javascript">
+	<!--
+		if(typeof postMessage == 'undefined'){
+			document.write('your brower donot support postMessage');
+		}else{
+			var $ = function(id){
+				return document.getElementById(id);
+			}
+			var domains = {
+				'js.zk.com': 'js.tonny.com',
+				'js.tonny.com': 'js.zk.com'
+			}
+			var otherDomain = domains[location.host];
+			var testIframe = $('testIframe');
+			testIframe.src = 'http://'+otherDomain + '/crossDomain/postMessage/domain-b.html';
+			/*这里直接输出e,会出现“Unsafe JavaScript attempt to access frame with URL http://js.tonny.com/crossDomain/postMessage/domain-b.html from frame with URL http://js.zk.com/crossDomain/postMessage/domain-a.html. Domains, protocols and ports must match.”*/
+			window.addEventListener('message',function(e){
+				console.log('from domain-b:',e.data);
+			},false);
+			var text = $('test_text');
+			$('btn_send').onclick = function(){
+				window.frames[0].postMessage({"name":"test"},'*');
+			}
+		}
+	//-->
+	</script>
+	</body>
+</html>
