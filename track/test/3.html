@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+		<script src="../lib/esprima.js"></script>
+		<script src="../lib/escodegen.js"></script>
+		<script src="../lib/CONST.js"></script>
+		<script src="../lib/track2.js"></script>
+		<style>
+			textarea{
+				width:500px;
+				height:400px;
+				float:left;
+			}
+		</style>
+	</head>
+
+	<body>
+	<textarea id="source_code">
+	var Person = {
+		name: 'test',
+		read: function(){
+			for(var i = 0;i<10;i++){
+				
+			}
+			for(var i = 0;i<10;i++){}
+			for(var i = 0;i<10;i++){this.name += 1;}
+			for(var i = 0;i<10;i++){this.name += '}';}//这种情况先不考虑了
+			for(var i in this){
+			
+			}
+			var i = 0;
+			while(i++<15){
+				
+			}
+			while(i++<15) {
+				this.name += '_'+i;
+			}
+			if(this.name == 'test'){
+				return 'test'
+			}else if(this.name){
+				this.name = 'else if rename';
+			}else{
+				return 'read else'
+			}
+			
+			if(this.name) console.log('if name1');
+			else console.log('else name1');this.name = 'setname'
+
+			if(this.name)
+				this.name = 'rename';
+			else if(this.name)
+				this.name = 'else if rename'
+			else 
+				this.name = 'setname'
+
+			for(var i = 0;i<10;i++)
+				this.name += i
+			while(i++<15) 
+				this.name += '_'+i;
+		}
+	}
+	var a = function (a,b){
+
+	}
+	function test(){
+		return 'test';
+	}
+	function personRead(){
+		var readVal = Person.read();
+		switch(readVal){
+			case 'test':{
+				console.log(1);
+				break;
+			}
+			case 'read else':
+				break;
+			default:
+				break;
+		}
+	}
+	personRead();
+	if(true && test() || abc()){
+		console.log();
+	}
+	true && (personRead = 1) || (a = 3);
+	</textarea>
+	<textarea id="result_code">
+	</textarea>
+	<script type="text/javascript">
+	<!--
+		var source_code = document.getElementById('source_code');
+		var result_code = document.getElementById('result_code');
+		var synaxTree = esprima.parse(source_code.value);
+
+		esprima.Syntax.TrackStatement = 'TrackStatement'
+		var executeCode = escodegen.generate(synaxTree,{semicolonOptional:false});
+		
+		executeCode = new Code(executeCode).getExecuteCode();
+		//console.log(executeCode);
+		new Function(executeCode)();
+		result_code.value = executeCode;
+		//print();
+	//-->
+	</script>
+	</body>
+</html>
