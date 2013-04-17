@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<div id="result" style="width:300px;height:auto;border:1px solid #ccc;color:#333;padding:5px;"></div>
+	<script type="text/javascript">
+	(function(global){
+		var isIE = !!window.ActiveXObject;		
+		if(isIE){
+			var ieVersion = '';
+			if(window['Worker']){//从ie10支持Worker
+				ieVersion = 10;
+			}else if(window.addEventListener){//从ie9支持window.addEventListener
+				ieVersion = 9;
+			}else if(!window.XMLHttpRequest){//ie6不支持这个
+				ieVersion = 6;
+			}else if(!!document.documentMode){
+			/*documentMode 是一个IE的私有属性，在IE8+中被支撑。
+				documentMode属性返回浏览器衬着当前文档所用的模式。
+				IE8 can render a page in different modes，depending on the !DOCTYPE or the presence of certain HTML elements.
+				IE8可以以不合的模式衬着一个页面，首要依附于!DOCTYPE或者当前的某一个HTML元素。
+				遵守下列的值返回：
+				?
+				5 ? ----- in IE5 mode
+				7 ? ----- in IE7 mode
+				8 ? ----- in IE8 mode
+				9 ? ----- in IE9 mode
+			*/
+				ieVersion = 8;
+			}else{
+				ieVersion = 7;
+			}
+		}
+		global.isIE = function(version){
+			return !!(version? +ieVersion === +version : isIE);
+		}
+	})(this);
+	//测试
+	(function(global){
+		var result = document.getElementById('result');
+		var isIE = global.isIE;
+		window.onload = function(){
+			var resultStr = [];
+			var testArr = ['',6,7,8,9,10];
+			for(var i = 0,j=testArr.length;i<j;i++){
+				resultStr.push('isIE'+testArr[i]+":"+(isIE(testArr[i])?'<span style="color:red">√</span>':'X'));
+			}
+			result.innerHTML = resultStr.join('<br/>');
+		}
+	})(this);
+	</script>
+	</body>
+</html>

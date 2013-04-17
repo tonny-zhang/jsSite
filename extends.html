@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if lt ie 7]> <html class="ie ie6" lang="zh-CN"> <![endif]-->
+<!--[if ie 7]>    <html class="ie ie7" lang="zh-CN"> <![endif]-->
+<!--[if ie 8]>    <html class="ie ie8" lang="zh-CN"> <![endif]-->
+<!--[if gt ie 8]><!-->  <html> <!--<![endif]-->
+ <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!--[if lt ie 7]> <title>IE 7 以下版本</title> <![endif]-->
+<!--[if ie 7]> <title>IE 7</title> <![endif]-->
+<!--[if ie 8]> <title>IE 8</title> <![endif]-->
+<!--[if gt ie 8]><title>IE 8 以上版本</title><![endif]-->
+		<meta name="Generator" content="EditPlus"/>
+		<meta name="Author" content=""/>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content=""/>
+	</head>
+
+	<body>
+	<script type="text/javascript">
+	<!--
+		function show (msg){
+			if(typeof console != 'undefined'){
+				console.log.apply(console,arguments);
+			}else{
+				alert(msg);
+			}
+		}
+		function Animal(name){
+			var _name = name;
+			this.setName = function(n){//!!这里的参数名不能和作用域外的类私有变量名一样
+				_name = n;
+			}
+			this.getName = function(){
+				return _name;
+			}
+		}
+		Animal.prototype.say = function(){
+			show(this.getName());
+		}
+		function Dog(){
+			Animal.apply(this,arguments);//继承类上的公有属性及方法
+		}
+		Dog.prototype = new Animal();//继承类的原型链上的属性及方法
+		Dog.prototype.say = function(){
+			show('my name is : '+this.getName());
+		}
+
+		function Cat(){
+			Animal.apply(this,arguments);
+		}
+		Cat.prototype = new Animal();
+
+		var animal = new Animal();
+		animal.setName('animal');
+		animal.say();
+
+		var pet1 = new Dog();
+		pet1.setName('dog');
+		pet1.say();
+
+		var pet2 = new Cat();
+		pet2.setName('cat');
+		pet2.say();
+
+		//继承方法封装
+		function extend(parent,properties){
+			var child = properties.init?function(){
+				properties.init.call(this);
+			} : new Function();
+
+			child.prototype = new parent();
+			var extraProp = properties.prototype;
+			if(extraProp){
+				for(var i in extraProp){
+					child.prototype[i] = extraProp[i];
+				}
+			}
+			return child;
+		}
+		var Mouse = extend(Animal,{
+			init: function(){
+				this.run = function(){
+					show(this.getName()+' is running');
+				}
+			},
+			prototype: {
+				say: function(){
+					show('a mouse say: '+this.getName());
+				}
+			}
+		});
+		var pet3 = new Mouse();
+		pet3.setName('mouse');
+		pet3.say();
+		pet3.run();
+
+		var Bird = extend(Animal,{
+			init: function(){
+				var _val = 'Bird rewrite Name _a_';
+				var _name = _val;
+				this.setName = function(name){
+					_name = _val.replace('_a_','_'+name+'_');
+				}
+				this.getName = function(){
+					return _name;
+				}
+			},
+			prototype: {
+				say: function(){
+					show(this.getName()+' is flying');
+				}
+			}
+		});
+
+		var pet4 = new Bird();
+		pet4.setName('Bird');
+		pet4.say();
+	//-->
+	</script>
+	</body>
+</html>
