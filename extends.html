@@ -35,14 +35,14 @@
 			}
 		}
 		Animal.prototype.say = function(){
-			show(this.getName());
+			show("Animal say:"+this.getName());
 		}
 		function Dog(){
 			Animal.apply(this,arguments);//继承类上的公有属性及方法
 		}
 		Dog.prototype = new Animal();//继承类的原型链上的属性及方法
 		Dog.prototype.say = function(){
-			show('my name is : '+this.getName());
+			show('Dog say: "my name is : '+this.getName()+'"');
 		}
 
 		function Cat(){
@@ -53,23 +53,27 @@
 		var animal = new Animal();
 		animal.setName('animal');
 		animal.say();
+		show('animal instanceof Animal:'+(animal instanceof Animal));
 
 		var pet1 = new Dog();
 		pet1.setName('dog');
 		pet1.say();
+		show('pet1 instanceof Dog && pet1 instanceof Animal:'+(pet1 instanceof Dog  && pet1 instanceof Animal));
 
 		var pet2 = new Cat();
 		pet2.setName('cat');
 		pet2.say();
+		show('pet2 instanceof Cat && pet2 instanceof Animal:'+(pet2 instanceof Cat  && pet2 instanceof Animal));
 
 		//继承方法封装
 		function extend(parent,properties){
-			var child = properties.init?function(){
-				properties.init.call(this);
-			} : new Function();
+			var child = function(){
+				properties && properties.init && properties.init.call(this);
+				parent.apply(this,arguments);
+			};
 
 			child.prototype = new parent();
-			var extraProp = properties.prototype;
+			var extraProp = properties && properties.prototype;
 			if(extraProp){
 				for(var i in extraProp){
 					child.prototype[i] = extraProp[i];
@@ -93,6 +97,7 @@
 		pet3.setName('mouse');
 		pet3.say();
 		pet3.run();
+		show('pet3 instanceof Mouse && pet3 instanceof Animal:'+(pet3 instanceof Mouse  && pet3 instanceof Animal));
 
 		var Bird = extend(Animal,{
 			init: function(){
@@ -115,6 +120,13 @@
 		var pet4 = new Bird();
 		pet4.setName('Bird');
 		pet4.say();
+		show('pet4 instanceof Bird && pet4 instanceof Animal:'+(pet4 instanceof Bird  && pet4 instanceof Animal));
+
+		var Spadger = extend(Bird);
+		var pet5 = new Spadger();
+		pet5.setName('Spadger');
+		pet5.say();
+		show('pet5 instanceof Spadger && pet5 instanceof Bird && pet5 instanceof Animal:'+(pet5 instanceof Spadger && pet5 instanceof Bird  && pet5 instanceof Animal));
 	//-->
 	</script>
 	</body>
