@@ -69,7 +69,7 @@
 		function extend(parent,properties){
 			var child = function(){
 				parent.apply(this,arguments);
-				properties && properties.init && properties.init.call(this);
+				properties && properties.init && properties.init.apply(this,arguments);
 			};
 
 			child.prototype = new parent();
