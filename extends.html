@@ -68,8 +68,8 @@
 		//继承方法封装
 		function extend(parent,properties){
 			var child = function(){
-				properties && properties.init && properties.init.call(this);
 				parent.apply(this,arguments);
+				properties && properties.init && properties.init.call(this);
 			};
 
 			child.prototype = new parent();
